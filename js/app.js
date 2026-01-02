@@ -40,6 +40,10 @@
   let vocabIndex = 0;
   let revealed = false;
 
+  let autoNextTimer = null;
+  const AUTO_NEXT_DELAY_MS = 650; // ← 0.65秒。好みで 400〜900 に調整
+
+
   // --- helpers ---
   function getSectionIds() {
     return Object.keys(window.SECTIONS || {}).sort();
@@ -119,6 +123,12 @@
   function renderVocabQuestion() {
     const sec = getCurrentSection();
     const list = sec?.vocab || [];
+
+        if (autoNextTimer) {
+      clearTimeout(autoNextTimer);
+      autoNextTimer = null;
+    }
+
     if (!list.length) {
       vocabIdEl.textContent = "—";
       vocabProgressEl.textContent = "0 / 0";
@@ -145,6 +155,7 @@
     vocabMeaningEl.textContent = v.meaning;
 
     vocabInputEl.value = "";
+    vocabInputEl.disabled = false;
     vocabInputEl.focus();
 
     vocabFeedbackEl.textContent = "英語を入力して Enter（または答えボタン）";
@@ -171,17 +182,25 @@
       return;
     }
 
-    if (user === correct) {
-      vocabFeedbackEl.textContent = "✅ 正解！";
-      // 次へ進みやすいように少し待ってから次へ…は入れず、ユーザー操作に任せる
-      // ただし、答えを見たい人向けに表示も出す
+       if (user === correct) {
+      vocabFeedbackEl.textContent = "✅ 正解！ 次へ…";
       revealed = true;
       showAnswerBox();
       vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
-    } else {
-      vocabFeedbackEl.textContent = `❌ ちがいます（入力: "${vocabInputEl.value}"）`;
-      // 不正解でも答えは出さない（学習負荷を保つ）
-      // 見たい場合は「答え」ボタンを押す
+
+      vocabInputEl.disabled = true;
+
+      if (vocabIndex < list.length - 1) {
+        if (autoNextTimer) clearTimeout(autoNextTimer);
+        autoNextTimer = setTimeout(() => {
+          vocabIndex += 1;
+           vocabInputEl.disabled = false;
+          renderVocabQuestion();
+        }, AUTO_NEXT_DELAY_MS);
+      } else {
+        vocabFeedbackEl.textContent = "✅ 正解！ 最後の問題です";
+        vocabInputEl.disabled = false;
+      }
     }
   }
 
