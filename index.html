@@ -44,12 +44,34 @@
       </div>
     </section>
 
-    <section id="viewVocab" class="view is-hidden">
-      <div class="card">
-        <div class="card-title">単語（準備中）</div>
-        <p class="muted">次のステップで「意味→英語」テストを入れます。</p>
-      </div>
-    </section>
+   <section id="viewVocab" class="view is-hidden">
+  <div class="card">
+    <div class="meta">
+      <span id="vocabId" class="pill">v0000</span>
+      <span id="vocabProgress" class="meta-text">0 / 0</span>
+    </div>
+
+    <div class="card-title">意味 → 英語</div>
+    <div id="vocabMeaning" class="japanese"></div>
+
+    <div class="actions">
+      <button id="vocabPrevBtn" class="btn" type="button">← 前</button>
+      <button id="vocabRevealBtn" class="btn" type="button">答え</button>
+      <button id="vocabNextBtn" class="btn primary" type="button">次 →</button>
+    </div>
+
+    <div style="margin-top: 12px;">
+      <input id="vocabInput" class="select" type="text" placeholder="英単語を入力" autocomplete="off" autocapitalize="off" spellcheck="false" />
+      <div id="vocabFeedback" class="meta-text" style="margin-top: 8px;"></div>
+    </div>
+
+    <div id="vocabAnswerBox" class="card" style="margin-top: 12px;">
+      <div class="card-title">答え</div>
+      <div id="vocabAnswer" class="english"></div>
+      <div class="meta-text" id="vocabExtra"></div>
+    </div>
+  </div>
+</section>
   </main>
 
   <!-- まずは sec01 だけでOK（後で 02〜45 を足す） -->
