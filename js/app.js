@@ -42,7 +42,7 @@
   let revealed = false;
 
   let autoNextTimer = null;
-  const AUTO_NEXT_DELAY_MS = 650;
+  const AUTO_NEXT_DELAY_MS = 1080;
 
   // ループ学習用（キュー方式）
   let queue = [];            // 出題順（indexの配列）

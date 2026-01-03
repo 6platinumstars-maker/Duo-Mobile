@@ -1,9 +1,10 @@
 // section36.js
-// Section 36：例文（439–448）＋語彙データ
+window.SECTIONS = window.SECTIONS || {};
 
-const section36 = {
+window.SECTIONS["sec36"] = {
   id: "sec36",
   title: "Section 36",
+  
   sentences: [
     {
       sid: "s439",
