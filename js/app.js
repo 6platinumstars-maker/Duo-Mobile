@@ -37,12 +37,18 @@
   let sentenceIndex = 0;
   let showJP = true;
 
-  let vocabIndex = 0;
+  // vocab state
+  let vocabIndex = 0; // list内のindex（実際に出している単語）
   let revealed = false;
 
   let autoNextTimer = null;
-  const AUTO_NEXT_DELAY_MS = 650; // ← 0.65秒。好みで 400〜900 に調整
+  const AUTO_NEXT_DELAY_MS = 650;
 
+  // ループ学習用（キュー方式）
+  let queue = [];            // 出題順（indexの配列）
+  let queuePos = 0;          // queue内の位置
+  let wrongSet = new Set();  // 間違えた問題の集合（次ラウンドへ）
+  let roundNo = 1;
 
   // --- helpers ---
   function getSectionIds() {
@@ -57,7 +63,14 @@
     return (s || "")
       .trim()
       .toLowerCase()
-      .replace(/\s+/g, " "); // collapse spaces
+      .replace(/\s+/g, " ");
+  }
+
+  function clearAutoTimer() {
+    if (autoNextTimer) {
+      clearTimeout(autoNextTimer);
+      autoNextTimer = null;
+    }
   }
 
   function renderSectionOptions() {
@@ -96,7 +109,6 @@
     japaneseEl.textContent = s.japanese;
     japaneseEl.classList.toggle("is-hidden", !showJP);
 
-    // vocab chips
     const vocabMap = new Map((sec.vocab || []).map((v) => [v.vid, v]));
     const refs = s.vocabRefs || [];
     vocabChipsEl.innerHTML = refs
@@ -111,7 +123,7 @@
     nextBtn.disabled = sentenceIndex === sec.sentences.length - 1;
   }
 
-  // ---- Vocab Test (meaning -> English) ----
+  // ---- Vocab UI helpers ----
   function hideAnswerBox() {
     vocabAnswerBox.style.display = "none";
   }
@@ -120,14 +132,47 @@
     vocabAnswerBox.style.display = "block";
   }
 
+  // ---- Vocab loop controls ----
+  function initVocabCycle(list) {
+    queue = list.map((_, i) => i); // 0..n-1
+    queuePos = 0;
+    wrongSet = new Set();
+    roundNo = 1;
+  }
+
+  function startNextRound(list) {
+    if (wrongSet.size > 0) {
+      queue = Array.from(wrongSet);
+      wrongSet = new Set();
+      queuePos = 0;
+      roundNo += 1;
+      vocabFeedbackEl.textContent = `復習ラウンド ${roundNo}：${queue.length}問`;
+    } else {
+      initVocabCycle(list);
+      vocabFeedbackEl.textContent = "全問正解！最初からもう一周";
+    }
+  }
+
+  function scheduleAdvance(list) {
+    clearAutoTimer();
+    autoNextTimer = setTimeout(() => {
+      queuePos += 1;
+
+      if (queuePos >= queue.length) {
+        startNextRound(list);
+      }
+
+      vocabInputEl.disabled = false;
+      renderVocabQuestion();
+    }, AUTO_NEXT_DELAY_MS);
+  }
+
+  // ---- Vocab rendering ----
   function renderVocabQuestion() {
     const sec = getCurrentSection();
     const list = sec?.vocab || [];
 
-        if (autoNextTimer) {
-      clearTimeout(autoNextTimer);
-      autoNextTimer = null;
-    }
+    clearAutoTimer();
 
     if (!list.length) {
       vocabIdEl.textContent = "—";
@@ -144,14 +189,18 @@
       return;
     }
 
-    vocabIndex = Math.max(0, Math.min(vocabIndex, list.length - 1));
+    // 初回だけキュー初期化
+    if (queue.length === 0) initVocabCycle(list);
+
+    queuePos = Math.max(0, Math.min(queuePos, queue.length - 1));
+    vocabIndex = queue[queuePos];
     const v = list[vocabIndex];
 
     revealed = false;
     hideAnswerBox();
 
     vocabIdEl.textContent = v.vid;
-    vocabProgressEl.textContent = `${vocabIndex + 1} / ${list.length}`;
+    vocabProgressEl.textContent = `${queuePos + 1} / ${queue.length}`;
     vocabMeaningEl.textContent = v.meaning;
 
     vocabInputEl.value = "";
@@ -162,8 +211,10 @@
     vocabAnswerEl.textContent = v.word;
     vocabExtraEl.textContent = "";
 
-    vocabPrevBtn.disabled = vocabIndex === 0;
-    vocabNextBtn.disabled = vocabIndex === list.length - 1;
+    // ボタンは「活性のままでOK」方針
+    // （必要ならここでinReview制御を復活できます）
+    vocabPrevBtn.disabled = queuePos === 0;
+    vocabNextBtn.disabled = queuePos === queue.length - 1;
     vocabRevealBtn.disabled = false;
   }
 
@@ -174,34 +225,37 @@
 
     const v = list[vocabIndex];
 
-    const user = normalizeAnswer(vocabInputEl.value);
+    const userRaw = vocabInputEl.value;
+    const user = normalizeAnswer(userRaw);
     const correct = normalizeAnswer(v.word);
 
+    function showAnswerWith(msg) {
+      revealed = true;
+      showAnswerBox();
+      vocabAnswerEl.textContent = v.word;
+      vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
+      vocabFeedbackEl.textContent = msg;
+
+      vocabInputEl.disabled = true;
+      scheduleAdvance(list);
+    }
+
+    // ① 未入力：スキップ（復習へ）
     if (!user) {
-      vocabFeedbackEl.textContent = "入力してください（例：respect）";
+      wrongSet.add(vocabIndex);
+      showAnswerWith("⏭ スキップ（答えを表示）");
       return;
     }
 
-       if (user === correct) {
-      vocabFeedbackEl.textContent = "✅ 正解！ 次へ…";
-      revealed = true;
-      showAnswerBox();
-      vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
-
-      vocabInputEl.disabled = true;
-
-      if (vocabIndex < list.length - 1) {
-        if (autoNextTimer) clearTimeout(autoNextTimer);
-        autoNextTimer = setTimeout(() => {
-          vocabIndex += 1;
-           vocabInputEl.disabled = false;
-          renderVocabQuestion();
-        }, AUTO_NEXT_DELAY_MS);
-      } else {
-        vocabFeedbackEl.textContent = "✅ 正解！ 最後の問題です";
-        vocabInputEl.disabled = false;
-      }
+    // 正解：復習に残さない
+    if (user === correct) {
+      showAnswerWith("✅ 正解！ 次へ…");
+      return;
     }
+
+    // ② 不正解：復習へ
+    wrongSet.add(vocabIndex);
+    showAnswerWith(`❌ 不正解（入力: "${userRaw}"）`);
   }
 
   function revealVocabAnswer() {
@@ -212,8 +266,9 @@
     const v = list[vocabIndex];
     revealed = true;
     showAnswerBox();
-    vocabFeedbackEl.textContent = "答えを表示しました。もう一度入力してもOK。";
+    vocabAnswerEl.textContent = v.word;
     vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
+    vocabFeedbackEl.textContent = "答えを表示しました。もう一度入力してもOK。";
     vocabInputEl.focus();
   }
 
@@ -225,13 +280,9 @@
     viewSentences.classList.toggle("is-hidden", !isSent);
     viewVocab.classList.toggle("is-hidden", isSent);
 
-    // タブ切替時のUX
     if (!isSent) {
-      // vocab view
       const sec = getCurrentSection();
-      if (sec?.vocab?.length) {
-        vocabInputEl?.focus();
-      }
+      if (sec?.vocab?.length) vocabInputEl?.focus();
     }
   }
 
@@ -239,17 +290,21 @@
   sectionSelect.addEventListener("change", (e) => {
     const id = e.target.value;
     if (!id) return;
+
     currentSectionId = id;
 
-    // reset indices for new section
+    // reset indices & queues
     sentenceIndex = 0;
     vocabIndex = 0;
+    queue = [];
+    queuePos = 0;
+    wrongSet = new Set();
+    roundNo = 1;
 
     renderSentence();
     renderVocabQuestion();
   });
 
-  // sentence controls
   prevBtn.addEventListener("click", () => {
     sentenceIndex -= 1;
     renderSentence();
@@ -265,18 +320,16 @@
     renderSentence();
   });
 
-  // tabs
   tabSentences.addEventListener("click", () => setView("sentences"));
   tabVocab.addEventListener("click", () => setView("vocab"));
 
-  // vocab controls
   vocabPrevBtn.addEventListener("click", () => {
-    vocabIndex -= 1;
+    queuePos -= 1;
     renderVocabQuestion();
   });
 
   vocabNextBtn.addEventListener("click", () => {
-    vocabIndex += 1;
+    queuePos += 1;
     renderVocabQuestion();
   });
 
@@ -285,9 +338,7 @@
   });
 
   vocabInputEl.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      checkVocabAnswer();
-    }
+    if (e.key === "Enter") checkVocabAnswer();
   });
 
   // --- init ---
