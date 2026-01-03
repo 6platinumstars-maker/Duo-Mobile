@@ -1,7 +1,10 @@
 // section05.js
-const section05 = {
+window.SECTIONS = window.SECTIONS || {};
+
+window.SECTIONS["sec05"] = {
   id: "sec05",
   title: "Section 05",
+
   sentences: [
     {
       sid: "s046",
