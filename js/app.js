@@ -32,6 +32,13 @@
   const vocabAnswerEl = $("vocabAnswer");
   const vocabExtraEl = $("vocabExtra");
 
+  // ---- MCQ (4 choices) UI ----
+  const mcqBox = $("mcqBox");
+  const mcqToggleBtn = $("mcqToggleBtn");
+  const mcqSkipBtn = $("mcqSkipBtn");
+  const mcqChoicesEl = $("mcqChoices");
+  const mcqHintEl = $("mcqHint");
+
   // --- state ---
   let currentSectionId = "sec01";
   let sentenceIndex = 0;
@@ -41,17 +48,22 @@
   let vocabIndex = 0; // list内のindex（実際に出している単語）
   let revealed = false;
 
+  // auto-next
   let autoNextTimer = null;
-  const AUTO_NEXT_DELAY_MS = 1080;
+  const AUTO_NEXT_DELAY_MS = 950; // 速すぎるとスマホで読みづらいので少し短め
 
-  // ループ学習用（キュー方式）
-  let queue = [];
-  let queuePos = 0;
-  let wrongSet = new Set();
+  // loop learning (queue)
+  let queue = [];            // 出題順（list indexの配列）
+  let queuePos = 0;          // queue内の位置
+  let wrongSet = new Set();  // 間違えた問題（次ラウンドへ）
   let roundNo = 1;
 
-  // ★ disabled撤廃：ロック方式
+  // input lock (disabledは使わない)
   let vocabLocked = false;
+
+  // MCQ mode
+  let mcqMode = true;        // ★デフォON（スマホ想定）
+  let mcqAnswered = false;   // 連打防止
 
   // --- helpers ---
   function getSectionIds() {
@@ -77,7 +89,7 @@
   }
 
   function focusVocabInput() {
-    // iOS Safari: 描画直後の focus が外されることがあるので2段 rAF
+    // iOS Safari: 描画直後にfocusが外れることがあるので2段rAF
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         vocabInputEl.focus({ preventScroll: true });
@@ -90,7 +102,6 @@
   }
 
   function lockVocabInput() {
-    // disabled は使わない（音声入力/IMEが切れやすい）
     vocabLocked = true;
     vocabInputEl.readOnly = true;
   }
@@ -98,6 +109,14 @@
   function unlockVocabInput() {
     vocabLocked = false;
     vocabInputEl.readOnly = false;
+  }
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
   }
 
   function renderSectionOptions() {
@@ -173,9 +192,12 @@
       wrongSet = new Set();
       queuePos = 0;
       roundNo += 1;
+      // 表示はrenderVocabQuestionの「通常案内」で上書きされることがあるので、mcqHint側にも出す
+      mcqHintEl && (mcqHintEl.textContent = `復習ラウンド ${roundNo}：${queue.length}問`);
       vocabFeedbackEl.textContent = `復習ラウンド ${roundNo}：${queue.length}問`;
     } else {
       initVocabCycle(list);
+      mcqHintEl && (mcqHintEl.textContent = "全問正解！最初からもう一周");
       vocabFeedbackEl.textContent = "全問正解！最初からもう一周";
     }
   }
@@ -188,9 +210,57 @@
         startNextRound(list);
       }
       renderVocabQuestion();
-      // iOS向け：次問描画後にフォーカス当て直し
-      focusVocabInput();
+      if (!mcqMode) focusVocabInput();
     }, AUTO_NEXT_DELAY_MS);
+  }
+
+  // ---- MCQ (4 choices) ----
+  function renderMcq(list, correctWord) {
+    if (!mcqBox) return;
+
+    mcqAnswered = false;
+
+    const correctN = normalizeAnswer(correctWord);
+    const pool = list
+      .map((v) => v.word)
+      .filter((w) => normalizeAnswer(w) !== correctN);
+
+    shuffle(pool);
+
+    const choices = shuffle([correctWord, ...pool.slice(0, 3)]);
+    mcqChoicesEl.innerHTML = "";
+
+    choices.forEach((w) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn"; // style.cssで .mcqChoices .btn を当てる想定
+      btn.textContent = w;
+
+      btn.addEventListener("click", () => {
+        if (mcqAnswered) return;
+        mcqAnswered = true;
+
+        const ok = normalizeAnswer(w) === correctN;
+
+        // 答え表示
+        showAnswerBox();
+        vocabAnswerEl.textContent = correctWord;
+
+        if (ok) {
+          mcqHintEl.textContent = "✅ 正解！";
+          vocabFeedbackEl.textContent = "✅ 正解！";
+        } else {
+          mcqHintEl.textContent = `❌ 不正解（正解: ${correctWord}）`;
+          vocabFeedbackEl.textContent = `❌ 不正解（正解: ${correctWord}）`;
+          wrongSet.add(vocabIndex);
+        }
+
+        lockVocabInput(); // 連打防止（readOnly）
+        scheduleAdvance(list);
+      });
+
+      mcqChoicesEl.appendChild(btn);
+    });
   }
 
   // ---- Vocab rendering ----
@@ -212,6 +282,11 @@
       vocabNextBtn.disabled = true;
       vocabRevealBtn.disabled = true;
       showAnswerBox();
+
+      if (mcqBox) {
+        mcqChoicesEl.innerHTML = "";
+        mcqHintEl.textContent = "";
+      }
       return;
     }
 
@@ -228,21 +303,49 @@
     vocabProgressEl.textContent = `${queuePos + 1} / ${queue.length}`;
     vocabMeaningEl.textContent = v.meaning;
 
-    // ★次問表示時はアンロックして入力可能に
+    // 入力欄は常に存在するが、MCQならreadOnly
     unlockVocabInput();
     vocabInputEl.value = "";
-    focusVocabInput();
 
-    vocabFeedbackEl.textContent = "英語を入力して Enter（または答えボタン）";
+    // ラウンド案内（MCQ/入力共通）
+    const roundText = roundNo > 1 ? `復習ラウンド ${roundNo}：${queue.length}問` : "";
+    vocabFeedbackEl.textContent = mcqMode
+      ? (roundText || "4択で回答してください")
+      : (roundText || "英語を入力して Enter（または答えボタン）");
+
     vocabAnswerEl.textContent = v.word;
     vocabExtraEl.textContent = "";
 
-    // ボタン活性のままOK
+    // buttons
     vocabPrevBtn.disabled = queuePos === 0;
     vocabNextBtn.disabled = queuePos === queue.length - 1;
     vocabRevealBtn.disabled = false;
+
+    // MCQ UI
+    if (mcqBox) {
+      mcqBox.style.display = "block";
+      mcqToggleBtn.textContent = `4択: ${mcqMode ? "ON" : "OFF"}`;
+      mcqHintEl.textContent = mcqMode ? "選んでください" : "";
+
+      if (mcqMode) {
+        // 入力は使わない
+        lockVocabInput();
+        renderMcq(list, v.word);
+      } else {
+        // 入力式
+        mcqChoicesEl.innerHTML = "";
+        mcqHintEl.textContent = "";
+        unlockVocabInput();
+        focusVocabInput();
+      }
+    } else {
+      // MCQ UIが無い場合は入力式にフォールバック
+      unlockVocabInput();
+      focusVocabInput();
+    }
   }
 
+  // ---- Input mode answer check (meaning -> English) ----
   function checkVocabAnswer() {
     const sec = getCurrentSection();
     const list = sec?.vocab || [];
@@ -261,7 +364,6 @@
       vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
       vocabFeedbackEl.textContent = msg;
 
-      // ★disabledは使わない：ロック＋readOnly
       lockVocabInput();
       scheduleAdvance(list);
     }
@@ -294,8 +396,8 @@
     showAnswerBox();
     vocabAnswerEl.textContent = v.word;
     vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
-    vocabFeedbackEl.textContent = "答えを表示しました。もう一度入力してもOK。";
-    focusVocabInput();
+    vocabFeedbackEl.textContent = "答えを表示しました。";
+    if (!mcqMode) focusVocabInput();
   }
 
   // ---- View switching ----
@@ -308,7 +410,7 @@
 
     if (!isSent) {
       const sec = getCurrentSection();
-      if (sec?.vocab?.length) focusVocabInput();
+      if (sec?.vocab?.length && !mcqMode) focusVocabInput();
     }
   }
 
@@ -333,6 +435,7 @@
     renderVocabQuestion();
   });
 
+  // sentence controls
   prevBtn.addEventListener("click", () => {
     sentenceIndex -= 1;
     renderSentence();
@@ -348,9 +451,11 @@
     renderSentence();
   });
 
+  // tabs
   tabSentences.addEventListener("click", () => setView("sentences"));
   tabVocab.addEventListener("click", () => setView("vocab"));
 
+  // vocab controls (queuePosで移動)
   vocabPrevBtn.addEventListener("click", () => {
     queuePos -= 1;
     renderVocabQuestion();
@@ -365,10 +470,33 @@
     revealVocabAnswer();
   });
 
+  // MCQ controls (存在する場合のみ)
+  if (mcqToggleBtn) {
+    mcqToggleBtn.addEventListener("click", () => {
+      mcqMode = !mcqMode;
+      renderVocabQuestion();
+    });
+  }
+
+  if (mcqSkipBtn) {
+    mcqSkipBtn.addEventListener("click", () => {
+      const sec = getCurrentSection();
+      const list = sec?.vocab || [];
+      if (!list.length) return;
+
+      wrongSet.add(vocabIndex);
+      mcqHintEl && (mcqHintEl.textContent = "⏭ スキップ（復習へ）");
+      lockVocabInput();
+      scheduleAdvance(list);
+    });
+  }
+
+  // input enter (only when MCQ OFF)
   vocabInputEl.addEventListener("keydown", (e) => {
     if (e.key !== "Enter") return;
 
-    // ロック中はEnter無効（連打防止）
+    if (mcqMode) return; // ★4択ONなら入力判定しない
+
     if (vocabLocked) {
       e.preventDefault();
       return;
