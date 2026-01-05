@@ -73,18 +73,17 @@
     }
   }
 
-  function focusVocabInput() {
-  // iOS Safari は描画直後の focus() が外されることがあるので少し遅らせる
+function focusVocabInput() {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       vocabInputEl.focus({ preventScroll: true });
-      // 念のため末尾にカーソル
-      const len = vocabInputEl.value.length;
-      vocabInputEl.setSelectionRange(len, len);
+      try {
+        const len = vocabInputEl.value.length;
+        vocabInputEl.setSelectionRange(len, len);
+      } catch (_) {}
     });
   });
 }
-
 
   function renderSectionOptions() {
     const ids = getSectionIds();
@@ -283,7 +282,8 @@
     vocabAnswerEl.textContent = v.word;
     vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
     vocabFeedbackEl.textContent = "答えを表示しました。もう一度入力してもOK。";
-    vocabInputEl.focus();
+    focusVocabInput();
+
   }
 
   // ---- View switching ----
@@ -296,7 +296,7 @@
 
     if (!isSent) {
       const sec = getCurrentSection();
-      if (sec?.vocab?.length) vocabInputEl?.focus();
+      if (sec?.vocab?.length) vocabInputEl?.focusVocabInput();
     }
   }
 
