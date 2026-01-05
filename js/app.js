@@ -45,10 +45,13 @@
   const AUTO_NEXT_DELAY_MS = 1080;
 
   // ループ学習用（キュー方式）
-  let queue = [];            // 出題順（indexの配列）
-  let queuePos = 0;          // queue内の位置
-  let wrongSet = new Set();  // 間違えた問題の集合（次ラウンドへ）
+  let queue = [];
+  let queuePos = 0;
+  let wrongSet = new Set();
   let roundNo = 1;
+
+  // ★ disabled撤廃：ロック方式
+  let vocabLocked = false;
 
   // --- helpers ---
   function getSectionIds() {
@@ -73,17 +76,29 @@
     }
   }
 
-function focusVocabInput() {
-  requestAnimationFrame(() => {
+  function focusVocabInput() {
+    // iOS Safari: 描画直後の focus が外されることがあるので2段 rAF
     requestAnimationFrame(() => {
-      vocabInputEl.focus({ preventScroll: true });
-      try {
-        const len = vocabInputEl.value.length;
-        vocabInputEl.setSelectionRange(len, len);
-      } catch (_) {}
+      requestAnimationFrame(() => {
+        vocabInputEl.focus({ preventScroll: true });
+        try {
+          const len = vocabInputEl.value.length;
+          vocabInputEl.setSelectionRange(len, len);
+        } catch (_) {}
+      });
     });
-  });
-}
+  }
+
+  function lockVocabInput() {
+    // disabled は使わない（音声入力/IMEが切れやすい）
+    vocabLocked = true;
+    vocabInputEl.readOnly = true;
+  }
+
+  function unlockVocabInput() {
+    vocabLocked = false;
+    vocabInputEl.readOnly = false;
+  }
 
   function renderSectionOptions() {
     const ids = getSectionIds();
@@ -146,7 +161,7 @@ function focusVocabInput() {
 
   // ---- Vocab loop controls ----
   function initVocabCycle(list) {
-    queue = list.map((_, i) => i); // 0..n-1
+    queue = list.map((_, i) => i);
     queuePos = 0;
     wrongSet = new Set();
     roundNo = 1;
@@ -169,14 +184,12 @@ function focusVocabInput() {
     clearAutoTimer();
     autoNextTimer = setTimeout(() => {
       queuePos += 1;
-
       if (queuePos >= queue.length) {
         startNextRound(list);
       }
-
-      vocabInputEl.disabled = false;
       renderVocabQuestion();
-      focusVocabInput(); // ★追加
+      // iOS向け：次問描画後にフォーカス当て直し
+      focusVocabInput();
     }, AUTO_NEXT_DELAY_MS);
   }
 
@@ -202,7 +215,6 @@ function focusVocabInput() {
       return;
     }
 
-    // 初回だけキュー初期化
     if (queue.length === 0) initVocabCycle(list);
 
     queuePos = Math.max(0, Math.min(queuePos, queue.length - 1));
@@ -216,16 +228,16 @@ function focusVocabInput() {
     vocabProgressEl.textContent = `${queuePos + 1} / ${queue.length}`;
     vocabMeaningEl.textContent = v.meaning;
 
+    // ★次問表示時はアンロックして入力可能に
+    unlockVocabInput();
     vocabInputEl.value = "";
-    vocabInputEl.disabled = false;
     focusVocabInput();
 
     vocabFeedbackEl.textContent = "英語を入力して Enter（または答えボタン）";
     vocabAnswerEl.textContent = v.word;
     vocabExtraEl.textContent = "";
 
-    // ボタンは「活性のままでOK」方針
-    // （必要ならここでinReview制御を復活できます）
+    // ボタン活性のままOK
     vocabPrevBtn.disabled = queuePos === 0;
     vocabNextBtn.disabled = queuePos === queue.length - 1;
     vocabRevealBtn.disabled = false;
@@ -249,7 +261,8 @@ function focusVocabInput() {
       vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
       vocabFeedbackEl.textContent = msg;
 
-      vocabInputEl.disabled = true;
+      // ★disabledは使わない：ロック＋readOnly
+      lockVocabInput();
       scheduleAdvance(list);
     }
 
@@ -283,7 +296,6 @@ function focusVocabInput() {
     vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
     vocabFeedbackEl.textContent = "答えを表示しました。もう一度入力してもOK。";
     focusVocabInput();
-
   }
 
   // ---- View switching ----
@@ -296,7 +308,7 @@ function focusVocabInput() {
 
     if (!isSent) {
       const sec = getCurrentSection();
-      if (sec?.vocab?.length) vocabInputEl?.focusVocabInput();
+      if (sec?.vocab?.length) focusVocabInput();
     }
   }
 
@@ -307,13 +319,15 @@ function focusVocabInput() {
 
     currentSectionId = id;
 
-    // reset indices & queues
     sentenceIndex = 0;
     vocabIndex = 0;
     queue = [];
     queuePos = 0;
     wrongSet = new Set();
     roundNo = 1;
+
+    unlockVocabInput();
+    clearAutoTimer();
 
     renderSentence();
     renderVocabQuestion();
@@ -352,7 +366,15 @@ function focusVocabInput() {
   });
 
   vocabInputEl.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") checkVocabAnswer();
+    if (e.key !== "Enter") return;
+
+    // ロック中はEnter無効（連打防止）
+    if (vocabLocked) {
+      e.preventDefault();
+      return;
+    }
+
+    checkVocabAnswer();
   });
 
   // --- init ---
