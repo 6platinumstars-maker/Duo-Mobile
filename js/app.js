@@ -73,6 +73,19 @@
     }
   }
 
+  function focusVocabInput() {
+  // iOS Safari は描画直後の focus() が外されることがあるので少し遅らせる
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      vocabInputEl.focus({ preventScroll: true });
+      // 念のため末尾にカーソル
+      const len = vocabInputEl.value.length;
+      vocabInputEl.setSelectionRange(len, len);
+    });
+  });
+}
+
+
   function renderSectionOptions() {
     const ids = getSectionIds();
     if (ids.length === 0) {
@@ -164,6 +177,7 @@
 
       vocabInputEl.disabled = false;
       renderVocabQuestion();
+      focusVocabInput(); // ★追加
     }, AUTO_NEXT_DELAY_MS);
   }
 
@@ -205,7 +219,7 @@
 
     vocabInputEl.value = "";
     vocabInputEl.disabled = false;
-    vocabInputEl.focus();
+    focusVocabInput();
 
     vocabFeedbackEl.textContent = "英語を入力して Enter（または答えボタン）";
     vocabAnswerEl.textContent = v.word;
