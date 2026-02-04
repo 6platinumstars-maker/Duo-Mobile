@@ -1,4 +1,7 @@
-// js/app.js
+// js/app.js  (localStorage対応：duoMobile.v1 + 正誤履歴：duoMobile.v1.stats)
+// - 4択（タグ優先の誤答選び）対応
+// - 学習状態の保存/復元（続きから再開）対応
+// - vocab 正誤履歴の保存/復元（sec:vid）対応
 (function () {
   const $ = (id) => document.getElementById(id);
 
@@ -39,31 +42,255 @@
   const mcqChoicesEl = $("mcqChoices");
   const mcqHintEl = $("mcqHint");
 
-  // --- state ---
+  // =========================
+  // localStorage keys
+  // =========================
+  const STORAGE_KEY = "duoMobile.v1";
+  const STATS_KEY = "duoMobile.v1.stats";
+
+  // --- stats state (永続) ---
+  // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
+  let stats = Object.create(null);
+  let statsDirty = false;
+  let statsSaveTimer = null;
+
+  // --- state save timer ---
+  let saveTimer = null;
+
+  function scheduleSave() {
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      saveTimer = null;
+      saveState();
+    }, 120);
+  }
+
+  function scheduleSaveStats() {
+    statsDirty = true;
+    if (statsSaveTimer) clearTimeout(statsSaveTimer);
+    statsSaveTimer = setTimeout(() => {
+      statsSaveTimer = null;
+      saveStats();
+    }, 200);
+  }
+
+  function safeParseJSON(s) {
+    try {
+      return JSON.parse(s);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function isFiniteNumber(x) {
+    return typeof x === "number" && Number.isFinite(x);
+  }
+
+  function clampInt(n, min, max, fallback = min) {
+    if (!isFiniteNumber(n)) return fallback;
+    n = Math.trunc(n);
+    return Math.max(min, Math.min(max, n));
+  }
+
+  function normalizeAnswer(s) {
+    return (s || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, " ");
+  }
+
+  // =========================
+  // stats (正誤履歴)
+  // =========================
+  function getStatKey(secId, vid) {
+    return `${secId}:${vid}`;
+  }
+
+  function loadStats() {
+    const raw = localStorage.getItem(STATS_KEY);
+    if (!raw) {
+      stats = Object.create(null);
+      return;
+    }
+    const obj = safeParseJSON(raw);
+    if (!obj || typeof obj !== "object") {
+      stats = Object.create(null);
+      return;
+    }
+
+    // 軽いバリデーション：値がobjectのものだけ
+    const out = Object.create(null);
+    for (const [k, v] of Object.entries(obj)) {
+      if (!v || typeof v !== "object") continue;
+      const seen = clampInt(v.seen, 0, 1e9, 0);
+      const correct = clampInt(v.correct, 0, 1e9, 0);
+      const wrong = clampInt(v.wrong, 0, 1e9, 0);
+      const lastAt = isFiniteNumber(v.lastAt) ? v.lastAt : 0;
+      out[k] = { seen, correct, wrong, lastAt };
+    }
+    stats = out;
+  }
+
+  function saveStats() {
+    if (!statsDirty) return;
+    statsDirty = false;
+    try {
+      localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    } catch (e) {
+      console.warn("localStorage stats save failed:", e);
+    }
+  }
+
+  // outcome: "correct" | "wrong"
+  function recordVocabResult(secId, vocab, outcome) {
+    if (!secId || !vocab?.vid) return;
+
+    const key = getStatKey(secId, vocab.vid);
+    const cur = stats[key] || { seen: 0, correct: 0, wrong: 0, lastAt: 0 };
+
+    cur.seen += 1;
+    if (outcome === "correct") cur.correct += 1;
+    else cur.wrong += 1;
+
+    cur.lastAt = Date.now();
+    stats[key] = cur;
+
+    scheduleSaveStats();
+  }
+
+  // =========================
+  // 学習状態 (続きから再開)
+  // =========================
+  function saveState() {
+    const sec = getCurrentSection();
+    const vocabLen = sec?.vocab?.length || 0;
+
+    const state = {
+      v: 1,
+      lastSection: currentSectionId,
+      sentenceIndex,
+      showJP,
+      mcqMode,
+      vocab: {
+        sectionId: currentSectionId,
+        queue: Array.isArray(queue) ? queue.slice() : [],
+        queuePos,
+        wrongSet: Array.from(wrongSet || []),
+        roundNo
+      }
+    };
+
+    if (vocabLen > 0) {
+      state.vocab.queue = (state.vocab.queue || [])
+        .map((i) => (Number.isFinite(i) ? Math.trunc(i) : -1))
+        .filter((i) => i >= 0 && i < vocabLen);
+      state.vocab.queuePos = clampInt(
+        state.vocab.queuePos,
+        0,
+        Math.max(0, state.vocab.queue.length - 1),
+        0
+      );
+      state.vocab.wrongSet = (state.vocab.wrongSet || [])
+        .map((i) => (Number.isFinite(i) ? Math.trunc(i) : -1))
+        .filter((i) => i >= 0 && i < vocabLen);
+      state.vocab.roundNo = clampInt(state.vocab.roundNo, 1, 9999, 1);
+    } else {
+      state.vocab.queue = [];
+      state.vocab.queuePos = 0;
+      state.vocab.wrongSet = [];
+      state.vocab.roundNo = 1;
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.warn("localStorage save failed:", e);
+    }
+  }
+
+  function loadState() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+
+    const state = safeParseJSON(raw);
+    if (!state || typeof state !== "object") return;
+
+    const ids = Object.keys(window.SECTIONS || {});
+    if (!ids.length) return;
+
+    const last = typeof state.lastSection === "string" ? state.lastSection : null;
+    if (last && window.SECTIONS[last]) {
+      currentSectionId = last;
+    } else {
+      currentSectionId = ids.sort()[0] || currentSectionId;
+    }
+
+    showJP = typeof state.showJP === "boolean" ? state.showJP : showJP;
+    mcqMode = typeof state.mcqMode === "boolean" ? state.mcqMode : mcqMode;
+    sentenceIndex = isFiniteNumber(state.sentenceIndex) ? Math.trunc(state.sentenceIndex) : sentenceIndex;
+
+    const sec = window.SECTIONS[currentSectionId];
+    const list = sec?.vocab || [];
+    const vocabLen = list.length;
+
+    const vocabState = state.vocab && typeof state.vocab === "object" ? state.vocab : null;
+    if (vocabState && vocabState.sectionId === currentSectionId && vocabLen > 0) {
+      const q = Array.isArray(vocabState.queue) ? vocabState.queue : [];
+      const qSafe = q
+        .map((i) => (Number.isFinite(i) ? Math.trunc(i) : -1))
+        .filter((i) => i >= 0 && i < vocabLen);
+
+      queue = qSafe.length ? qSafe : list.map((_, i) => i);
+      queuePos = clampInt(vocabState.queuePos, 0, Math.max(0, queue.length - 1), 0);
+
+      const ws = Array.isArray(vocabState.wrongSet) ? vocabState.wrongSet : [];
+      wrongSet = new Set(
+        ws
+          .map((i) => (Number.isFinite(i) ? Math.trunc(i) : -1))
+          .filter((i) => i >= 0 && i < vocabLen)
+      );
+
+      roundNo = clampInt(vocabState.roundNo, 1, 9999, 1);
+    } else {
+      queue = [];
+      queuePos = 0;
+      wrongSet = new Set();
+      roundNo = 1;
+    }
+  }
+
+  // =========================
+  // ---- state ----
+  // =========================
   let currentSectionId = "sec01";
   let sentenceIndex = 0;
   let showJP = true;
 
   // vocab state
-  let vocabIndex = 0; // list内のindex（実際に出している単語）
+  let vocabIndex = 0;
   let revealed = false;
 
   // auto-next
   let autoNextTimer = null;
-  const AUTO_NEXT_DELAY_MS = 950; // 速すぎるとスマホで読みづらいので少し短め
+  const AUTO_NEXT_DELAY_MS = 950;
 
   // loop learning (queue)
-  let queue = [];            // 出題順（list indexの配列）
-  let queuePos = 0;          // queue内の位置
-  let wrongSet = new Set();  // 間違えた問題（次ラウンドへ）
+  let queue = [];
+  let queuePos = 0;
+  let wrongSet = new Set();
   let roundNo = 1;
 
-  // input lock (disabledは使わない)
+  // input lock
   let vocabLocked = false;
 
   // MCQ mode
-  let mcqMode = true;        // ★デフォON（スマホ想定）
-  let mcqAnswered = false;   // 連打防止
+  let mcqMode = true;
+  let mcqAnswered = false;
+
+  // ---- tag constants (Level0-1) ----
+  const POS_TAGS = ["noun", "verb", "adj", "adv", "prep", "conj", "pron", "interj", "aux"];
+  const isPatternTag = (t) => typeof t === "string" && t.startsWith("pattern_");
+  const isVerbHeadTag = (t) => typeof t === "string" && t.startsWith("verb_");
 
   // --- helpers ---
   function getSectionIds() {
@@ -74,13 +301,6 @@
     return window.SECTIONS?.[currentSectionId];
   }
 
-  function normalizeAnswer(s) {
-    return (s || "")
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, " ");
-  }
-
   function clearAutoTimer() {
     if (autoNextTimer) {
       clearTimeout(autoNextTimer);
@@ -89,7 +309,6 @@
   }
 
   function focusVocabInput() {
-    // iOS Safari: 描画直後にfocusが外れることがあるので2段rAF
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         vocabInputEl.focus({ preventScroll: true });
@@ -146,7 +365,7 @@
       return;
     }
 
-    sentenceIndex = Math.max(0, Math.min(sentenceIndex, sec.sentences.length - 1));
+    sentenceIndex = clampInt(sentenceIndex, 0, sec.sentences.length - 1, 0);
     const s = sec.sentences[sentenceIndex];
 
     sidEl.textContent = s.sid;
@@ -192,7 +411,6 @@
       wrongSet = new Set();
       queuePos = 0;
       roundNo += 1;
-      // 表示はrenderVocabQuestionの「通常案内」で上書きされることがあるので、mcqHint側にも出す
       mcqHintEl && (mcqHintEl.textContent = `復習ラウンド ${roundNo}：${queue.length}問`);
       vocabFeedbackEl.textContent = `復習ラウンド ${roundNo}：${queue.length}問`;
     } else {
@@ -200,6 +418,7 @@
       mcqHintEl && (mcqHintEl.textContent = "全問正解！最初からもう一周");
       vocabFeedbackEl.textContent = "全問正解！最初からもう一周";
     }
+    scheduleSave();
   }
 
   function scheduleAdvance(list) {
@@ -211,7 +430,87 @@
       }
       renderVocabQuestion();
       if (!mcqMode) focusVocabInput();
+      scheduleSave();
     }, AUTO_NEXT_DELAY_MS);
+  }
+
+  // ---- MCQ: tag-aware distractor selection ----
+  function findVocabByWord(list, word) {
+    const target = normalizeAnswer(word);
+    return list.find((v) => normalizeAnswer(v.word) === target) || null;
+  }
+
+  function uniquePoolByWord(vocabs) {
+    const seen = new Set();
+    const out = [];
+    for (const v of vocabs) {
+      const key = normalizeAnswer(v.word);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      out.push(v);
+    }
+    return out;
+  }
+
+  function pickDistractorWords(list, correctVocab, need = 3) {
+    const correctN = normalizeAnswer(correctVocab.word);
+    const allOthers = list.filter((v) => normalizeAnswer(v.word) !== correctN);
+
+    const tags = Array.isArray(correctVocab.tags) ? correctVocab.tags : [];
+    if (tags.length === 0) {
+      shuffle(allOthers);
+      return allOthers.slice(0, need).map((v) => v.word);
+    }
+
+    const patternTags = tags.filter(isPatternTag);
+    const headTags = tags.filter(isVerbHeadTag);
+    const posTag = tags.find((t) => POS_TAGS.includes(t)) || null;
+
+    // ① 同pattern
+    let pool = [];
+    if (patternTags.length > 0) {
+      pool = pool.concat(allOthers.filter((v) => (v.tags || []).some((t) => patternTags.includes(t))));
+    }
+
+    // ② 同verb_head
+    if (pool.length < need && headTags.length > 0) {
+      pool = pool.concat(allOthers.filter((v) => (v.tags || []).some((t) => headTags.includes(t))));
+    }
+
+    // ③ 同POS
+    if (pool.length < need && posTag) {
+      pool = pool.concat(allOthers.filter((v) => (v.tags || []).includes(posTag)));
+    }
+
+    // ④ 補完
+    if (pool.length < need) pool = pool.concat(allOthers);
+
+    pool = uniquePoolByWord(pool);
+    shuffle(pool);
+
+    const words = [];
+    const used = new Set([correctN]);
+    for (const v of pool) {
+      const wN = normalizeAnswer(v.word);
+      if (!wN || used.has(wN)) continue;
+      used.add(wN);
+      words.push(v.word);
+      if (words.length >= need) break;
+    }
+
+    if (words.length < need) {
+      const more = uniquePoolByWord(allOthers);
+      shuffle(more);
+      for (const v of more) {
+        const wN = normalizeAnswer(v.word);
+        if (!wN || used.has(wN)) continue;
+        used.add(wN);
+        words.push(v.word);
+        if (words.length >= need) break;
+      }
+    }
+
+    return words;
   }
 
   // ---- MCQ (4 choices) ----
@@ -221,19 +520,24 @@
     mcqAnswered = false;
 
     const correctN = normalizeAnswer(correctWord);
-    const pool = list
-      .map((v) => v.word)
-      .filter((w) => normalizeAnswer(w) !== correctN);
+    const correctVocab = findVocabByWord(list, correctWord);
 
-    shuffle(pool);
+    let wrongWords = [];
+    if (correctVocab) {
+      wrongWords = pickDistractorWords(list, correctVocab, 3);
+    } else {
+      const pool = list.map((v) => v.word).filter((w) => normalizeAnswer(w) !== correctN);
+      shuffle(pool);
+      wrongWords = pool.slice(0, 3);
+    }
 
-    const choices = shuffle([correctWord, ...pool.slice(0, 3)]);
+    const choices = shuffle([correctWord, ...wrongWords]);
     mcqChoicesEl.innerHTML = "";
 
     choices.forEach((w) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "btn"; // style.cssで .mcqChoices .btn を当てる想定
+      btn.className = "btn";
       btn.textContent = w;
 
       btn.addEventListener("click", () => {
@@ -241,6 +545,12 @@
         mcqAnswered = true;
 
         const ok = normalizeAnswer(w) === correctN;
+
+        // 現在の問題（vid）を確実に特定して履歴更新
+        const secId = currentSectionId;
+        const sec = getCurrentSection();
+        const curVocab = sec?.vocab?.[vocabIndex];
+        if (curVocab) recordVocabResult(secId, curVocab, ok ? "correct" : "wrong");
 
         // 答え表示
         showAnswerBox();
@@ -255,8 +565,9 @@
           wrongSet.add(vocabIndex);
         }
 
-        lockVocabInput(); // 連打防止（readOnly）
+        lockVocabInput();
         scheduleAdvance(list);
+        scheduleSave();
       });
 
       mcqChoicesEl.appendChild(btn);
@@ -292,8 +603,13 @@
 
     if (queue.length === 0) initVocabCycle(list);
 
-    queuePos = Math.max(0, Math.min(queuePos, queue.length - 1));
+    queuePos = clampInt(queuePos, 0, Math.max(0, queue.length - 1), 0);
     vocabIndex = queue[queuePos];
+    if (!Number.isFinite(vocabIndex) || vocabIndex < 0 || vocabIndex >= list.length) {
+      initVocabCycle(list);
+      vocabIndex = queue[0];
+      queuePos = 0;
+    }
     const v = list[vocabIndex];
 
     revealed = false;
@@ -303,11 +619,9 @@
     vocabProgressEl.textContent = `${queuePos + 1} / ${queue.length}`;
     vocabMeaningEl.textContent = v.meaning;
 
-    // 入力欄は常に存在するが、MCQならreadOnly
     unlockVocabInput();
     vocabInputEl.value = "";
 
-    // ラウンド案内（MCQ/入力共通）
     const roundText = roundNo > 1 ? `復習ラウンド ${roundNo}：${queue.length}問` : "";
     vocabFeedbackEl.textContent = mcqMode
       ? (roundText || "4択で回答してください")
@@ -316,30 +630,25 @@
     vocabAnswerEl.textContent = v.word;
     vocabExtraEl.textContent = "";
 
-    // buttons
     vocabPrevBtn.disabled = queuePos === 0;
     vocabNextBtn.disabled = queuePos === queue.length - 1;
     vocabRevealBtn.disabled = false;
 
-    // MCQ UI
     if (mcqBox) {
       mcqBox.style.display = "block";
-      mcqToggleBtn.textContent = `4択: ${mcqMode ? "ON" : "OFF"}`;
+      if (mcqToggleBtn) mcqToggleBtn.textContent = `4択: ${mcqMode ? "ON" : "OFF"}`;
       mcqHintEl.textContent = mcqMode ? "選んでください" : "";
 
       if (mcqMode) {
-        // 入力は使わない
         lockVocabInput();
         renderMcq(list, v.word);
       } else {
-        // 入力式
         mcqChoicesEl.innerHTML = "";
         mcqHintEl.textContent = "";
         unlockVocabInput();
         focusVocabInput();
       }
     } else {
-      // MCQ UIが無い場合は入力式にフォールバック
       unlockVocabInput();
       focusVocabInput();
     }
@@ -366,23 +675,27 @@
 
       lockVocabInput();
       scheduleAdvance(list);
+      scheduleSave();
     }
 
-    // ① 未入力：スキップ（復習へ）
+    // ① 未入力：スキップ（復習へ）→ wrong として履歴記録
     if (!user) {
       wrongSet.add(vocabIndex);
+      recordVocabResult(currentSectionId, v, "wrong");
       showAnswerWith("⏭ スキップ（答えを表示）");
       return;
     }
 
-    // 正解：復習に残さない
+    // 正解
     if (user === correct) {
+      recordVocabResult(currentSectionId, v, "correct");
       showAnswerWith("✅ 正解！ 次へ…");
       return;
     }
 
-    // ② 不正解：復習へ
+    // ② 不正解
     wrongSet.add(vocabIndex);
+    recordVocabResult(currentSectionId, v, "wrong");
     showAnswerWith(`❌ 不正解（入力: "${userRaw}"）`);
   }
 
@@ -398,6 +711,8 @@
     vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
     vocabFeedbackEl.textContent = "答えを表示しました。";
     if (!mcqMode) focusVocabInput();
+    scheduleSave();
+    // ※ reveal は履歴カウントしない（「見ただけ」を誤答にしない）
   }
 
   // ---- View switching ----
@@ -412,6 +727,7 @@
       const sec = getCurrentSection();
       if (sec?.vocab?.length && !mcqMode) focusVocabInput();
     }
+    scheduleSave();
   }
 
   // ---- events ----
@@ -433,22 +749,27 @@
 
     renderSentence();
     renderVocabQuestion();
+
+    scheduleSave();
   });
 
   // sentence controls
   prevBtn.addEventListener("click", () => {
     sentenceIndex -= 1;
     renderSentence();
+    scheduleSave();
   });
 
   nextBtn.addEventListener("click", () => {
     sentenceIndex += 1;
     renderSentence();
+    scheduleSave();
   });
 
   toggleJPBtn.addEventListener("click", () => {
     showJP = !showJP;
     renderSentence();
+    scheduleSave();
   });
 
   // tabs
@@ -459,11 +780,13 @@
   vocabPrevBtn.addEventListener("click", () => {
     queuePos -= 1;
     renderVocabQuestion();
+    scheduleSave();
   });
 
   vocabNextBtn.addEventListener("click", () => {
     queuePos += 1;
     renderVocabQuestion();
+    scheduleSave();
   });
 
   vocabRevealBtn.addEventListener("click", () => {
@@ -475,6 +798,7 @@
     mcqToggleBtn.addEventListener("click", () => {
       mcqMode = !mcqMode;
       renderVocabQuestion();
+      scheduleSave();
     });
   }
 
@@ -484,10 +808,14 @@
       const list = sec?.vocab || [];
       if (!list.length) return;
 
+      const v = list[vocabIndex];
       wrongSet.add(vocabIndex);
+      recordVocabResult(currentSectionId, v, "wrong");
+
       mcqHintEl && (mcqHintEl.textContent = "⏭ スキップ（復習へ）");
       lockVocabInput();
       scheduleAdvance(list);
+      scheduleSave();
     });
   }
 
@@ -495,7 +823,7 @@
   vocabInputEl.addEventListener("keydown", (e) => {
     if (e.key !== "Enter") return;
 
-    if (mcqMode) return; // ★4択ONなら入力判定しない
+    if (mcqMode) return;
 
     if (vocabLocked) {
       e.preventDefault();
@@ -510,8 +838,19 @@
     console.error("No sections loaded. Include data scripts before js/app.js");
   }
 
+  // 0) stats を読む（先に）
+  loadStats();
+
+  // 1) state を読む
+  loadState();
+
+  // 2) UI描画
   renderSectionOptions();
   renderSentence();
   renderVocabQuestion();
   setView("sentences");
+
+  // 3) 初回も保存（互換/壊れ対策）
+  scheduleSave();
+  scheduleSaveStats();
 })();
