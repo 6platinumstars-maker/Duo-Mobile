@@ -1,10 +1,10 @@
-// section08.js
+// section08.js（tags 付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec08"] = {
   id: "sec08",
   title: "Section 08",
-  
+
   sentences: [
     {
       sid: "s092",
@@ -61,252 +61,57 @@ window.SECTIONS["sec08"] = {
       vocabRefs: ["v0478", "v0479", "v0480", "v0481"]
     }
   ],
+
   vocab: [
-    {
-      vid: "v0441",
-      word: "flammable",
-      meaning: "可燃性の",
-      usedIn: ["s092"]
-    },
-    {
-      vid: "v0442",
-      word: "item",
-      meaning: "品物、項目",
-      usedIn: ["s092"]
-    },
-    {
-      vid: "v0443",
-      word: "cabin",
-      meaning: "客室、小屋",
-      usedIn: ["s092"]
-    },
-    {
-      vid: "v0444",
-      word: "prohibit",
-      meaning: "禁止する",
-      usedIn: ["s092"]
-    },
-    {
-      vid: "v0445",
-      word: "flight",
-      meaning: "飛行、便",
-      usedIn: ["s093"]
-    },
-    {
-      vid: "v0446",
-      word: "Vienna",
-      meaning: "ウィーン",
-      usedIn: ["s093"]
-    },
-    {
-      vid: "v0447",
-      word: "delay",
-      meaning: "遅らせる、遅れ",
-      usedIn: ["s093"]
-    },
-    {
-      vid: "v0448",
-      word: "on account of",
-      meaning: "～のために",
-      usedIn: ["s093"]
-    },
-    {
-      vid: "v0449",
-      word: "minor",
-      meaning: "小さい、軽い",
-      usedIn: ["s093"]
-    },
-    {
-      vid: "v0450",
-      word: "accident",
-      meaning: "事故",
-      usedIn: ["s093"]
-    },
-    {
-      vid: "v0451",
-      word: "plane",
-      meaning: "飛行機",
-      usedIn: ["s094"]
-    },
-    {
-      vid: "v0452",
-      word: "blow up",
-      meaning: "爆発する",
-      usedIn: ["s094"]
-    },
-    {
-      vid: "v0453",
-      word: "plunge into",
-      meaning: "～に突っ込む",
-      usedIn: ["s094"]
-    },
-    {
-      vid: "v0454",
-      word: "ocean",
-      meaning: "海洋",
-      usedIn: ["s094"]
-    },
-    {
-      vid: "v0455",
-      word: "on board",
-      meaning: "乗っている",
-      usedIn: ["s094"]
-    },
-    {
-      vid: "v0456",
-      word: "around the clock",
-      meaning: "昼夜休まずに",
-      usedIn: ["s095"]
-    },
-    {
-      vid: "v0457",
-      word: "look into",
-      meaning: "～を調べる",
-      usedIn: ["s095"]
-    },
-    {
-      vid: "v0458",
-      word: "cause",
-      meaning: "原因",
-      usedIn: ["s095"]
-    },
-    {
-      vid: "v0459",
-      word: "crash",
-      meaning: "墜落、衝突",
-      usedIn: ["s095"]
-    },
-    {
-      vid: "v0460",
-      word: "unfortunately",
-      meaning: "残念ながら",
-      usedIn: ["s096"]
-    },
-    {
-      vid: "v0461",
-      word: "few",
-      meaning: "ほとんど～ない（数が少ない）",
-      usedIn: ["s096"]
-    },
-    {
-      vid: "v0462",
-      word: "passenger",
-      meaning: "乗客",
-      usedIn: ["s096"]
-    },
-    {
-      vid: "v0463",
-      word: "survive",
-      meaning: "生き延びる",
-      usedIn: ["s096"]
-    },
-    {
-      vid: "v0464",
-      word: "catastrophe",
-      meaning: "大惨事",
-      usedIn: ["s096"]
-    },
-    {
-      vid: "v0465",
-      word: "aviation",
-      meaning: "航空（術）",
-      usedIn: ["s097"]
-    },
-    {
-      vid: "v0466",
-      word: "expert",
-      meaning: "専門家",
-      usedIn: ["s097"]
-    },
-    {
-      vid: "v0467",
-      word: "analyze",
-      meaning: "分析する",
-      usedIn: ["s097"]
-    },
-    {
-      vid: "v0468",
-      word: "statistics",
-      meaning: "統計",
-      usedIn: ["s097"]
-    },
-    {
-      vid: "v0469",
-      word: "detail",
-      meaning: "詳細",
-      usedIn: ["s097"]
-    },
-    {
-      vid: "v0470",
-      word: "on behalf of",
-      meaning: "～を代表して",
-      usedIn: ["s098"]
-    },
-    {
-      vid: "v0471",
-      word: "staff",
-      meaning: "職員、スタッフ",
-      usedIn: ["s098"]
-    },
-    {
-      vid: "v0472",
-      word: "express",
-      meaning: "表す、述べる",
-      usedIn: ["s098"]
-    },
-    {
-      vid: "v0473",
-      word: "sympathy",
-      meaning: "同情、哀悼",
-      usedIn: ["s098"]
-    },
-    {
-      vid: "v0474",
-      word: "victim",
-      meaning: "犠牲者",
-      usedIn: ["s098"]
-    },
-    {
-      vid: "v0475",
-      word: "in a sense",
-      meaning: "ある意味で",
-      usedIn: ["s099"]
-    },
-    {
-      vid: "v0476",
-      word: "A is to blame for B",
-      meaning: "AはBの責任がある",
-      usedIn: ["s099"]
-    },
-    {
-      vid: "v0477",
-      word: "disaster",
-      meaning: "災害、惨事",
-      usedIn: ["s099"]
-    },
-    {
-      vid: "v0478",
-      word: "vehicle",
-      meaning: "乗り物、車両",
-      usedIn: ["s100"]
-    },
-    {
-      vid: "v0479",
-      word: "inspect",
-      meaning: "検査する",
-      usedIn: ["s100"]
-    },
-    {
-      vid: "v0480",
-      word: "defect",
-      meaning: "欠陥",
-      usedIn: ["s100"]
-    },
-    {
-      vid: "v0481",
-      word: "every three months",
-      meaning: "3か月ごとに",
-      usedIn: ["s100"]
-    }
+    { vid: "v0441", word: "flammable", meaning: "可燃性の", usedIn: ["s092"], tags: ["adj"] },
+    { vid: "v0442", word: "item", meaning: "品物、項目", usedIn: ["s092"], tags: ["noun"] },
+    { vid: "v0443", word: "cabin", meaning: "客室、小屋", usedIn: ["s092"], tags: ["noun"] },
+    { vid: "v0444", word: "prohibit", meaning: "禁止する", usedIn: ["s092"], tags: ["verb"] },
+
+    { vid: "v0445", word: "flight", meaning: "飛行、便", usedIn: ["s093"], tags: ["noun"] },
+    { vid: "v0446", word: "Vienna", meaning: "ウィーン", usedIn: ["s093"], tags: ["noun"] },
+    { vid: "v0447", word: "delay", meaning: "遅らせる／遅れる", usedIn: ["s093"], tags: ["verb"] },
+    { vid: "v0448", word: "on account of", meaning: "～のために", usedIn: ["s093"], tags: ["prep"] },
+    { vid: "v0449", word: "minor", meaning: "小さい、軽い", usedIn: ["s093"], tags: ["adj"] },
+    { vid: "v0450", word: "accident", meaning: "事故", usedIn: ["s093"], tags: ["noun"] },
+
+    { vid: "v0451", word: "plane", meaning: "飛行機", usedIn: ["s094"], tags: ["noun"] },
+    { vid: "v0452", word: "blow up", meaning: "爆発する", usedIn: ["s094"], tags: ["verb"] },
+    { vid: "v0453", word: "plunge into", meaning: "～に突っ込む", usedIn: ["s094"], tags: ["verb"] },
+    { vid: "v0454", word: "ocean", meaning: "海洋", usedIn: ["s094"], tags: ["noun"] },
+    { vid: "v0455", word: "on board", meaning: "乗っている", usedIn: ["s094"], tags: ["adv"] },
+
+    { vid: "v0456", word: "around the clock", meaning: "昼夜休まずに", usedIn: ["s095"], tags: ["adv"] },
+    { vid: "v0457", word: "look into", meaning: "～を調べる", usedIn: ["s095"], tags: ["verb"] },
+    { vid: "v0458", word: "cause", meaning: "原因", usedIn: ["s095"], tags: ["noun"] },
+    { vid: "v0459", word: "crash", meaning: "墜落、衝突", usedIn: ["s095"], tags: ["noun"] },
+
+    { vid: "v0460", word: "unfortunately", meaning: "残念ながら", usedIn: ["s096"], tags: ["adv"] },
+    { vid: "v0461", word: "few", meaning: "ほとんど～ない（数が少ない）", usedIn: ["s096"], tags: ["adj"] },
+    { vid: "v0462", word: "passenger", meaning: "乗客", usedIn: ["s096"], tags: ["noun"] },
+    { vid: "v0463", word: "survive", meaning: "生き延びる", usedIn: ["s096"], tags: ["verb"] },
+    { vid: "v0464", word: "catastrophe", meaning: "大惨事", usedIn: ["s096"], tags: ["noun"] },
+
+    { vid: "v0465", word: "aviation", meaning: "航空（術）", usedIn: ["s097"], tags: ["noun"] },
+    { vid: "v0466", word: "expert", meaning: "専門家", usedIn: ["s097"], tags: ["noun"] },
+    { vid: "v0467", word: "analyze", meaning: "分析する", usedIn: ["s097"], tags: ["verb"] },
+    { vid: "v0468", word: "statistics", meaning: "統計", usedIn: ["s097"], tags: ["noun"] },
+    { vid: "v0469", word: "detail", meaning: "詳細", usedIn: ["s097"], tags: ["noun"] },
+
+    { vid: "v0470", word: "on behalf of", meaning: "～を代表して", usedIn: ["s098"], tags: ["prep"] },
+    { vid: "v0471", word: "staff", meaning: "職員、スタッフ", usedIn: ["s098"], tags: ["noun"] },
+    { vid: "v0472", word: "express", meaning: "表す、述べる", usedIn: ["s098"], tags: ["verb"] },
+    { vid: "v0473", word: "sympathy", meaning: "同情、哀悼", usedIn: ["s098"], tags: ["noun"] },
+    { vid: "v0474", word: "victim", meaning: "犠牲者", usedIn: ["s098"], tags: ["noun"] },
+
+    { vid: "v0475", word: "in a sense", meaning: "ある意味で", usedIn: ["s099"], tags: ["adv"] },
+    { vid: "v0476", word: "A is to blame for B", meaning: "AはBの責任がある", usedIn: ["s099"], tags: ["verb"] },
+    { vid: "v0477", word: "disaster", meaning: "災害、惨事", usedIn: ["s099"], tags: ["noun"] },
+
+    { vid: "v0478", word: "vehicle", meaning: "乗り物、車両", usedIn: ["s100"], tags: ["noun"] },
+    { vid: "v0479", word: "inspect", meaning: "検査する", usedIn: ["s100"], tags: ["verb"] },
+    { vid: "v0480", word: "defect", meaning: "欠陥", usedIn: ["s100"], tags: ["noun"] },
+    { vid: "v0481", word: "every three months", meaning: "3か月ごとに", usedIn: ["s100"], tags: ["adv"] }
   ]
 };
+

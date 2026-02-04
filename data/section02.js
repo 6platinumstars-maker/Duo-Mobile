@@ -1,10 +1,13 @@
 // section02.js
+// section02.js
+// Section 02：タグ付き（Level0〜1）
+
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec02"] = {
   id: "sec02",
   title: "Section 02",
-  
+
   sentences: [
     {
       sid: "s010",
@@ -39,7 +42,7 @@ window.SECTIONS["sec02"] = {
     {
       sid: "s015",
       english: "Are you familiar with contemporary literature? I know next to nothing about it.",
-      japanese: "現代文学に詳しいですか？ それについてはほとんど何も知りません。",
+      japanese: "現代文学に詳しいですか？それについてはほとんど何も知りません。",
       vocabRefs: ["v0068", "v0069", "v0070", "v0071"]
     },
     {
@@ -69,84 +72,85 @@ window.SECTIONS["sec02"] = {
     {
       sid: "s020",
       english: "Could you move over a little? Oh, sorry. I didn’t realize I was taking up so much space.",
-      japanese: "少し詰めてくれませんか？ あ、ごめんなさい。そんなに場所を取っていたとは気づきませんでした。",
+      japanese: "少し詰めてくれませんか？あ、ごめんなさい。そんなに場所を取っていたとは気づきませんでした。",
       vocabRefs: ["v0093", "v0094", "v0095"]
     },
     {
       sid: "s021",
       english: "What’s this ugly object? This is a piece of abstract art.",
-      japanese: "この醜い物体は何ですか？ これは抽象芸術の一つです。",
+      japanese: "この醜い物体は何ですか？これは抽象芸術の一つです。",
       vocabRefs: ["v0096", "v0097", "v0098", "v0099"]
     }
   ],
+
   vocab: [
-    { vid: "v0043", word: "beside oneself", meaning: "我を忘れて、取り乱して", usedIn: ["s010"] },
-    { vid: "v0044", word: "scarcely", meaning: "ほとんど～ない", usedIn: ["s010"] },
-    { vid: "v0045", word: "tell A from B", meaning: "AとBを区別する", usedIn: ["s010"] },
-    { vid: "v0046", word: "fact", meaning: "事実", usedIn: ["s010"] },
-    { vid: "v0047", word: "fiction", meaning: "作り話、フィクション", usedIn: ["s010"] },
+    { vid: "v0043", word: "beside oneself", meaning: "我を忘れて、取り乱して", usedIn: ["s010"], tags: ["adj"] },
+    { vid: "v0044", word: "scarcely", meaning: "ほとんど～ない", usedIn: ["s010"], tags: ["adv"] },
+    { vid: "v0045", word: "tell A from B", meaning: "AとBを区別する", usedIn: ["s010"], tags: ["verb"] },
+    { vid: "v0046", word: "fact", meaning: "事実", usedIn: ["s010"], tags: ["noun"] },
+    { vid: "v0047", word: "fiction", meaning: "作り話、フィクション", usedIn: ["s010"], tags: ["noun"] },
 
-    { vid: "v0048", word: "novel", meaning: "小説", usedIn: ["s011"] },
-    { vid: "v0049", word: "combine A with B", meaning: "AをBと組み合わせる", usedIn: ["s011"] },
-    { vid: "v0050", word: "prose", meaning: "散文", usedIn: ["s011"] },
-    { vid: "v0051", word: "gift", meaning: "才能、贈り物", usedIn: ["s011"] },
-    { vid: "v0052", word: "poetry", meaning: "詩", usedIn: ["s011"] },
-    { vid: "v0053", word: "publish", meaning: "出版する", usedIn: ["s011"] },
+    { vid: "v0048", word: "novel", meaning: "小説", usedIn: ["s011"], tags: ["noun"] },
+    { vid: "v0049", word: "combine A with B", meaning: "AをBと組み合わせる", usedIn: ["s011"], tags: ["verb"] },
+    { vid: "v0050", word: "prose", meaning: "散文", usedIn: ["s011"], tags: ["noun"] },
+    { vid: "v0051", word: "gift", meaning: "才能、贈り物", usedIn: ["s011"], tags: ["noun"] },
+    { vid: "v0052", word: "poetry", meaning: "詩", usedIn: ["s011"], tags: ["noun"] },
+    { vid: "v0053", word: "publish", meaning: "出版する", usedIn: ["s011"], tags: ["verb"] },
 
-    { vid: "v0054", word: "up-to-date", meaning: "最新の", usedIn: ["s012"] },
-    { vid: "v0055", word: "edition", meaning: "版、改訂版", usedIn: ["s012"] },
-    { vid: "v0056", word: "encyclopedia", meaning: "百科事典", usedIn: ["s012"] },
-    { vid: "v0057", word: "come out", meaning: "出版される、現れる", usedIn: ["s012"] },
+    { vid: "v0054", word: "up-to-date", meaning: "最新の", usedIn: ["s012"], tags: ["adj"] },
+    { vid: "v0055", word: "edition", meaning: "版、改訂版", usedIn: ["s012"], tags: ["noun"] },
+    { vid: "v0056", word: "encyclopedia", meaning: "百科事典", usedIn: ["s012"], tags: ["noun"] },
+    { vid: "v0057", word: "come out", meaning: "出版される、現れる", usedIn: ["s012"], tags: ["verb"] },
 
-    { vid: "v0058", word: "translate", meaning: "翻訳する", usedIn: ["s013"] },
-    { vid: "v0059", word: "fascinating", meaning: "魅力的な", usedIn: ["s013"] },
-    { vid: "v0060", word: "fairy tale", meaning: "おとぎ話", usedIn: ["s013"] },
-    { vid: "v0061", word: "tale", meaning: "話、物語", usedIn: ["s013"] },
-    { vid: "v0062", word: "plain", meaning: "わかりやすい、平易な", usedIn: ["s013"] },
+    { vid: "v0058", word: "translate", meaning: "翻訳する", usedIn: ["s013"], tags: ["verb"] },
+    { vid: "v0059", word: "fascinating", meaning: "魅力的な", usedIn: ["s013"], tags: ["adj"] },
+    { vid: "v0060", word: "fairy tale", meaning: "おとぎ話", usedIn: ["s013"], tags: ["noun"] },
+    { vid: "v0061", word: "tale", meaning: "話、物語", usedIn: ["s013"], tags: ["noun"] },
+    { vid: "v0062", word: "plain", meaning: "わかりやすい、平易な", usedIn: ["s013"], tags: ["adj"] },
 
-    { vid: "v0063", word: "following", meaning: "次の", usedIn: ["s014"] },
-    { vid: "v0064", word: "passage", meaning: "一節、文章", usedIn: ["s014"] },
-    { vid: "v0065", word: "quote", meaning: "引用する", usedIn: ["s014"] },
-    { vid: "v0066", word: "well-known", meaning: "有名な", usedIn: ["s014"] },
-    { vid: "v0067", word: "fable", meaning: "寓話", usedIn: ["s014"] },
+    { vid: "v0063", word: "following", meaning: "次の", usedIn: ["s014"], tags: ["adj"] },
+    { vid: "v0064", word: "passage", meaning: "一節、文章", usedIn: ["s014"], tags: ["noun"] },
+    { vid: "v0065", word: "quote", meaning: "引用する", usedIn: ["s014"], tags: ["verb"] },
+    { vid: "v0066", word: "well-known", meaning: "有名な", usedIn: ["s014"], tags: ["adj"] },
+    { vid: "v0067", word: "fable", meaning: "寓話", usedIn: ["s014"], tags: ["noun"] },
 
-    { vid: "v0068", word: "familiar", meaning: "詳しい、精通している", usedIn: ["s015"] },
-    { vid: "v0069", word: "contemporary", meaning: "現代の", usedIn: ["s015"] },
-    { vid: "v0070", word: "literature", meaning: "文学", usedIn: ["s015"] },
-    { vid: "v0071", word: "next to", meaning: "ほとんど～ない（否定語とともに）", usedIn: ["s015"] },
+    { vid: "v0068", word: "familiar", meaning: "詳しい、精通している", usedIn: ["s015"], tags: ["adj"] },
+    { vid: "v0069", word: "contemporary", meaning: "現代の", usedIn: ["s015"], tags: ["adj"] },
+    { vid: "v0070", word: "literature", meaning: "文学", usedIn: ["s015"], tags: ["noun"] },
+    { vid: "v0071", word: "next to", meaning: "ほとんど～ない（否定語とともに）", usedIn: ["s015"], tags: ["adv"] },
 
-    { vid: "v0072", word: "at times", meaning: "ときどき", usedIn: ["s016"] },
-    { vid: "v0073", word: "confuse A with B", meaning: "AとBを混同する", usedIn: ["s016"] },
-    { vid: "v0074", word: "curve", meaning: "曲線", usedIn: ["s016"] },
-    { vid: "v0075", word: "carve", meaning: "彫る、刻む", usedIn: ["s016"] },
+    { vid: "v0072", word: "at times", meaning: "ときどき", usedIn: ["s016"], tags: ["adv"] },
+    { vid: "v0073", word: "confuse A with B", meaning: "AとBを混同する", usedIn: ["s016"], tags: ["verb"] },
+    { vid: "v0074", word: "curve", meaning: "曲線", usedIn: ["s016"], tags: ["noun"] },
+    { vid: "v0075", word: "carve", meaning: "彫る、刻む", usedIn: ["s016"], tags: ["verb"] },
 
-    { vid: "v0076", word: "shy", meaning: "恥ずかしがりの", usedIn: ["s017"] },
-    { vid: "v0077", word: "pronunciation", meaning: "発音", usedIn: ["s017"] },
-    { vid: "v0078", word: "more or less", meaning: "ほとんど、だいたい", usedIn: ["s017"] },
-    { vid: "v0079", word: "correct", meaning: "正しい", usedIn: ["s017"] },
+    { vid: "v0076", word: "shy", meaning: "恥ずかしがりの", usedIn: ["s017"], tags: ["adj"] },
+    { vid: "v0077", word: "pronunciation", meaning: "発音", usedIn: ["s017"], tags: ["noun"] },
+    { vid: "v0078", word: "more or less", meaning: "ほとんど、だいたい", usedIn: ["s017"], tags: ["adv"] },
+    { vid: "v0079", word: "correct", meaning: "正しい", usedIn: ["s017"], tags: ["adj"] },
 
-    { vid: "v0080", word: "article", meaning: "記事", usedIn: ["s018"] },
-    { vid: "v0081", word: "contain", meaning: "含む", usedIn: ["s018"] },
-    { vid: "v0082", word: "tip", meaning: "助言、ヒント", usedIn: ["s018"] },
-    { vid: "v0083", word: "those who", meaning: "～する人々", usedIn: ["s018"] },
-    { vid: "v0084", word: "be eager to do", meaning: "～したがる", usedIn: ["s018"] },
-    { vid: "v0085", word: "increase", meaning: "増やす", usedIn: ["s018"] },
-    { vid: "v0086", word: "vocabulary", meaning: "語彙", usedIn: ["s018"] },
+    { vid: "v0080", word: "article", meaning: "記事", usedIn: ["s018"], tags: ["noun"] },
+    { vid: "v0081", word: "contain", meaning: "含む", usedIn: ["s018"], tags: ["verb"] },
+    { vid: "v0082", word: "tip", meaning: "助言、ヒント", usedIn: ["s018"], tags: ["noun"] },
+    { vid: "v0083", word: "those who", meaning: "～する人々", usedIn: ["s018"], tags: ["pron"] },
+    { vid: "v0084", word: "be eager to do", meaning: "～したがる", usedIn: ["s018"], tags: ["adj"] },
+    { vid: "v0085", word: "increase", meaning: "増やす", usedIn: ["s018"], tags: ["verb"] },
+    { vid: "v0086", word: "vocabulary", meaning: "語彙", usedIn: ["s018"], tags: ["noun"] },
 
-    { vid: "v0087", word: "latest", meaning: "最新の", usedIn: ["s019"] },
-    { vid: "v0088", word: "work", meaning: "作品", usedIn: ["s019"] },
-    { vid: "v0089", word: "be on display", meaning: "展示されている", usedIn: ["s019"] },
-    { vid: "v0090", word: "city hall", meaning: "市庁舎", usedIn: ["s019"] },
-    { vid: "v0091", word: "fabulous", meaning: "すばらしい", usedIn: ["s019"] },
-    { vid: "v0092", word: "beyond description", meaning: "言葉では言い表せないほど", usedIn: ["s019"] },
+    { vid: "v0087", word: "latest", meaning: "最新の", usedIn: ["s019"], tags: ["adj"] },
+    { vid: "v0088", word: "work", meaning: "作品", usedIn: ["s019"], tags: ["noun"] },
+    { vid: "v0089", word: "be on display", meaning: "展示されている", usedIn: ["s019"], tags: ["verb"] },
+    { vid: "v0090", word: "city hall", meaning: "市庁舎", usedIn: ["s019"], tags: ["noun"] },
+    { vid: "v0091", word: "fabulous", meaning: "すばらしい", usedIn: ["s019"], tags: ["adj"] },
+    { vid: "v0092", word: "beyond description", meaning: "言葉では言い表せないほど", usedIn: ["s019"], tags: ["adv"] },
 
-    { vid: "v0093", word: "move over", meaning: "席を詰める、脇に寄る", usedIn: ["s020"] },
-    { vid: "v0094", word: "realize", meaning: "気づく", usedIn: ["s020"] },
-    { vid: "v0095", word: "take up", meaning: "（場所・時間を）取る、占める", usedIn: ["s020"] },
+    { vid: "v0093", word: "move over", meaning: "席を詰める、脇に寄る", usedIn: ["s020"], tags: ["verb"] },
+    { vid: "v0094", word: "realize", meaning: "気づく", usedIn: ["s020"], tags: ["verb"] },
+    { vid: "v0095", word: "take up", meaning: "（場所・時間を）取る、占める", usedIn: ["s020"], tags: ["verb","verb_take"] },
 
-    { vid: "v0096", word: "ugly", meaning: "醜い", usedIn: ["s021"] },
-    { vid: "v0097", word: "object", meaning: "物体、対象", usedIn: ["s021"] },
-    { vid: "v0098", word: "a piece of", meaning: "～の一つ、1個の", usedIn: ["s021"] },
-    { vid: "v0099", word: "abstract", meaning: "抽象的な", usedIn: ["s021"] }
+    { vid: "v0096", word: "ugly", meaning: "醜い", usedIn: ["s021"], tags: ["adj"] },
+    { vid: "v0097", word: "object", meaning: "物体、対象", usedIn: ["s021"], tags: ["noun"] },
+    { vid: "v0098", word: "a piece of", meaning: "～の一つ、1個の", usedIn: ["s021"], tags: ["noun"] },
+    { vid: "v0099", word: "abstract", meaning: "抽象的な", usedIn: ["s021"], tags: ["adj"] }
   ]
 };

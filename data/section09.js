@@ -1,10 +1,10 @@
-// section09.js
+// Section 09（tags 付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec09"] = {
   id: "sec09",
   title: "Section 09",
-  
+
   sentences: [
     {
       sid: "s101",
@@ -46,7 +46,6 @@ window.SECTIONS["sec09"] = {
       sid: "s107",
       english: "I’m getting rid of this leather jacket because it’s worn out at the elbows.",
       japanese: "この革のジャケットは肘の部分がすり切れているので処分するつもりだ。",
-      // ※IDの重複を避けるため、肘(elbow)には v0506 を割り当てています
       vocabRefs: ["v0507", "v0508", "v0509", "v0506"]
     },
     {
@@ -79,8 +78,7 @@ window.SECTIONS["sec09"] = {
     },
     {
       sid: "s112",
-      english:
-        "No sooner had I sat back and relaxed than my wife asked me to do the chores.",
+      english: "No sooner had I sat back and relaxed than my wife asked me to do the chores.",
       japanese: "くつろいだ途端に、妻に家事を頼まれた。",
       vocabRefs: ["v0529", "v0530", "v0531", "v0532"]
     },
@@ -91,71 +89,73 @@ window.SECTIONS["sec09"] = {
       vocabRefs: ["v0533", "v0534"]
     }
   ],
+
   vocab: [
-    { vid: "v0482", word: "be amazed to see", meaning: "～を見て驚く", usedIn: ["s101"] },
-    { vid: "v0483", word: "utility", meaning: "公共料金", usedIn: ["s101"] },
-    { vid: "v0484", word: "bill", meaning: "請求書", usedIn: ["s101"] },
-    { vid: "v0485", word: "come to", meaning: "（金額が）～に達する", usedIn: ["s101"] },
+    { vid: "v0482", word: "be amazed to see", meaning: "～を見て驚く", usedIn: ["s101"], tags: ["verb"] },
+    { vid: "v0483", word: "utility", meaning: "公共料金", usedIn: ["s101"], tags: ["noun"] },
+    { vid: "v0484", word: "bill", meaning: "請求書", usedIn: ["s101"], tags: ["noun"] },
+    { vid: "v0485", word: "come to", meaning: "（金額が）～に達する", usedIn: ["s101"], tags: ["verb"] },
 
-    { vid: "v0486", word: "turn … off", meaning: "～を止める・消す", usedIn: ["s102"] },
-    { vid: "v0487", word: "faucet", meaning: "蛇口", usedIn: ["s102"] },
-    { vid: "v0488", word: "yell", meaning: "叫ぶ", usedIn: ["s102"] },
-    { vid: "v0489", word: "in a rage", meaning: "怒って、激怒して", usedIn: ["s102"] },
+    { vid: "v0486", word: "turn … off", meaning: "～を止める・消す", usedIn: ["s102"], tags: ["verb"] },
+    { vid: "v0487", word: "faucet", meaning: "蛇口", usedIn: ["s102"], tags: ["noun"] },
+    { vid: "v0488", word: "yell", meaning: "叫ぶ", usedIn: ["s102"], tags: ["verb"] },
+    { vid: "v0489", word: "in a rage", meaning: "怒って、激怒して", usedIn: ["s102"], tags: ["adv"] },
 
-    { vid: "v0490", word: "tighten", meaning: "～を締める", usedIn: ["s103"] },
-    { vid: "v0491", word: "lid", meaning: "蓋", usedIn: ["s103"] },
-    { vid: "v0492", word: "so A will do", meaning: "Aが～するように", usedIn: ["s103"] },
-    { vid: "v0493", word: "go bad", meaning: "腐る", usedIn: ["s103"] },
+    { vid: "v0490", word: "tighten", meaning: "～を締める", usedIn: ["s103"], tags: ["verb"] },
+    { vid: "v0491", word: "lid", meaning: "蓋", usedIn: ["s103"], tags: ["noun"] },
+    { vid: "v0492", word: "so (that) ...", meaning: "～するように（目的）", usedIn: ["s103"], tags: ["conj"] },
+    { vid: "v0493", word: "go bad", meaning: "腐る", usedIn: ["s103"], tags: ["verb"] },
 
-    { vid: "v0494", word: "borrow", meaning: "借りる", usedIn: ["s104"] },
-    { vid: "v0495", word: "scissors", meaning: "はさみ", usedIn: ["s104"] },
-    { vid: "v0496", word: "sure", meaning: "もちろん", usedIn: ["s104"] },
-    { vid: "v0497", word: "here you are", meaning: "はいどうぞ", usedIn: ["s104"] },
+    { vid: "v0494", word: "borrow", meaning: "借りる（他人から）", usedIn: ["s104"], tags: ["verb"] },
+    { vid: "v0495", word: "scissors", meaning: "はさみ", usedIn: ["s104"], tags: ["noun"] },
+    { vid: "v0496", word: "sure", meaning: "もちろん", usedIn: ["s104"], tags: ["interj"] },
+    { vid: "v0497", word: "here you are", meaning: "はいどうぞ", usedIn: ["s104"], tags: ["interj"] },
 
-    { vid: "v0498", word: "substitute … for A", meaning: "Aの代わりに…を使う", usedIn: ["s105"] },
-    { vid: "v0499", word: "transparent", meaning: "透明な", usedIn: ["s105"] },
-    { vid: "v0500", word: "glue", meaning: "のり、接着剤", usedIn: ["s105"] },
-    { vid: "v0501", word: "needle", meaning: "針", usedIn: ["s105"] },
-    { vid: "v0502", word: "thread", meaning: "糸", usedIn: ["s105"] },
+    { vid: "v0498", word: "substitute … for A", meaning: "Aの代わりに…を使う", usedIn: ["s105"], tags: ["verb"] },
+    { vid: "v0499", word: "transparent", meaning: "透明な", usedIn: ["s105"], tags: ["adj"] },
+    { vid: "v0500", word: "glue", meaning: "のり、接着剤", usedIn: ["s105"], tags: ["noun"] },
+    { vid: "v0501", word: "needle", meaning: "針", usedIn: ["s105"], tags: ["noun"] },
+    { vid: "v0502", word: "thread", meaning: "糸", usedIn: ["s105"], tags: ["noun"] },
 
-    { vid: "v0503", word: "dye", meaning: "～を染める", usedIn: ["s106"] },
-    { vid: "v0504", word: "fabric", meaning: "布、生地", usedIn: ["s106"] },
-    { vid: "v0505", word: "shrink", meaning: "縮む", usedIn: ["s106"] },
+    { vid: "v0503", word: "dye", meaning: "～を染める", usedIn: ["s106"], tags: ["verb"] },
+    { vid: "v0504", word: "fabric", meaning: "布、生地", usedIn: ["s106"], tags: ["noun"] },
+    { vid: "v0505", word: "shrink", meaning: "縮む", usedIn: ["s106"], tags: ["verb"] },
 
-    { vid: "v0507", word: "be rid of", meaning: "～を取り除く／処分する", usedIn: ["s107"] },
-    { vid: "v0508", word: "leather", meaning: "革", usedIn: ["s107"] },
-    { vid: "v0509", word: "wear out", meaning: "すり切れる、使い古される", usedIn: ["s107"] },
-    { vid: "v0506", word: "elbow", meaning: "肘", usedIn: ["s107"] },
+    // ※元メモでIDの重複があったため、elbow を v0506 として整理
+    { vid: "v0507", word: "get rid of", meaning: "～を処分する／取り除く", usedIn: ["s107"], tags: ["verb"] },
+    { vid: "v0508", word: "leather", meaning: "革", usedIn: ["s107"], tags: ["noun"] },
+    { vid: "v0509", word: "wear out", meaning: "すり切れる、使い古される", usedIn: ["s107"], tags: ["verb"] },
+    { vid: "v0506", word: "elbow", meaning: "肘", usedIn: ["s107"], tags: ["noun"] },
 
-    { vid: "v0510", word: "add A to B", meaning: "AをBに加える", usedIn: ["s108"] },
-    { vid: "v0511", word: "flour", meaning: "小麦粉", usedIn: ["s108"] },
-    { vid: "v0512", word: "mixture", meaning: "混合物", usedIn: ["s108"] },
-    { vid: "v0513", word: "stir", meaning: "かき混ぜる", usedIn: ["s108"] },
-    { vid: "v0514", word: "thick", meaning: "濃い、ドロッとした", usedIn: ["s108"] },
+    { vid: "v0510", word: "add A to B", meaning: "AをBに加える", usedIn: ["s108"], tags: ["verb"] },
+    { vid: "v0511", word: "flour", meaning: "小麦粉", usedIn: ["s108"], tags: ["noun"] },
+    { vid: "v0512", word: "mixture", meaning: "混合物", usedIn: ["s108"], tags: ["noun"] },
+    { vid: "v0513", word: "stir", meaning: "かき混ぜる", usedIn: ["s108"], tags: ["verb"] },
+    { vid: "v0514", word: "thick", meaning: "濃い／ドロッとした", usedIn: ["s108"], tags: ["adj"] },
 
-    { vid: "v0515", word: "do with", meaning: "～を処理する、扱う", usedIn: ["s109"] },
-    { vid: "v0516", word: "leftovers", meaning: "残り物", usedIn: ["s109"] },
-    { vid: "v0517", word: "fridge", meaning: "冷蔵庫", usedIn: ["s109"] },
-    { vid: "v0518", word: "for now", meaning: "今のところは、とりあえず", usedIn: ["s109"] },
-    { vid: "v0519", word: "microwave", meaning: "電子レンジ", usedIn: ["s109"] },
+    { vid: "v0515", word: "do with", meaning: "～をどうする／扱う", usedIn: ["s109"], tags: ["verb"] },
+    { vid: "v0516", word: "leftovers", meaning: "残り物", usedIn: ["s109"], tags: ["noun"] },
+    { vid: "v0517", word: "fridge", meaning: "冷蔵庫", usedIn: ["s109"], tags: ["noun"] },
+    { vid: "v0518", word: "for now", meaning: "とりあえず／今のところ", usedIn: ["s109"], tags: ["adv"] },
+    { vid: "v0519", word: "microwave", meaning: "電子レンジ", usedIn: ["s109"], tags: ["noun"] },
 
-    { vid: "v0520", word: "lay … out", meaning: "（金を）つぎ込む", usedIn: ["s110"] },
-    { vid: "v0521", word: "on second thought", meaning: "考え直してみると", usedIn: ["s110"] },
-    { vid: "v0522", word: "decide to do", meaning: "～することを決める", usedIn: ["s110"] },
-    { vid: "v0523", word: "put … aside", meaning: "～を取っておく", usedIn: ["s110"] },
-    { vid: "v0524", word: "for a rainy day", meaning: "まさかの時に備えて", usedIn: ["s110"] },
+    { vid: "v0520", word: "lay … out", meaning: "（金を）つぎ込む", usedIn: ["s110"], tags: ["verb"] },
+    { vid: "v0521", word: "on second thought", meaning: "考え直してみると", usedIn: ["s110"], tags: ["adv"] },
+    { vid: "v0522", word: "decide to do", meaning: "～することを決める", usedIn: ["s110"], tags: ["verb"] },
+    { vid: "v0523", word: "put … aside", meaning: "～を取っておく", usedIn: ["s110"], tags: ["verb"] },
+    { vid: "v0524", word: "for a rainy day", meaning: "まさかの時に備えて", usedIn: ["s110"], tags: ["adv"] },
 
-    { vid: "v0525", word: "cell phone", meaning: "携帯電話", usedIn: ["s111"] },
-    { vid: "v0526", word: "something of a", meaning: "一種の～、ちょっとした～", usedIn: ["s111"] },
-    { vid: "v0527", word: "necessity", meaning: "必需品", usedIn: ["s111"] },
-    { vid: "v0528", word: "do without", meaning: "～なしで済ます", usedIn: ["s111"] },
+    { vid: "v0525", word: "cell phone", meaning: "携帯電話", usedIn: ["s111"], tags: ["noun"] },
+    { vid: "v0526", word: "something of a", meaning: "一種の～", usedIn: ["s111"], tags: ["adj"] },
+    { vid: "v0527", word: "necessity", meaning: "必需品", usedIn: ["s111"], tags: ["noun"] },
+    { vid: "v0528", word: "do without", meaning: "～なしで済ます", usedIn: ["s111"], tags: ["verb"] },
 
-    { vid: "v0529", word: "No sooner A than B", meaning: "AするやいなやBする", usedIn: ["s112"] },
-    { vid: "v0530", word: "sit back", meaning: "ゆったり座る、くつろぐ", usedIn: ["s112"] },
-    { vid: "v0531", word: "relax", meaning: "くつろぐ、緊張を解く", usedIn: ["s112"] },
-    { vid: "v0532", word: "chore", meaning: "雑用、家事", usedIn: ["s112"] },
+    { vid: "v0529", word: "No sooner A than B", meaning: "AするやいなやBする", usedIn: ["s112"], tags: ["conj"] },
+    { vid: "v0530", word: "sit back", meaning: "くつろぐ／ゆったり座る", usedIn: ["s112"], tags: ["verb"] },
+    { vid: "v0531", word: "relax", meaning: "くつろぐ", usedIn: ["s112"], tags: ["verb"] },
+    { vid: "v0532", word: "chore", meaning: "雑用、家事", usedIn: ["s112"], tags: ["noun"] },
 
-    { vid: "v0533", word: "lay", meaning: "～を横たえる（他動詞）", usedIn: ["s113"] },
-    { vid: "v0534", word: "lie down", meaning: "横になる（自動詞）", usedIn: ["s113"] }
+    { vid: "v0533", word: "lay", meaning: "～を横たえる（他動詞）", usedIn: ["s113"], tags: ["verb"] },
+    { vid: "v0534", word: "lie down", meaning: "横になる（自動詞）", usedIn: ["s113"], tags: ["verb"] }
   ]
 };
