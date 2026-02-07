@@ -1,10 +1,9 @@
-// section26.js
+// section26.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec26"] = {
   id: "sec26",
   title: "Section 26",
-
   sentences: [
     {
       sid: "s304",
@@ -70,57 +69,57 @@ window.SECTIONS["sec26"] = {
       vocabRefs: ["v1455", "v1456", "v1457", "v1458", "v1459"],
     },
   ],
+
   vocab: [
-    { vid: "v1419", word: "how often", meaning: "どのくらいの頻度で", usedIn: ["s304"] },
-    { vid: "v1420", word: "shuttle", meaning: "送迎バス", usedIn: ["s304"] },
-    { vid: "v1421", word: "downtown", meaning: "繁華街、都心部", usedIn: ["s304"] },
+    { vid: "v1419", word: "how often", meaning: "どのくらいの頻度で", usedIn: ["s304"], tags: ["adv"] },
+    { vid: "v1420", word: "shuttle", meaning: "送迎バス", usedIn: ["s304"], tags: ["noun"] },
+    { vid: "v1421", word: "downtown", meaning: "繁華街、都心部", usedIn: ["s304"], tags: ["noun"] },
 
-    { vid: "v1422", word: "motel", meaning: "モーテル", usedIn: ["s305"] },
-    { vid: "v1423", word: "accommodate", meaning: "収容する", usedIn: ["s305"] },
-    { vid: "v1424", word: "as many as", meaning: "～も（多さ・数の強調）", usedIn: ["s305"] },
+    { vid: "v1422", word: "motel", meaning: "モーテル", usedIn: ["s305"], tags: ["noun"] },
+    { vid: "v1423", word: "accommodate", meaning: "収容する", usedIn: ["s305"], tags: ["verb"] },
+    { vid: "v1424", word: "as many as", meaning: "～も（多い数）", usedIn: ["s305"], tags: ["adv"] },
 
-    { vid: "v1425", word: "suite", meaning: "（ホテルの）スイート", usedIn: ["s306"] },
-    { vid: "v1426", word: "be three times larger than A", meaning: "Aの3倍の大きさだ", usedIn: ["s306"] },
-    { vid: "v1427", word: "condominium", meaning: "分譲マンション", usedIn: ["s306"] },
+    { vid: "v1425", word: "suite", meaning: "（ホテルの）スイート", usedIn: ["s306"], tags: ["noun"] },
+    { vid: "v1426", word: "be three times larger than A", meaning: "Aの3倍の大きさだ", usedIn: ["s306"], tags: ["verb"] },
+    { vid: "v1427", word: "condominium", meaning: "分譲マンション", usedIn: ["s306"], tags: ["noun"] },
 
-    { vid: "v1428", word: "litter", meaning: "ごみを捨てる", usedIn: ["s307"] },
-    { vid: "v1429", word: "facility", meaning: "施設", usedIn: ["s307"] },
-    { vid: "v1430", word: "be subject to", meaning: "～の対象となる", usedIn: ["s307"] },
-    { vid: "v1431", word: "maximum", meaning: "最大の", usedIn: ["s307"] },
-    { vid: "v1432", word: "fine", meaning: "罰金", usedIn: ["s307"] },
+    { vid: "v1428", word: "litter", meaning: "ごみを捨てる", usedIn: ["s307"], tags: ["verb"] },
+    { vid: "v1429", word: "facility", meaning: "施設", usedIn: ["s307"], tags: ["noun"] },
+    { vid: "v1430", word: "be subject to", meaning: "～の対象となる", usedIn: ["s307"], tags: ["verb"] },
+    { vid: "v1431", word: "maximum", meaning: "最大の", usedIn: ["s307"], tags: ["adj"] },
+    { vid: "v1432", word: "fine", meaning: "罰金", usedIn: ["s307"], tags: ["noun"] },
 
-    { vid: "v1433", word: "be packed", meaning: "混んでいる", usedIn: ["s308"] },
-    { vid: "v1434", word: "had better do", meaning: "～したほうがいい", usedIn: ["s308"] },
-    { vid: "v1435", word: "make a reservation", meaning: "予約する", usedIn: ["s308"] },
-    { vid: "v1436", word: "beforehand", meaning: "事前に", usedIn: ["s308"] },
+    { vid: "v1433", word: "be packed", meaning: "混んでいる", usedIn: ["s308"], tags: ["verb"] },
+    { vid: "v1434", word: "had better do", meaning: "～したほうがいい", usedIn: ["s308"], tags: ["aux", "verb_do"] },
+    { vid: "v1435", word: "make a reservation", meaning: "予約する", usedIn: ["s308"], tags: ["verb", "verb_make"] },
+    { vid: "v1436", word: "beforehand", meaning: "事前に", usedIn: ["s308"], tags: ["adv"] },
 
-    { vid: "v1437", word: "interrupt", meaning: "邪魔する", usedIn: ["s309"] },
-    { vid: "v1438", word: "meal", meaning: "食事", usedIn: ["s309"] },
-    { vid: "v1439", word: "I'd like a word with you", meaning: "少し話がしたい", usedIn: ["s309"] },
-    { vid: "v1440", word: "private", meaning: "内密の、個人的な", usedIn: ["s309"] },
-    { vid: "v1441", word: "get back to", meaning: "後で返事する／連絡する", usedIn: ["s309"] },
+    { vid: "v1437", word: "interrupt", meaning: "邪魔する", usedIn: ["s309"], tags: ["verb"] },
+    { vid: "v1438", word: "meal", meaning: "食事", usedIn: ["s309"], tags: ["noun"] },
+    { vid: "v1439", word: "I'd like a word with you", meaning: "少し話がしたい", usedIn: ["s309"], tags: ["verb"] },
+    { vid: "v1440", word: "private", meaning: "内密の、個人的な", usedIn: ["s309"], tags: ["adj"] },
+    { vid: "v1441", word: "get back to", meaning: "後で返事する／連絡する", usedIn: ["s309"], tags: ["verb", "verb_get"] },
 
-    { vid: "v1442", word: "cook", meaning: "料理人", usedIn: ["s310"] },
-    { vid: "v1443", word: "be astonished at", meaning: "～に驚く", usedIn: ["s310"] },
-    { vid: "v1444", word: "incredible", meaning: "信じられないほどの", usedIn: ["s310"] },
-    { vid: "v1445", word: "appetite", meaning: "食欲", usedIn: ["s310"] },
+    { vid: "v1442", word: "cook", meaning: "料理人", usedIn: ["s310"], tags: ["noun"] },
+    { vid: "v1443", word: "be astonished at", meaning: "～に驚く", usedIn: ["s310"], tags: ["verb"] },
+    { vid: "v1444", word: "incredible", meaning: "信じられないほどの", usedIn: ["s310"], tags: ["adj"] },
+    { vid: "v1445", word: "appetite", meaning: "食欲", usedIn: ["s310"], tags: ["noun"] },
 
-    { vid: "v1446", word: "What's going on", meaning: "何が起きているの", usedIn: ["s311"] },
-    { vid: "v1447", word: "curious", meaning: "気になる", usedIn: ["s311"] },
-    { vid: "v1448", word: "I have no idea", meaning: "まったくわからない", usedIn: ["s311"] },
+    { vid: "v1446", word: "What's going on", meaning: "何が起きているの", usedIn: ["s311"], tags: ["verb", "verb_go"] },
+    { vid: "v1447", word: "curious", meaning: "気になる", usedIn: ["s311"], tags: ["adj"] },
+    { vid: "v1448", word: "I have no idea", meaning: "まったくわからない", usedIn: ["s311"], tags: ["verb", "verb_have"] },
 
-    { vid: "v1449", word: "excited", meaning: "興奮した", usedIn: ["s312"] },
-    { vid: "v1450", word: "fan", meaning: "ファン", usedIn: ["s312"] },
-    { vid: "v1451", word: "hang around", meaning: "たむろする／ぶらぶらする", usedIn: ["s312"] },
-    { vid: "v1452", word: "rear", meaning: "後方の、裏の", usedIn: ["s312"] },
-    { vid: "v1453", word: "exit", meaning: "出口", usedIn: ["s312"] },
-    { vid: "v1454", word: "catch a glimpse of", meaning: "～をちらっと見る", usedIn: ["s312"] },
+    { vid: "v1449", word: "excited", meaning: "興奮した", usedIn: ["s312"], tags: ["adj"] },
+    { vid: "v1450", word: "fan", meaning: "ファン", usedIn: ["s312"], tags: ["noun"] },
+    { vid: "v1451", word: "hang around", meaning: "たむろする／ぶらぶらする", usedIn: ["s312"], tags: ["verb"] },
+    { vid: "v1452", word: "rear", meaning: "後方の、裏の", usedIn: ["s312"], tags: ["adj"] },
+    { vid: "v1453", word: "exit", meaning: "出口", usedIn: ["s312"], tags: ["noun"] },
+    { vid: "v1454", word: "catch a glimpse of", meaning: "～をちらっと見る", usedIn: ["s312"], tags: ["verb"] },
 
-    { vid: "v1455", word: "On doing", meaning: "～するとすぐに", usedIn: ["s313"] },
-    { vid: "v1456", word: "encounter", meaning: "出会う", usedIn: ["s313"] },
-    { vid: "v1457", word: "celebrity", meaning: "有名人", usedIn: ["s313"] },
-    { vid: "v1458", word: "ask for", meaning: "～を求める", usedIn: ["s313"] },
-    { vid: "v1459", word: "autograph", meaning: "サイン", usedIn: ["s313"] },
+    { vid: "v1455", word: "On doing", meaning: "～するとすぐに", usedIn: ["s313"], tags: ["prep"] },
+    { vid: "v1456", word: "encounter", meaning: "出会う", usedIn: ["s313"], tags: ["verb"] },
+    { vid: "v1457", word: "celebrity", meaning: "有名人", usedIn: ["s313"], tags: ["noun"] },
+    { vid: "v1458", word: "ask for", meaning: "～を求める", usedIn: ["s313"], tags: ["verb"] },
+    { vid: "v1459", word: "autograph", meaning: "サイン", usedIn: ["s313"], tags: ["noun"] },
   ],
 };
-

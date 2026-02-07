@@ -1,10 +1,9 @@
-// section36.js
+// section36.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec36"] = {
   id: "sec36",
   title: "Section 36",
-  
   sentences: [
     {
       sid: "s439",
@@ -69,74 +68,62 @@ window.SECTIONS["sec36"] = {
   ],
 
   vocab: [
-    // 439
-    { vid: "v2028", word: "summit", meaning: "首脳会談", usedIn: ["s439"] },
-    { vid: "v2029", word: "talks", meaning: "会談、交渉", usedIn: ["s439"] },
-    { vid: "v2030", word: "be to do", meaning: "～する予定である", usedIn: ["s439"] },
-    { vid: "v2031", word: "broadcast", meaning: "放送する", usedIn: ["s439"] },
-    { vid: "v2032", word: "simultaneously", meaning: "同時に", usedIn: ["s439"] },
-    { vid: "v2033", word: "throughout the world", meaning: "世界中で", usedIn: ["s439"] },
+    { vid:"v2028", word:"summit", meaning:"首脳会談", usedIn:["s439"], tags:["noun"] },
+    { vid:"v2029", word:"talks", meaning:"会談、交渉", usedIn:["s439"], tags:["noun"] },
+    { vid:"v2030", word:"be to do", meaning:"～する予定である", usedIn:["s439"], tags:["aux"] },
+    { vid:"v2031", word:"broadcast", meaning:"放送する", usedIn:["s439"], tags:["verb"] },
+    { vid:"v2032", word:"simultaneously", meaning:"同時に", usedIn:["s439"], tags:["adv"] },
+    { vid:"v2033", word:"throughout the world", meaning:"世界中で", usedIn:["s439"], tags:["prep","pattern_prep_phrase"] },
 
-    // 440
-    { vid: "v2034", word: "diplomatic", meaning: "外交的な", usedIn: ["s440"] },
-    { vid: "v2035", word: "dialogue", meaning: "対話", usedIn: ["s440"] },
-    { vid: "v2036", word: "help (to) do", meaning: "～するのを助ける", usedIn: ["s440"] },
-    { vid: "v2037", word: "put an end to", meaning: "～を終わらせる", usedIn: ["s440"] },
-    { vid: "v2038", word: "conflict", meaning: "紛争、対立", usedIn: ["s440"] },
+    { vid:"v2034", word:"diplomatic", meaning:"外交的な", usedIn:["s440"], tags:["adj"] },
+    { vid:"v2035", word:"dialogue", meaning:"対話", usedIn:["s440"], tags:["noun"] },
+    { vid:"v2036", word:"help (to) do", meaning:"～するのを助ける", usedIn:["s440"], tags:["verb","verb_do"] },
+    { vid:"v2037", word:"put an end to", meaning:"～を終わらせる", usedIn:["s440"], tags:["verb"] },
+    { vid:"v2038", word:"conflict", meaning:"紛争、対立", usedIn:["s440"], tags:["noun"] },
 
-    // 441
-    { vid: "v2039", word: "appoint", meaning: "任命する", usedIn: ["s441"] },
-    { vid: "v2040", word: "goodwill", meaning: "親善、友好", usedIn: ["s441"] },
-    { vid: "v2041", word: "ambassador", meaning: "大使", usedIn: ["s441"] },
-    { vid: "v2042", word: "foster", meaning: "促進する", usedIn: ["s441"] },
-    { vid: "v2043", word: "mutual", meaning: "相互の", usedIn: ["s441"] },
+    { vid:"v2039", word:"appoint", meaning:"任命する", usedIn:["s441"], tags:["verb"] },
+    { vid:"v2040", word:"goodwill", meaning:"親善、友好", usedIn:["s441"], tags:["noun"] },
+    { vid:"v2041", word:"ambassador", meaning:"大使", usedIn:["s441"], tags:["noun"] },
+    { vid:"v2042", word:"foster", meaning:"促進する", usedIn:["s441"], tags:["verb"] },
+    { vid:"v2043", word:"mutual", meaning:"相互の", usedIn:["s441"], tags:["adj"] },
 
-    // 442
-    { vid: "v2044", word: "specialist", meaning: "専門家", usedIn: ["s442"] },
-    { vid: "v2045", word: "predict", meaning: "予測する", usedIn: ["s442"] },
-    { vid: "v2046", word: "international", meaning: "国際的な", usedIn: ["s442"] },
-    { vid: "v2047", word: "tension", meaning: "緊張", usedIn: ["s442"] },
-    { vid: "v2048", word: "build up", meaning: "高まる、増大する", usedIn: ["s442"] },
+    { vid:"v2044", word:"specialist", meaning:"専門家", usedIn:["s442"], tags:["noun"] },
+    { vid:"v2045", word:"predict", meaning:"予測する", usedIn:["s442"], tags:["verb"] },
+    { vid:"v2046", word:"international", meaning:"国際的な", usedIn:["s442"], tags:["adj"] },
+    { vid:"v2047", word:"tension", meaning:"緊張", usedIn:["s442"], tags:["noun"] },
+    { vid:"v2048", word:"build up", meaning:"高まる、増大する", usedIn:["s442"], tags:["verb"] },
 
-    // 443
-    { vid: "v2049", word: "in my opinion", meaning: "私の意見では", usedIn: ["s443"] },
-    { vid: "v2050", word: "permanent", meaning: "永続的な", usedIn: ["s443"] },
-    { vid: "v2051", word: "nothing but", meaning: "～にすぎない", usedIn: ["s443"] },
-    { vid: "v2052", word: "illusion", meaning: "幻想、錯覚", usedIn: ["s443"] },
+    { vid:"v2049", word:"in my opinion", meaning:"私の意見では", usedIn:["s443"], tags:["adv"] },
+    { vid:"v2050", word:"permanent", meaning:"永続的な", usedIn:["s443"], tags:["adj"] },
+    { vid:"v2051", word:"nothing but", meaning:"～にすぎない", usedIn:["s443"], tags:["adv"] },
+    { vid:"v2052", word:"illusion", meaning:"幻想、錯覚", usedIn:["s443"], tags:["noun"] },
 
-    // 444
-    { vid: "v2053", word: "ethnic", meaning: "民族の", usedIn: ["s444"] },
-    { vid: "v2054", word: "minority", meaning: "少数派、少数民族", usedIn: ["s444"] },
-    { vid: "v2055", word: "struggle", meaning: "闘う、苦闘する", usedIn: ["s444"] },
-    { vid: "v2056", word: "prejudice", meaning: "偏見", usedIn: ["s444"] },
-    { vid: "v2057", word: "poverty", meaning: "貧困", usedIn: ["s444"] },
-    { vid: "v2058", word: "oppression", meaning: "抑圧", usedIn: ["s444"] },
+    { vid:"v2053", word:"ethnic", meaning:"民族の", usedIn:["s444"], tags:["adj"] },
+    { vid:"v2054", word:"minority", meaning:"少数派、少数民族", usedIn:["s444"], tags:["noun"] },
+    { vid:"v2055", word:"struggle", meaning:"闘う", usedIn:["s444"], tags:["verb"] },
+    { vid:"v2056", word:"prejudice", meaning:"偏見", usedIn:["s444"], tags:["noun"] },
+    { vid:"v2057", word:"poverty", meaning:"貧困", usedIn:["s444"], tags:["noun"] },
+    { vid:"v2058", word:"oppression", meaning:"抑圧", usedIn:["s444"], tags:["noun"] },
 
-    // 445
-    { vid: "v2059", word: "make every effort", meaning: "全力を尽くす", usedIn: ["s445"] },
-    { vid: "v2060", word: "do away with", meaning: "～を廃止する、なくす", usedIn: ["s445"] },
-    { vid: "v2061", word: "discrimination", meaning: "差別", usedIn: ["s445"] },
+    { vid:"v2059", word:"make every effort", meaning:"全力を尽くす", usedIn:["s445"], tags:["verb","verb_make"] },
+    { vid:"v2060", word:"do away with", meaning:"～を廃止する", usedIn:["s445"], tags:["verb","verb_do"] },
+    { vid:"v2061", word:"discrimination", meaning:"差別", usedIn:["s445"], tags:["noun"] },
 
-    // 446
-    { vid: "v2062", word: "immigrant", meaning: "移民", usedIn: ["s446"] },
-    { vid: "v2063", word: "endure", meaning: "耐える", usedIn: ["s446"] },
-    { vid: "v2064", word: "physical", meaning: "肉体的な", usedIn: ["s446"] },
-    { vid: "v2065", word: "mental", meaning: "精神的な", usedIn: ["s446"] },
-    { vid: "v2066", word: "pain", meaning: "苦痛", usedIn: ["s446"] },
+    { vid:"v2062", word:"immigrant", meaning:"移民", usedIn:["s446"], tags:["noun"] },
+    { vid:"v2063", word:"endure", meaning:"耐える", usedIn:["s446"], tags:["verb"] },
+    { vid:"v2064", word:"physical", meaning:"肉体的な", usedIn:["s446"], tags:["adj"] },
+    { vid:"v2065", word:"mental", meaning:"精神的な", usedIn:["s446"], tags:["adj"] },
+    { vid:"v2066", word:"pain", meaning:"苦痛", usedIn:["s446"], tags:["noun"] },
 
-    // 447
-    { vid: "v2067", word: "amendment", meaning: "改正案", usedIn: ["s447"] },
-    { vid: "v2068", word: "reject", meaning: "却下する", usedIn: ["s447"] },
-    { vid: "v2069", word: "racial", meaning: "人種の", usedIn: ["s447"] },
-    { vid: "v2070", word: "diversity", meaning: "多様性", usedIn: ["s447"] },
-    { vid: "v2071", word: "take ... into account", meaning: "～を考慮に入れる", usedIn: ["s447"] },
+    { vid:"v2067", word:"amendment", meaning:"改正案", usedIn:["s447"], tags:["noun"] },
+    { vid:"v2068", word:"reject", meaning:"却下する", usedIn:["s447"], tags:["verb"] },
+    { vid:"v2069", word:"racial", meaning:"人種の", usedIn:["s447"], tags:["adj"] },
+    { vid:"v2070", word:"diversity", meaning:"多様性", usedIn:["s447"], tags:["noun"] },
+    { vid:"v2071", word:"take ... into account", meaning:"～を考慮に入れる", usedIn:["s447"], tags:["verb","verb_take"] },
 
-    // 448
-    { vid: "v2072", word: "needless to say", meaning: "言うまでもなく", usedIn: ["s448"] },
-    { vid: "v2073", word: "refugee", meaning: "難民", usedIn: ["s448"] },
-    { vid: "v2074", word: "long for", meaning: "～を切望する", usedIn: ["s448"] },
-    { vid: "v2075", word: "freedom", meaning: "自由", usedIn: ["s448"] }
+    { vid:"v2072", word:"needless to say", meaning:"言うまでもなく", usedIn:["s448"], tags:["adv"] },
+    { vid:"v2073", word:"refugee", meaning:"難民", usedIn:["s448"], tags:["noun"] },
+    { vid:"v2074", word:"long for", meaning:"～を切望する", usedIn:["s448"], tags:["verb"] },
+    { vid:"v2075", word:"freedom", meaning:"自由", usedIn:["s448"], tags:["noun"] }
   ]
 };
-
-

@@ -1,10 +1,9 @@
-// section17.js
+// section17.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec17"] = {
   id: "sec17",
   title: "Section 17",
-  
   sentences: [
     {
       sid: "s186",
@@ -71,8 +70,7 @@ window.SECTIONS["sec17"] = {
     },
     {
       sid: "s196",
-      english:
-        "While Bob was at work, Jennifer was at home absorbed in silly soap operas.",
+      english: "While Bob was at work, Jennifer was at home absorbed in silly soap operas.",
       japanese: "ボブが仕事中の間、ジェニファーは家でくだらないソープオペラに夢中になっていた。",
       vocabRefs: ["v0900", "v0901", "v0902", "v0903", "v0904"]
     },
@@ -84,74 +82,91 @@ window.SECTIONS["sec17"] = {
       vocabRefs: ["v0905", "v0906", "v0907", "v0908"]
     }
   ],
+
   vocab: [
-    { vid: "v0854", word: "figure out", meaning: "理解する、解明する", usedIn: ["s186"] },
-    { vid: "v0855", word: "on earth", meaning: "いったい（強調）", usedIn: ["s186"] },
-    { vid: "v0856", word: "contempt for", meaning: "〜への軽蔑", usedIn: ["s186"] },
+    { vid: "v0854", word: "figure out", meaning: "理解する、解明する", usedIn: ["s186"], tags: ["verb"] },
+    { vid: "v0855", word: "on earth", meaning: "いったい（強調）", usedIn: ["s186"], tags: ["adv"] },
+    { vid: "v0856", word: "contempt for", meaning: "〜への軽蔑", usedIn: ["s186"], tags: ["noun", "prep"] },
 
-    { vid: "v0857", word: "can't help doing", meaning: "～せずにはいられない", usedIn: ["s187"] },
-    { vid: "v0858", word: "laugh at", meaning: "〜を笑う", usedIn: ["s187"] },
-    { vid: "v0859", word: "keep on doing", meaning: "〜し続ける", usedIn: ["s187"] },
-    { vid: "v0860", word: "stupid", meaning: "ばかな", usedIn: ["s187"] },
-    { vid: "v0861", word: "mistake", meaning: "間違い", usedIn: ["s187"] },
-    { vid: "v0862", word: "last", meaning: "最も〜しそうにない", usedIn: ["s187"] },
-    { vid: "v0863", word: "learn one's lesson", meaning: "教訓を得る", usedIn: ["s187"] },
+    {
+      vid: "v0857",
+      word: "can't help doing",
+      meaning: "～せずにはいられない",
+      usedIn: ["s187"],
+      tags: ["aux", "verb", "pattern_gerund"]
+    },
+    { vid: "v0858", word: "laugh at", meaning: "〜を笑う", usedIn: ["s187"], tags: ["verb", "prep"] },
+    { vid: "v0859", word: "keep on doing", meaning: "〜し続ける", usedIn: ["s187"], tags: ["verb", "pattern_gerund"] },
+    { vid: "v0860", word: "stupid", meaning: "ばかな", usedIn: ["s187"], tags: ["adj"] },
+    { vid: "v0861", word: "mistake", meaning: "間違い", usedIn: ["s187"], tags: ["noun"] },
+    { vid: "v0862", word: "last", meaning: "最も〜しそうにない", usedIn: ["s187"], tags: ["adj"] },
+    { vid: "v0863", word: "learn one's lesson", meaning: "教訓を得る", usedIn: ["s187"], tags: ["verb"] },
 
-    { vid: "v0864", word: "to make matters worse", meaning: "さらに悪いことに", usedIn: ["s188"] },
-    { vid: "v0865", word: "conscious", meaning: "気づいている", usedIn: ["s188"] },
-    { vid: "v0866", word: "annoy", meaning: "〜をイライラさせる", usedIn: ["s188"] },
+    {
+      vid: "v0864",
+      word: "to make matters worse",
+      meaning: "さらに悪いことに",
+      usedIn: ["s188"],
+      tags: ["prep", "pattern_prep_phrase"]
+    },
+    { vid: "v0865", word: "conscious", meaning: "気づいている", usedIn: ["s188"], tags: ["adj"] },
+    { vid: "v0866", word: "annoy", meaning: "〜をイライラさせる", usedIn: ["s188"], tags: ["verb"] },
 
-    { vid: "v0867", word: "since", meaning: "〜なので", usedIn: ["s189"] },
-    { vid: "v0868", word: "be in a hurry", meaning: "急いでいる", usedIn: ["s189"] },
-    { vid: "v0869", word: "put on", meaning: "〜を身につける", usedIn: ["s189"] },
-    { vid: "v0870", word: "glove", meaning: "手袋", usedIn: ["s189"] },
-    { vid: "v0871", word: "inside out", meaning: "裏返しに", usedIn: ["s189"] },
-    { vid: "v0872", word: "by mistake", meaning: "間違えて", usedIn: ["s189"] },
+    { vid: "v0867", word: "since", meaning: "〜なので", usedIn: ["s189"], tags: ["conj"] },
+    { vid: "v0868", word: "be in a hurry", meaning: "急いでいる", usedIn: ["s189"], tags: ["verb", "prep"] },
+    { vid: "v0869", word: "put on", meaning: "〜を身につける", usedIn: ["s189"], tags: ["verb"] },
+    { vid: "v0870", word: "glove", meaning: "手袋", usedIn: ["s189"], tags: ["noun"] },
+    { vid: "v0871", word: "inside out", meaning: "裏返しに", usedIn: ["s189"], tags: ["adv"] },
+    { vid: "v0872", word: "by mistake", meaning: "間違えて", usedIn: ["s189"], tags: ["prep", "pattern_prep_phrase"] },
 
-    { vid: "v0873", word: "fat", meaning: "太っている", usedIn: ["s190"] },
-    { vid: "v0874", word: "clumsy", meaning: "不器用な", usedIn: ["s190"] },
-    { vid: "v0875", word: "leap", meaning: "飛び越える", usedIn: ["s190"] },
-    { vid: "v0876", word: "shallow", meaning: "浅い", usedIn: ["s190"] },
-    { vid: "v0877", word: "stream", meaning: "小川", usedIn: ["s190"] },
-    { vid: "v0878", word: "stumble", meaning: "つまずく", usedIn: ["s190"] },
-    { vid: "v0879", word: "twist", meaning: "〜をひねる", usedIn: ["s190"] },
-    { vid: "v0880", word: "ankle", meaning: "足首", usedIn: ["s190"] },
+    { vid: "v0873", word: "fat", meaning: "太っている", usedIn: ["s190"], tags: ["adj"] },
+    { vid: "v0874", word: "clumsy", meaning: "不器用な", usedIn: ["s190"], tags: ["adj"] },
+    { vid: "v0875", word: "leap", meaning: "飛び越える", usedIn: ["s190"], tags: ["verb"] },
+    { vid: "v0876", word: "shallow", meaning: "浅い", usedIn: ["s190"], tags: ["adj"] },
+    { vid: "v0877", word: "stream", meaning: "小川", usedIn: ["s190"], tags: ["noun"] },
+    { vid: "v0878", word: "stumble", meaning: "つまずく", usedIn: ["s190"], tags: ["verb"] },
+    { vid: "v0879", word: "twist", meaning: "〜をひねる", usedIn: ["s190"], tags: ["verb"] },
+    { vid: "v0880", word: "ankle", meaning: "足首", usedIn: ["s190"], tags: ["noun"] },
 
-    { vid: "v0881", word: "be scared", meaning: "怖がっている", usedIn: ["s191"] },
-    { vid: "v0882", word: "height", meaning: "高さ、高所", usedIn: ["s191"] },
-    { vid: "v0883", word: "coward", meaning: "臆病者", usedIn: ["s191"] },
+    { vid: "v0881", word: "be scared", meaning: "怖がっている", usedIn: ["s191"], tags: ["verb"] },
+    { vid: "v0882", word: "height", meaning: "高さ、高所", usedIn: ["s191"], tags: ["noun"] },
+    { vid: "v0883", word: "coward", meaning: "臆病者", usedIn: ["s191"], tags: ["noun"] },
 
-    { vid: "v0884", word: "passive", meaning: "消極的な", usedIn: ["s192"] },
-    { vid: "v0885", word: "seldom, if ever", meaning: "めったに〜しない", usedIn: ["s192"] },
-    { vid: "v0886", word: "express oneself", meaning: "自己表現する", usedIn: ["s192"] },
-    { vid: "v0887", word: "in public", meaning: "人前で", usedIn: ["s192"] },
+    { vid: "v0884", word: "passive", meaning: "消極的な", usedIn: ["s192"], tags: ["adj"] },
+    { vid: "v0885", word: "seldom, if ever", meaning: "めったに〜しない", usedIn: ["s192"], tags: ["adv"] },
+    { vid: "v0886", word: "express oneself", meaning: "自己表現する", usedIn: ["s192"], tags: ["verb", "pron"] },
+    { vid: "v0887", word: "in public", meaning: "人前で", usedIn: ["s192"], tags: ["prep", "pattern_prep_phrase"] },
 
-    { vid: "v0888", word: "convince", meaning: "納得させる", usedIn: ["s193"] },
-    { vid: "v0889", word: "superstition", meaning: "迷信", usedIn: ["s193"] },
-    { vid: "v0890", word: "irrational", meaning: "非合理的な", usedIn: ["s193"] },
+    {
+      vid: "v0888",
+      word: "convince",
+      meaning: "納得させる",
+      usedIn: ["s193"],
+      tags: ["verb", "pattern_A_that_clause"]
+    },
+    { vid: "v0889", word: "superstition", meaning: "迷信", usedIn: ["s193"], tags: ["noun"] },
+    { vid: "v0890", word: "irrational", meaning: "非合理的な", usedIn: ["s193"], tags: ["adj"] },
 
-    { vid: "v0891", word: "tremble", meaning: "震える", usedIn: ["s194"] },
-    { vid: "v0892", word: "fear", meaning: "恐怖", usedIn: ["s194"] },
-    { vid: "v0893", word: "at the thought of", meaning: "〜を考えると", usedIn: ["s194"] },
-    { vid: "v0894", word: "injection", meaning: "注射", usedIn: ["s194"] },
+    { vid: "v0891", word: "tremble", meaning: "震える", usedIn: ["s194"], tags: ["verb"] },
+    { vid: "v0892", word: "fear", meaning: "恐怖", usedIn: ["s194"], tags: ["noun"] },
+    { vid: "v0893", word: "at the thought of", meaning: "〜を考えると", usedIn: ["s194"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v0894", word: "injection", meaning: "注射", usedIn: ["s194"], tags: ["noun"] },
 
-    { vid: "v0895", word: "lazy", meaning: "怠惰な", usedIn: ["s195"] },
-    { vid: "v0896", word: "at heart", meaning: "根は〜で", usedIn: ["s195"] },
-    { vid: "v0897", word: "frequently", meaning: "頻繁に", usedIn: ["s195"] },
-    { vid: "v0898", word: "neglect", meaning: "〜を怠る", usedIn: ["s195"] },
-    { vid: "v0899", word: "duty", meaning: "義務、職務", usedIn: ["s195"] },
+    { vid: "v0895", word: "lazy", meaning: "怠惰な", usedIn: ["s195"], tags: ["adj"] },
+    { vid: "v0896", word: "at heart", meaning: "根は〜で", usedIn: ["s195"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v0897", word: "frequently", meaning: "頻繁に", usedIn: ["s195"], tags: ["adv"] },
+    { vid: "v0898", word: "neglect", meaning: "〜を怠る", usedIn: ["s195"], tags: ["verb"] },
+    { vid: "v0899", word: "duty", meaning: "義務、職務", usedIn: ["s195"], tags: ["noun"] },
 
-    { vid: "v0900", word: "at work", meaning: "仕事中で", usedIn: ["s196"] },
-    { vid: "v0901", word: "at home", meaning: "家で", usedIn: ["s196"] },
-    { vid: "v0902", word: "be absorbed in", meaning: "〜に夢中である", usedIn: ["s196"] },
-    { vid: "v0903", word: "silly", meaning: "くだらない", usedIn: ["s196"] },
-    { vid: "v0904", word: "soap opera", meaning: "連続メロドラマ", usedIn: ["s196"] },
+    { vid: "v0900", word: "at work", meaning: "仕事中で", usedIn: ["s196"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v0901", word: "at home", meaning: "家で", usedIn: ["s196"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v0902", word: "be absorbed in", meaning: "〜に夢中である", usedIn: ["s196"], tags: ["verb", "prep"] },
+    { vid: "v0903", word: "silly", meaning: "くだらない", usedIn: ["s196"], tags: ["adj"] },
+    { vid: "v0904", word: "soap opera", meaning: "連続メロドラマ", usedIn: ["s196"], tags: ["noun"] },
 
-    { vid: "v0905", word: "cartoon", meaning: "漫画、アニメ", usedIn: ["s197"] },
-    { vid: "v0906", word: "think … of", meaning: "〜を評価する", usedIn: ["s197"] },
-    { vid: "v0907", word: "As a matter of fact", meaning: "実際のところ", usedIn: ["s197"] },
-    { vid: "v0908", word: "boring", meaning: "退屈な", usedIn: ["s197"] }
+    { vid: "v0905", word: "cartoon", meaning: "漫画、アニメ", usedIn: ["s197"], tags: ["noun"] },
+    { vid: "v0906", word: "think ... of", meaning: "〜を評価する", usedIn: ["s197"], tags: ["verb", "prep"] },
+    { vid: "v0907", word: "As a matter of fact", meaning: "実際のところ", usedIn: ["s197"], tags: ["adv", "pattern_prep_phrase"] },
+    { vid: "v0908", word: "boring", meaning: "退屈な", usedIn: ["s197"], tags: ["adj"] }
   ]
 };
-
-

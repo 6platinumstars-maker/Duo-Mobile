@@ -1,10 +1,9 @@
-// section44.js
+// section44.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec44"] = {
   id: "sec44",
   title: "Section 44",
-
   sentences: [
     {
       sid: "s531",
@@ -38,7 +37,7 @@ window.SECTIONS["sec44"] = {
     },
     {
       sid: "s536",
-      english: "Living here all by myself is torture! he sobbed.",
+      english: "Living here all by myself is torture! He sobbed.",
       japanese: "「ここで一人で暮らすなんて拷問だ！」と彼はすすり泣いた。",
       vocabRefs: ["v2461", "v2462", "v2463"]
     },
@@ -109,98 +108,96 @@ window.SECTIONS["sec44"] = {
       vocabRefs: ["v2509", "v2510", "v2511"]
     }
   ],
+
   vocab: [
-    { vid: "v2439", word: "deceive", meaning: "だます", usedIn: ["s531"] },
-    { vid: "v2440", word: "should have done", meaning: "～すべきだったのに（しなかった）", usedIn: ["s531"] },
-    { vid: "v2441", word: "know better than to do", meaning: "～するほど愚かではない", usedIn: ["s531"] },
-    { vid: "v2442", word: "trust", meaning: "信頼する", usedIn: ["s531"] },
+    { vid: "v2439", word: "deceive", meaning: "だます", usedIn: ["s531"], tags: ["verb"] },
+    { vid: "v2440", word: "should have done", meaning: "～すべきだったのに（しなかった）", usedIn: ["s531"], tags: ["aux"] },
+    { vid: "v2441", word: "know better than to do", meaning: "～するほど愚かではない", usedIn: ["s531"], tags: ["verb"] },
+    { vid: "v2442", word: "trust", meaning: "信頼する", usedIn: ["s531"], tags: ["verb"] },
 
-    { vid: "v2443", word: "regret doing", meaning: "～したことを後悔する", usedIn: ["s532"] },
-    { vid: "v2444", word: "waste", meaning: "無駄にする", usedIn: ["s532"] },
-    { vid: "v2445", word: "a great deal of", meaning: "かなり多くの", usedIn: ["s532"] },
+    { vid: "v2443", word: "regret doing", meaning: "～したことを後悔する", usedIn: ["s532"], tags: ["verb"] },
+    { vid: "v2444", word: "waste", meaning: "無駄にする", usedIn: ["s532"], tags: ["verb"] },
+    { vid: "v2445", word: "a great deal of", meaning: "かなり多くの", usedIn: ["s532"], tags: ["noun"] },
 
-    { vid: "v2446", word: "cannot do … without doing", meaning: "～すると必ず…してしまう", usedIn: ["s533"] },
-    { vid: "v2447", word: "look back on", meaning: "～を振り返る", usedIn: ["s533"] },
-    { vid: "v2448", word: "adolescence", meaning: "青春期", usedIn: ["s533"] },
-    { vid: "v2449", word: "depressed", meaning: "憂うつな、落ち込んだ", usedIn: ["s533"] },
+    { vid: "v2446", word: "cannot do ... without doing", meaning: "～すると必ず…してしまう", usedIn: ["s533"], tags: ["verb"] },
+    { vid: "v2447", word: "look back on", meaning: "～を振り返る", usedIn: ["s533"], tags: ["verb"] },
+    { vid: "v2448", word: "adolescence", meaning: "青春期", usedIn: ["s533"], tags: ["noun"] },
+    { vid: "v2449", word: "depressed", meaning: "憂うつな、落ち込んだ", usedIn: ["s533"], tags: ["adj"] },
 
-    { vid: "v2450", word: "leave A for B", meaning: "Aを捨ててBのところへ行く", usedIn: ["s534"] },
-    { vid: "v2451", word: "guy", meaning: "男", usedIn: ["s534"] },
-    { vid: "v2452", word: "be upset", meaning: "動揺している", usedIn: ["s534"] },
-    { vid: "v2453", word: "Not really.", meaning: "そうでもないよ", usedIn: ["s534"] },
-    { vid: "v2454", word: "be used to", meaning: "～に慣れている", usedIn: ["s534"] },
+    { vid: "v2450", word: "leave A for B", meaning: "Aを捨ててBのところへ行く", usedIn: ["s534"], tags: ["verb"] },
+    { vid: "v2451", word: "guy", meaning: "男", usedIn: ["s534"], tags: ["noun"] },
+    { vid: "v2452", word: "be upset", meaning: "動揺している", usedIn: ["s534"], tags: ["adj"] },
+    { vid: "v2453", word: "Not really", meaning: "そうでもないよ", usedIn: ["s534"], tags: ["adv"] },
+    { vid: "v2454", word: "be used to", meaning: "～に慣れている", usedIn: ["s534"], tags: ["adj"] },
 
-    { vid: "v2455", word: "No wonder (that) ...", meaning: "…も不思議ではない", usedIn: ["s535"] },
-    { vid: "v2456", word: "show up", meaning: "姿を見せる", usedIn: ["s535"] },
-    { vid: "v2457", word: "see ... off", meaning: "～を見送る", usedIn: ["s535"] },
-    { vid: "v2458", word: "How come?", meaning: "どうして？", usedIn: ["s535"] },
-    { vid: "v2459", word: "break up", meaning: "別れる（関係が終わる）", usedIn: ["s535"] },
-    { vid: "v2460", word: "pity", meaning: "残念なこと、哀れみ", usedIn: ["s535"] },
+    { vid: "v2455", word: "No wonder (that) ...", meaning: "…も不思議ではない", usedIn: ["s535"], tags: ["conj"] },
+    { vid: "v2456", word: "show up", meaning: "姿を見せる", usedIn: ["s535"], tags: ["verb"] },
+    { vid: "v2457", word: "see ... off", meaning: "～を見送る", usedIn: ["s535"], tags: ["verb"] },
+    { vid: "v2458", word: "How come?", meaning: "どうして？", usedIn: ["s535"], tags: ["adv"] },
+    { vid: "v2459", word: "break up", meaning: "別れる（関係が終わる）", usedIn: ["s535"], tags: ["verb"] },
+    { vid: "v2460", word: "pity", meaning: "残念なこと、哀れみ", usedIn: ["s535"], tags: ["noun"] },
 
-    { vid: "v2461", word: "all by oneself", meaning: "たった一人で", usedIn: ["s536"] },
-    { vid: "v2462", word: "torture", meaning: "苦痛、拷問", usedIn: ["s536"] },
-    { vid: "v2463", word: "sob", meaning: "すすり泣く", usedIn: ["s536"] },
+    { vid: "v2461", word: "all by oneself", meaning: "たった一人で", usedIn: ["s536"], tags: ["adv"] },
+    { vid: "v2462", word: "torture", meaning: "苦痛、拷問", usedIn: ["s536"], tags: ["noun"] },
+    { vid: "v2463", word: "sob", meaning: "すすり泣く", usedIn: ["s536"], tags: ["verb"] },
 
-    { vid: "v2464", word: "to be honest", meaning: "正直に言うと", usedIn: ["s537"] },
-    { vid: "v2465", word: "be crazy about", meaning: "～に夢中である", usedIn: ["s537"] },
-    { vid: "v2466", word: "brave", meaning: "勇敢な", usedIn: ["s537"] },
-    { vid: "v2467", word: "self-confident", meaning: "自信にあふれた", usedIn: ["s537"] },
-    { vid: "v2468", word: "be afraid of", meaning: "～を恐れる", usedIn: ["s537"] },
-    { vid: "v2469", word: "take a risk", meaning: "危険を冒す", usedIn: ["s537"] },
-    { vid: "v2470", word: "If I were you, I'd ...", meaning: "もし私があなただったら…する", usedIn: ["s537"] },
-    { vid: "v2471", word: "ask ... out", meaning: "～をデートに誘う", usedIn: ["s537"] },
+    { vid: "v2464", word: "to be honest", meaning: "正直に言うと", usedIn: ["s537"], tags: ["adv"] },
+    { vid: "v2465", word: "be crazy about", meaning: "～に夢中である", usedIn: ["s537"], tags: ["adj"] },
+    { vid: "v2466", word: "brave", meaning: "勇敢な", usedIn: ["s537"], tags: ["adj"] },
+    { vid: "v2467", word: "self-confident", meaning: "自信にあふれた", usedIn: ["s537"], tags: ["adj"] },
+    { vid: "v2468", word: "be afraid of", meaning: "～を恐れる", usedIn: ["s537"], tags: ["adj"] },
+    { vid: "v2469", word: "take a risk", meaning: "危険を冒す", usedIn: ["s537"], tags: ["verb", "verb_take"] },
+    { vid: "v2470", word: "If I were you, I'd do", meaning: "もし私があなただったら～する", usedIn: ["s537"], tags: ["pattern_A_that_clause"] },
+    { vid: "v2471", word: "ask ... out", meaning: "～をデートに誘う", usedIn: ["s537"], tags: ["verb"] },
 
-    { vid: "v2472", word: "go with", meaning: "～と付き合う", usedIn: ["s538"] },
-    { vid: "v2473", word: "on and off / off and on", meaning: "断続的に", usedIn: ["s538"] },
-    { vid: "v2474", word: "for ages", meaning: "長い間", usedIn: ["s538"] },
-    { vid: "v2475", word: "as ... as ever", meaning: "相変わらず…だ", usedIn: ["s538"] },
-    { vid: "v2476", word: "indecisive", meaning: "優柔不断な", usedIn: ["s538"] },
-    { vid: "v2477", word: "It's about time (that) ...", meaning: "そろそろ…してもよいころだ", usedIn: ["s538"] },
-    { vid: "v2478", word: "settle down", meaning: "落ち着く、身を固める", usedIn: ["s538"] },
+    { vid: "v2472", word: "go with", meaning: "～と付き合う", usedIn: ["s538"], tags: ["verb"] },
+    { vid: "v2473", word: "on and off / off and on", meaning: "断続的に", usedIn: ["s538"], tags: ["adv"] },
+    { vid: "v2474", word: "for ages", meaning: "長い間", usedIn: ["s538"], tags: ["adv"] },
+    { vid: "v2475", word: "as ... as ever", meaning: "相変わらず…だ", usedIn: ["s538"], tags: ["adj"] },
+    { vid: "v2476", word: "indecisive", meaning: "優柔不断な", usedIn: ["s538"], tags: ["adj"] },
+    { vid: "v2477", word: "It's about time (that) ...", meaning: "そろそろ…してもよいころだ", usedIn: ["s538"], tags: ["aux"] },
+    { vid: "v2478", word: "settle down", meaning: "落ち着く、身を固める", usedIn: ["s538"], tags: ["verb"] },
 
-    { vid: "v2479", word: "It dawned on A that ...", meaning: "Aが…に気づいた", usedIn: ["s539"] },
-    { vid: "v2480", word: "be taken in by", meaning: "～にだまされる", usedIn: ["s539"] },
-    { vid: "v2481", word: "all along", meaning: "最初からずっと", usedIn: ["s539"] },
-    { vid: "v2482", word: "naive", meaning: "単純な、世間知らずの", usedIn: ["s539"] },
-    { vid: "v2483", word: "see through", meaning: "～を見抜く", usedIn: ["s539"] },
+    { vid: "v2479", word: "It dawned on A that ...", meaning: "Aが…に気づいた", usedIn: ["s539"], tags: ["pattern_A_that_clause"] },
+    { vid: "v2480", word: "be taken in by", meaning: "～にだまされる", usedIn: ["s539"], tags: ["verb"] },
+    { vid: "v2481", word: "all along", meaning: "最初からずっと", usedIn: ["s539"], tags: ["adv"] },
+    { vid: "v2482", word: "naive", meaning: "単純な、世間知らずの", usedIn: ["s539"], tags: ["adj"] },
+    { vid: "v2483", word: "see through", meaning: "～を見抜く", usedIn: ["s539"], tags: ["verb"] },
 
-    { vid: "v2484", word: "even though", meaning: "～だけれども", usedIn: ["s540"] },
-    { vid: "v2485", word: "be seeing someone", meaning: "（恋愛関係で）誰かと付き合っている", usedIn: ["s540"] },
-    { vid: "v2486", word: "give ... up", meaning: "～をあきらめる", usedIn: ["s540"] },
+    { vid: "v2484", word: "even though", meaning: "～だけれども", usedIn: ["s540"], tags: ["conj"] },
+    { vid: "v2485", word: "be seeing someone", meaning: "（恋愛関係で）誰かと付き合っている", usedIn: ["s540"], tags: ["verb"] },
+    { vid: "v2486", word: "give ... up", meaning: "～をあきらめる", usedIn: ["s540"], tags: ["verb"] },
 
-    { vid: "v2487", word: "What's up?", meaning: "元気？／どうしたの？", usedIn: ["s541"] },
-    { vid: "v2488", word: "Not much.", meaning: "特に何もないよ／まあまあ", usedIn: ["s541"] },
-    { vid: "v2489", word: "get married to", meaning: "～と結婚する", usedIn: ["s541"] },
-    { vid: "v2490", word: "Congratulations!", meaning: "おめでとう！", usedIn: ["s541"] },
+    { vid: "v2487", word: "What's up?", meaning: "元気？／どうしたの？", usedIn: ["s541"], tags: ["interj"] },
+    { vid: "v2488", word: "Not much.", meaning: "特に何もないよ／まあまあ", usedIn: ["s541"], tags: ["adv"] },
+    { vid: "v2489", word: "get married to", meaning: "～と結婚する", usedIn: ["s541"], tags: ["verb", "verb_get"] },
+    { vid: "v2490", word: "Congratulations!", meaning: "おめでとう！", usedIn: ["s541"], tags: ["interj"] },
 
-    { vid: "v2491", word: "be in trouble", meaning: "困っている", usedIn: ["s542"] },
-    { vid: "v2492", word: "feel down", meaning: "落ち込む", usedIn: ["s542"] },
-    { vid: "v2493", word: "be there for", meaning: "～の力になる", usedIn: ["s542"] },
+    { vid: "v2491", word: "be in trouble", meaning: "困っている", usedIn: ["s542"], tags: ["adj"] },
+    { vid: "v2492", word: "feel down", meaning: "落ち込む", usedIn: ["s542"], tags: ["verb"] },
+    { vid: "v2493", word: "be there for A", meaning: "Aの力になる", usedIn: ["s542"], tags: ["verb"] },
 
-    { vid: "v2494", word: "delight", meaning: "喜び", usedIn: ["s543"] },
-    { vid: "v2495", word: "opposite", meaning: "反対のもの", usedIn: ["s543"] },
-    { vid: "v2496", word: "sorrow", meaning: "悲しみ", usedIn: ["s543"] },
+    { vid: "v2494", word: "delight", meaning: "喜び", usedIn: ["s543"], tags: ["noun"] },
+    { vid: "v2495", word: "opposite", meaning: "反対のもの", usedIn: ["s543"], tags: ["noun"] },
+    { vid: "v2496", word: "sorrow", meaning: "悲しみ", usedIn: ["s543"], tags: ["noun"] },
 
-    { vid: "v2497", word: "go so far as to do", meaning: "～するほど極端なことをする", usedIn: ["s544"] },
-    { vid: "v2498", word: "idiot", meaning: "ばか者", usedIn: ["s544"] },
-    { vid: "v2499", word: "take ... back", meaning: "（発言などを）取り消す", usedIn: ["s544"] },
-    { vid: "v2500", word: "Serves you right!", meaning: "自業自得だ！", usedIn: ["s544"] },
-    { vid: "v2501", word: "provoke", meaning: "怒らせる、挑発する", usedIn: ["s544"] },
+    { vid: "v2497", word: "go so far as to do", meaning: "～するほど極端なことをする", usedIn: ["s544"], tags: ["verb", "verb_go"] },
+    { vid: "v2498", word: "idiot", meaning: "ばか者", usedIn: ["s544"], tags: ["noun"] },
+    { vid: "v2499", word: "take ... back", meaning: "（発言などを）取り消す", usedIn: ["s544"], tags: ["verb", "verb_take"] },
+    { vid: "v2500", word: "Serves you right!", meaning: "自業自得だ！", usedIn: ["s544"], tags: ["interj"] },
+    { vid: "v2501", word: "provoke", meaning: "怒らせる、挑発する", usedIn: ["s544"], tags: ["verb"] },
 
-    { vid: "v2502", word: "put up with", meaning: "～を我慢する", usedIn: ["s545"] },
-    { vid: "v2503", word: "arrogance", meaning: "傲慢", usedIn: ["s545"] },
-    { vid: "v2504", word: "take advantage of", meaning: "～を利用する", usedIn: ["s545"] },
-    { vid: "v2505", word: "Shut up!", meaning: "黙れ！／うるさい！", usedIn: ["s545"] },
+    { vid: "v2502", word: "put up with", meaning: "～を我慢する", usedIn: ["s545"], tags: ["verb"] },
+    { vid: "v2503", word: "arrogance", meaning: "傲慢", usedIn: ["s545"], tags: ["noun"] },
+    { vid: "v2504", word: "take advantage of", meaning: "～を利用する", usedIn: ["s545"], tags: ["verb", "verb_take"] },
+    { vid: "v2505", word: "Shut up!", meaning: "黙れ！／うるさい！", usedIn: ["s545"], tags: ["interj"] },
 
-    { vid: "v2506", word: "take one's time", meaning: "時間をかける、急がない", usedIn: ["s546"] },
-    { vid: "v2507", word: "a couple of", meaning: "2つの、2〜3の", usedIn: ["s546"] },
-    { vid: "v2508", word: "reflect on", meaning: "～を熟考する／反省する", usedIn: ["s546"] },
+    { vid: "v2506", word: "take one's time", meaning: "時間をかける、急がない", usedIn: ["s546"], tags: ["verb", "verb_take"] },
+    { vid: "v2507", word: "a couple of", meaning: "2つの、2〜3の", usedIn: ["s546"], tags: ["noun"] },
+    { vid: "v2508", word: "reflect on", meaning: "～を熟考する／反省する", usedIn: ["s546"], tags: ["verb"] },
 
-    { vid: "v2509", word: "get through", meaning: "～を乗り越える", usedIn: ["s547"] },
-    { vid: "v2510", word: "ordeal", meaning: "試練、苦難", usedIn: ["s547"] },
-    { vid: "v2511", word: "on one's own", meaning: "自力で（＝all on one's own）", usedIn: ["s547"] }
+    { vid: "v2509", word: "get through", meaning: "～を乗り越える", usedIn: ["s547"], tags: ["verb", "verb_get"] },
+    { vid: "v2510", word: "ordeal", meaning: "試練、苦難", usedIn: ["s547"], tags: ["noun"] },
+    { vid: "v2511", word: "on one's own / all on one's own", meaning: "自力で／完全に一人で", usedIn: ["s547"], tags: ["adv"] }
   ]
 };
-
-// 必要なら他ファイルから参照できるようにしておく
-// export default section44;

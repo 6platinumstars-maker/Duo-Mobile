@@ -1,10 +1,10 @@
-// section16.js
+// section16.js（tags 付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec16"] = {
   id: "sec16",
   title: "Section 16",
-  
+
   sentences: [
     {
       sid: "s177",
@@ -75,57 +75,58 @@ window.SECTIONS["sec16"] = {
       vocabRefs: ["v0851", "v0852", "v0853"]
     }
   ],
+
   vocab: [
-    { vid: "v0811", word: "show off", meaning: "見せびらかす", usedIn: ["s177"] },
-    { vid: "v0812", word: "perfect figure", meaning: "完璧なスタイル", usedIn: ["s177"] },
-    { vid: "v0813", word: "figure", meaning: "体つき、スタイル", usedIn: ["s177"] },
-    { vid: "v0814", word: "I wish", meaning: "～ならいいのになあ", usedIn: ["s177"] },
-    { vid: "v0815", word: "thin", meaning: "痩せた", usedIn: ["s177"] },
-    { vid: "v0816", word: "envy", meaning: "うらやむ", usedIn: ["s177"] },
-    { vid: "v0817", word: "diet", meaning: "ダイエット", usedIn: ["s177"] },
+    { vid: "v0811", word: "show off", meaning: "見せびらかす", usedIn: ["s177"], tags: ["verb"] },
+    { vid: "v0812", word: "perfect figure", meaning: "完璧なスタイル", usedIn: ["s177"], tags: ["noun"] },
+    { vid: "v0813", word: "figure", meaning: "体つき、スタイル", usedIn: ["s177"], tags: ["noun"] },
+    { vid: "v0814", word: "I wish", meaning: "～ならいいのになあ", usedIn: ["s177"], tags: ["aux"] },
+    { vid: "v0815", word: "thin", meaning: "痩せた", usedIn: ["s177"], tags: ["adj"] },
+    { vid: "v0816", word: "envy", meaning: "うらやむ", usedIn: ["s177"], tags: ["verb"] },
+    { vid: "v0817", word: "diet", meaning: "ダイエット", usedIn: ["s177"], tags: ["noun"] },
 
-    { vid: "v0818", word: "fall in love with", meaning: "～に恋をする", usedIn: ["s178"] },
-    { vid: "v0819", word: "at first sight", meaning: "一目で", usedIn: ["s178"] },
-    { vid: "v0820", word: "take a chance", meaning: "思い切ってやる", usedIn: ["s178"] },
-    { vid: "v0821", word: "propose to", meaning: "～にプロポーズする", usedIn: ["s178"] },
-    { vid: "v0822", word: "turn down", meaning: "断る", usedIn: ["s178"] },
+    { vid: "v0818", word: "fall in love with", meaning: "～に恋をする", usedIn: ["s178"], tags: ["verb"] },
+    { vid: "v0819", word: "at first sight", meaning: "一目で", usedIn: ["s178"], tags: ["adv"] },
+    { vid: "v0820", word: "take a chance", meaning: "思い切ってやる", usedIn: ["s178"], tags: ["verb", "verb_take"] },
+    { vid: "v0821", word: "propose to", meaning: "～にプロポーズする", usedIn: ["s178"], tags: ["verb"] },
+    { vid: "v0822", word: "turn down", meaning: "断る", usedIn: ["s178"], tags: ["verb"] },
 
-    { vid: "v0823", word: "by chance", meaning: "偶然に", usedIn: ["s179"] },
-    { vid: "v0824", word: "gentle", meaning: "優しい", usedIn: ["s179"] },
-    { vid: "v0825", word: "smart", meaning: "賢い、頭がよい", usedIn: ["s179"] },
-    { vid: "v0826", word: "What's more", meaning: "おまけに／さらに", usedIn: ["s179"] },
-    { vid: "v0827", word: "single", meaning: "独身の", usedIn: ["s179"] },
+    { vid: "v0823", word: "by chance", meaning: "偶然に", usedIn: ["s179"], tags: ["adv"] },
+    { vid: "v0824", word: "gentle", meaning: "優しい", usedIn: ["s179"], tags: ["adj"] },
+    { vid: "v0825", word: "smart", meaning: "賢い、頭がよい", usedIn: ["s179"], tags: ["adj"] },
+    { vid: "v0826", word: "What's more", meaning: "おまけに／さらに", usedIn: ["s179"], tags: ["adv"] },
+    { vid: "v0827", word: "single", meaning: "独身の", usedIn: ["s179"], tags: ["adj"] },
 
-    { vid: "v0828", word: "nephew", meaning: "甥", usedIn: ["s180"] },
-    { vid: "v0829", word: "bring up", meaning: "育てる", usedIn: ["s180"] },
-    { vid: "v0830", word: "modest", meaning: "控えめな", usedIn: ["s180"] },
-    { vid: "v0831", word: "considerate", meaning: "思いやりのある", usedIn: ["s180"] },
+    { vid: "v0828", word: "nephew", meaning: "甥", usedIn: ["s180"], tags: ["noun"] },
+    { vid: "v0829", word: "bring up", meaning: "育てる", usedIn: ["s180"], tags: ["verb"] },
+    { vid: "v0830", word: "modest", meaning: "控えめな", usedIn: ["s180"], tags: ["adj"] },
+    { vid: "v0831", word: "considerate", meaning: "思いやりのある", usedIn: ["s180"], tags: ["adj"] },
 
-    { vid: "v0832", word: "introduce … to", meaning: "～を…に紹介する", usedIn: ["s181"] },
-    { vid: "v0833", word: "folks", meaning: "家族", usedIn: ["s181"] },
-    { vid: "v0834", word: "take to", meaning: "～を好きになる", usedIn: ["s181"] },
-    { vid: "v0835", word: "at once", meaning: "すぐに", usedIn: ["s181"] },
+    { vid: "v0832", word: "introduce … to", meaning: "～を…に紹介する", usedIn: ["s181"], tags: ["verb"] },
+    { vid: "v0833", word: "folks", meaning: "家族", usedIn: ["s181"], tags: ["noun"] },
+    { vid: "v0834", word: "take to", meaning: "～を好きになる", usedIn: ["s181"], tags: ["verb", "verb_take"] },
+    { vid: "v0835", word: "at once", meaning: "すぐに", usedIn: ["s181"], tags: ["adv"] },
 
-    { vid: "v0836", word: "judge", meaning: "判断する", usedIn: ["s182"] },
-    { vid: "v0837", word: "not so much A as B", meaning: "AというよりむしろB", usedIn: ["s182"] },
-    { vid: "v0838", word: "how A look", meaning: "Aがどのように見えるか", usedIn: ["s182"] },
-    { vid: "v0839", word: "who they are", meaning: "その人の本質／中身", usedIn: ["s182"] },
+    { vid: "v0836", word: "judge", meaning: "判断する", usedIn: ["s182"], tags: ["verb"] },
+    { vid: "v0837", word: "not so much A as B", meaning: "AというよりむしろB", usedIn: ["s182"], tags: ["conj"] },
+    { vid: "v0838", word: "how A look", meaning: "Aがどのように見えるか", usedIn: ["s182"], tags: ["conj"] },
+    { vid: "v0839", word: "who they are", meaning: "その人の本質／中身", usedIn: ["s182"], tags: ["conj"] },
 
-    { vid: "v0840", word: "it is A that", meaning: "～なのはAだ（強調構文）", usedIn: ["s183"] },
-    { vid: "v0841", word: "title", meaning: "肩書き", usedIn: ["s183"] },
-    { vid: "v0842", word: "count", meaning: "重要である", usedIn: ["s183"] },
-    { vid: "v0843", word: "for sure", meaning: "確かに", usedIn: ["s183"] },
-    { vid: "v0844", word: "exclaim", meaning: "叫ぶ", usedIn: ["s183"] },
+    { vid: "v0840", word: "it is A that", meaning: "～なのはAだ（強調構文）", usedIn: ["s183"], tags: ["conj"] },
+    { vid: "v0841", word: "title", meaning: "肩書き", usedIn: ["s183"], tags: ["noun"] },
+    { vid: "v0842", word: "count", meaning: "重要である", usedIn: ["s183"], tags: ["verb"] },
+    { vid: "v0843", word: "for sure", meaning: "確かに", usedIn: ["s183"], tags: ["adv"] },
+    { vid: "v0844", word: "exclaim", meaning: "叫ぶ", usedIn: ["s183"], tags: ["verb"] },
 
-    { vid: "v0845", word: "as a … put it", meaning: "…が言うように", usedIn: ["s184"] },
-    { vid: "v0846", word: "self-made", meaning: "自力で成功した", usedIn: ["s184"] },
-    { vid: "v0847", word: "… of A", meaning: "Aの性質を持つ～", usedIn: ["s184"] },
-    { vid: "v0848", word: "vision", meaning: "先見の明", usedIn: ["s184"] },
-    { vid: "v0849", word: "make good", meaning: "成功する", usedIn: ["s184"] },
-    { vid: "v0850", word: "in the end", meaning: "最終的には／結局", usedIn: ["s184"] },
+    { vid: "v0845", word: "as a … put it", meaning: "…が言うように", usedIn: ["s184"], tags: ["conj"] },
+    { vid: "v0846", word: "self-made", meaning: "自力で成功した", usedIn: ["s184"], tags: ["adj"] },
+    { vid: "v0847", word: "… of A", meaning: "Aの性質を持つ～", usedIn: ["s184"], tags: ["prep"] },
+    { vid: "v0848", word: "vision", meaning: "先見の明", usedIn: ["s184"], tags: ["noun"] },
+    { vid: "v0849", word: "make good", meaning: "成功する", usedIn: ["s184"], tags: ["verb", "verb_make"] },
+    { vid: "v0850", word: "in the end", meaning: "最終的には／結局", usedIn: ["s184"], tags: ["adv"] },
 
-    { vid: "v0851", word: "keep in mind", meaning: "心に留めておく", usedIn: ["s185"] },
-    { vid: "v0852", word: "youth", meaning: "若さ", usedIn: ["s185"] },
-    { vid: "v0853", word: "eternal", meaning: "永遠の", usedIn: ["s185"] }
+    { vid: "v0851", word: "keep in mind", meaning: "心に留めておく", usedIn: ["s185"], tags: ["verb"] },
+    { vid: "v0852", word: "youth", meaning: "若さ", usedIn: ["s185"], tags: ["noun"] },
+    { vid: "v0853", word: "eternal", meaning: "永遠の", usedIn: ["s185"], tags: ["adj"] }
   ]
 };

@@ -1,10 +1,10 @@
-// section12.js
+// section12.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec12"] = {
   id: "sec12",
   title: "Section 12",
-  
+
   sentences: [
     {
       sid: "s137",
@@ -61,234 +61,53 @@ window.SECTIONS["sec12"] = {
       vocabRefs: ["v0671", "v0672", "v0673", "v0674", "v0675"]
     }
   ],
+
   vocab: [
-    {
-      vid: "v0638",
-      word: "turn one's back on",
-      meaning: "～に背を向ける、～を無視する",
-      usedIn: ["s137"]
-    },
-    {
-      vid: "v0639",
-      word: "desperate",
-      meaning: "絶望的な、必死の",
-      usedIn: ["s137"]
-    },
-    {
-      vid: "v0640",
-      word: "be at risk",
-      meaning: "危険にさらされている",
-      usedIn: ["s137"]
-    },
-    {
-      vid: "v0641",
-      word: "parliament",
-      meaning: "議会、国会",
-      usedIn: ["s138"]
-    },
-    {
-      vid: "v0642",
-      word: "decide A with B ",
-      meaning: "AにBを与えることを決定する",
-      usedIn: ["s138"]
-    },
-    {
-      vid: "v0643",
-      word: "developing country",
-      meaning: "発展途上国",
-      usedIn: ["s138"]
-    },
-    {
-      vid: "v0644",
-      word: "financial",
-      meaning: "財政の、金融の",
-      usedIn: ["s138"]
-    },
-    {
-      vid: "v0645",
-      word: "aid",
-      meaning: "援助、支援",
-      usedIn: ["s138"]
-    },
-    {
-      vid: "v0646",
-      word: "monarchy",
-      meaning: "君主制、王政",
-      usedIn: ["s139"]
-    },
-    {
-      vid: "v0647",
-      word: "abolish",
-      meaning: "廃止する",
-      usedIn: ["s139"]
-    },
-    {
-      vid: "v0648",
-      word: "What do you think?",
-      meaning: "あなたはどう思いますか？",
-      usedIn: ["s139"]
-    },
-    {
-      vid: "v0649",
-      word: "seek",
-      meaning: "～を求める",
-      usedIn: ["s140"]
-    },
-    {
-      vid: "v0650",
-      word: "shelter",
-      meaning: "避難、避難所",
-      usedIn: ["s140"]
-    },
-    {
-      vid: "v0651",
-      word: "attack",
-      meaning: "攻撃",
-      usedIn: ["s140"]
-    },
-    {
-      vid: "v0652",
-      word: "hide",
-      meaning: "隠れる、～を隠す",
-      usedIn: ["s140"]
-    },
-    {
-      vid: "v0653",
-      word: "prospect",
-      meaning: "見込み、可能性",
-      usedIn: ["s141"]
-    },
-    {
-      vid: "v0654",
-      word: "significant",
-      meaning: "重大な、意味のある",
-      usedIn: ["s141"]
-    },
-    {
-      vid: "v0655",
-      word: "make … progress in",
-      meaning: "～で進歩を遂げる",
-      usedIn: ["s141"]
-    },
-    {
-      vid: "v0656",
-      word: "disarmament",
-      meaning: "軍縮、武装解除",
-      usedIn: ["s141"]
-    },
-    {
-      vid: "v0657",
-      word: "negotiation",
-      meaning: "交渉",
-      usedIn: ["s142"]
-    },
-    {
-      vid: "v0658",
-      word: "be under way",
-      meaning: "進行中である",
-      usedIn: ["s142"]
-    },
-    {
-      vid: "v0659",
-      word: "before long",
-      meaning: "まもなく",
-      usedIn: ["s142"]
-    },
-    {
-      vid: "v0660",
-      word: "enter",
-      meaning: "～に入る",
-      usedIn: ["s142"]
-    },
-    {
-      vid: "v0661",
-      word: "crucial",
-      meaning: "重大な、決定的な",
-      usedIn: ["s142"]
-    },
-    {
-      vid: "v0662",
-      word: "phase",
-      meaning: "段階、局面",
-      usedIn: ["s142"]
-    },
-    {
-      vid: "v0663",
-      word: "slave",
-      meaning: "奴隷",
-      usedIn: ["s143"]
-    },
-    {
-      vid: "v0664",
-      word: "be anxious to",
-      meaning: "～したがっている、～を切望している",
-      usedIn: ["s143"]
-    },
-    {
-      vid: "v0665",
-      word: "alter",
-      meaning: "変える、変更する",
-      usedIn: ["s143"]
-    },
-    {
-      vid: "v0666",
-      word: "destiny",
-      meaning: "運命",
-      usedIn: ["s143"]
-    },
-    {
-      vid: "v0667",
-      word: "aristocrat",
-      meaning: "貴族",
-      usedIn: ["s144"]
-    },
-    {
-      vid: "v0668",
-      word: "abuse",
-      meaning: "乱用する、悪用する",
-      usedIn: ["s144"]
-    },
-    {
-      vid: "v0669",
-      word: "privilege",
-      meaning: "特権",
-      usedIn: ["s144"]
-    },
-    {
-      vid: "v0670",
-      word: "do … to one’s heart’s content",
-      meaning: "思う存分～する",
-      usedIn: ["s144"]
-    },
-    {
-      vid: "v0671",
-      word: "revolution",
-      meaning: "革命",
-      usedIn: ["s145"]
-    },
-    {
-      vid: "v0672",
-      word: "in itself",
-      meaning: "それ自体として",
-      usedIn: ["s145"]
-    },
-    {
-      vid: "v0673",
-      word: "bear",
-      meaning: "（実・結果を）生む",
-      usedIn: ["s145"]
-    },
-    {
-      vid: "v0674",
-      word: "bear fruit",
-      meaning: "成果を生む",
-      usedIn: ["s145"]
-    },
-    {
-      vid: "v0675",
-      word: "after all",
-      meaning: "結局のところ",
-      usedIn: ["s145"]
-    }
+    { vid: "v0638", word: "turn one's back on", meaning: "～に背を向ける／～を無視する", usedIn: ["s137"], tags: ["verb"] },
+    { vid: "v0639", word: "desperate", meaning: "絶望的な／必死の", usedIn: ["s137"], tags: ["adj"] },
+    { vid: "v0640", word: "be at risk", meaning: "危険にさらされている", usedIn: ["s137"], tags: ["adj"] },
+
+    { vid: "v0641", word: "parliament", meaning: "議会／国会", usedIn: ["s138"], tags: ["noun"] },
+    { vid: "v0642", word: "decide to provide A with B", meaning: "AにBを与えることを決定する", usedIn: ["s138"], tags: ["verb"] },
+    { vid: "v0643", word: "developing country", meaning: "発展途上国", usedIn: ["s138"], tags: ["noun"] },
+    { vid: "v0644", word: "financial", meaning: "財政の／金融の", usedIn: ["s138"], tags: ["adj"] },
+    { vid: "v0645", word: "aid", meaning: "援助／支援", usedIn: ["s138"], tags: ["noun"] },
+
+    { vid: "v0646", word: "monarchy", meaning: "君主制／王政", usedIn: ["s139"], tags: ["noun"] },
+    { vid: "v0647", word: "abolish", meaning: "廃止する", usedIn: ["s139"], tags: ["verb"] },
+    { vid: "v0648", word: "What do you think?", meaning: "あなたはどう思いますか？", usedIn: ["s139"], tags: ["fixed_phrase"] },
+
+    { vid: "v0649", word: "seek", meaning: "～を求める", usedIn: ["s140"], tags: ["verb"] },
+    { vid: "v0650", word: "shelter", meaning: "避難／避難所", usedIn: ["s140"], tags: ["noun"] },
+    { vid: "v0651", word: "attack", meaning: "攻撃", usedIn: ["s140"], tags: ["noun"] },
+    { vid: "v0652", word: "hide", meaning: "隠れる／～を隠す", usedIn: ["s140"], tags: ["verb"] },
+
+    { vid: "v0653", word: "prospect", meaning: "見込み／可能性", usedIn: ["s141"], tags: ["noun"] },
+    { vid: "v0654", word: "significant", meaning: "重大な／重要な", usedIn: ["s141"], tags: ["adj"] },
+    { vid: "v0655", word: "make progress in", meaning: "～で進展する／進歩を遂げる", usedIn: ["s141"], tags: ["verb"] },
+    { vid: "v0656", word: "disarmament", meaning: "軍縮／武装解除", usedIn: ["s141"], tags: ["noun"] },
+
+    { vid: "v0657", word: "negotiation", meaning: "交渉", usedIn: ["s142"], tags: ["noun"] },
+    { vid: "v0658", word: "be under way", meaning: "進行中である", usedIn: ["s142"], tags: ["adj"] },
+    { vid: "v0659", word: "before long", meaning: "まもなく", usedIn: ["s142"], tags: ["adv"] },
+    { vid: "v0660", word: "enter", meaning: "～に入る", usedIn: ["s142"], tags: ["verb"] },
+    { vid: "v0661", word: "crucial", meaning: "重大な／決定的な", usedIn: ["s142"], tags: ["adj"] },
+    { vid: "v0662", word: "phase", meaning: "段階／局面", usedIn: ["s142"], tags: ["noun"] },
+
+    { vid: "v0663", word: "slave", meaning: "奴隷", usedIn: ["s143"], tags: ["noun"] },
+    { vid: "v0664", word: "be anxious to", meaning: "～したがっている／切望している", usedIn: ["s143"], tags: ["adj"] },
+    { vid: "v0665", word: "alter", meaning: "変える／変更する", usedIn: ["s143"], tags: ["verb"] },
+    { vid: "v0666", word: "destiny", meaning: "運命", usedIn: ["s143"], tags: ["noun"] },
+
+    { vid: "v0667", word: "aristocrat", meaning: "貴族", usedIn: ["s144"], tags: ["noun"] },
+    { vid: "v0668", word: "abuse", meaning: "乱用する／悪用する", usedIn: ["s144"], tags: ["verb"] },
+    { vid: "v0669", word: "privilege", meaning: "特権", usedIn: ["s144"], tags: ["noun"] },
+    { vid: "v0670", word: "to one's heart's content", meaning: "思う存分", usedIn: ["s144"], tags: ["adv"] },
+
+    { vid: "v0671", word: "revolution", meaning: "革命", usedIn: ["s145"], tags: ["noun"] },
+    { vid: "v0672", word: "in itself", meaning: "それ自体として", usedIn: ["s145"], tags: ["adv"] },
+    { vid: "v0673", word: "bear", meaning: "（実・結果を）生む", usedIn: ["s145"], tags: ["verb"] },
+    { vid: "v0674", word: "bear fruit", meaning: "成果を生む", usedIn: ["s145"], tags: ["verb"] },
+    { vid: "v0675", word: "after all", meaning: "結局（のところ）", usedIn: ["s145"], tags: ["adv"] }
   ]
 };

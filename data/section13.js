@@ -1,15 +1,14 @@
-// section13.js
-
+// section13.js（tags 付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec13"] = {
   id: "sec13",
   title: "Section 13",
-  
-    sentences: [
+
+  sentences: [
     {
       sid: "s146",
-      english: "Bob cut in on our conversation, saying, \"I’m against it!\" But everybody ignored him.",
+      english: 'Bob cut in on our conversation, saying, “I’m against it!” But everybody ignored him.',
       japanese: "ボブは「私は反対だ！」と言って私たちの会話に割り込んだが、みんな彼を無視した。",
       vocabRefs: ["v0676", "v0677", "v0678", "v0679"]
     },
@@ -68,55 +67,53 @@ window.SECTIONS["sec13"] = {
       vocabRefs: ["v0709", "v0710", "v0711", "v0712"]
     }
   ],
+
   vocab: [
-    { vid: "v0676", word: "cut in on", meaning: "～に割り込む", usedIn: ["s146"] },
-    { vid: "v0677", word: "conversation", meaning: "会話", usedIn: ["s146"] },
-    { vid: "v0678", word: "be against", meaning: "～に反対である", usedIn: ["s146"] },
-    { vid: "v0679", word: "ignore", meaning: "無視する", usedIn: ["s146"] },
+    { vid: "v0676", word: "cut in on", meaning: "～に割り込む", usedIn: ["s146"], tags: ["verb"] },
+    { vid: "v0677", word: "conversation", meaning: "会話", usedIn: ["s146"], tags: ["noun"] },
+    { vid: "v0678", word: "be against", meaning: "～に反対である", usedIn: ["s146"], tags: ["adj"] },
+    { vid: "v0679", word: "ignore", meaning: "無視する", usedIn: ["s146"], tags: ["verb"] },
 
-    { vid: "v0680", word: "skip", meaning: "～を飛ばす／抜かす", usedIn: ["s147"] },
-    { vid: "v0681", word: "turn", meaning: "順番／番", usedIn: ["s147"] },
-    { vid: "v0682", word: "on purpose", meaning: "わざと／故意に", usedIn: ["s147"] },
+    { vid: "v0680", word: "skip", meaning: "～を飛ばす／抜かす", usedIn: ["s147"], tags: ["verb"] },
+    { vid: "v0681", word: "turn", meaning: "順番／番", usedIn: ["s147"], tags: ["noun"] },
+    { vid: "v0682", word: "on purpose", meaning: "わざと／故意に", usedIn: ["s147"], tags: ["adv"] },
 
-    { vid: "v0683", word: "bully", meaning: "いじめる", usedIn: ["s148"] },
-    { vid: "v0684", word: "turn a blind eye", meaning: "見て見ぬふりをする", usedIn: ["s148"] },
+    { vid: "v0683", word: "bully", meaning: "いじめる", usedIn: ["s148"], tags: ["verb"] },
+    { vid: "v0684", word: "turn a blind eye", meaning: "見て見ぬふりをする", usedIn: ["s148"], tags: ["verb"] },
 
-    { vid: "v0685", word: "cheat on", meaning: "～で不正をする（カンニングする）", usedIn: ["s149"] },
-    { vid: "v0686", word: "suspend", meaning: "停学にする／一時停止する", usedIn: ["s149"] },
-    { vid: "v0687", word: "as for", meaning: "～に関しては", usedIn: ["s149"] },
-    { vid: "v0688", word: "get away with", meaning: "～をうまく逃れる／（悪いことを）しても罰されない", usedIn: ["s149"] },
+    { vid: "v0685", word: "cheat on", meaning: "～で不正をする（カンニングする）", usedIn: ["s149"], tags: ["verb"] },
+    { vid: "v0686", word: "suspend", meaning: "停学にする／一時停止する", usedIn: ["s149"], tags: ["verb"] },
+    { vid: "v0687", word: "as for", meaning: "～に関しては", usedIn: ["s149"], tags: ["prep"] },
+    { vid: "v0688", word: "get away with", meaning: "～をうまく逃れる／（悪いことを）しても罰されない", usedIn: ["s149"], tags: ["verb", "verb_get"] },
 
-    { vid: "v0689", word: "hostile to", meaning: "～に敵意を持つ", usedIn: ["s150"] },
-    { vid: "v0690", word: "be jealous of", meaning: "～をねたむ／嫉妬する", usedIn: ["s150"] },
-    { vid: "v0691", word: "wealth", meaning: "富", usedIn: ["s150"] },
-    { vid: "v0692", word: "status", meaning: "地位／身分", usedIn: ["s150"] },
+    { vid: "v0689", word: "hostile to", meaning: "～に敵意を持つ", usedIn: ["s150"], tags: ["adj"] },
+    { vid: "v0690", word: "be jealous of", meaning: "～をねたむ／嫉妬する", usedIn: ["s150"], tags: ["adj"] },
+    { vid: "v0691", word: "wealth", meaning: "富", usedIn: ["s150"], tags: ["noun"] },
+    { vid: "v0692", word: "status", meaning: "地位／身分", usedIn: ["s150"], tags: ["noun"] },
 
-    { vid: "v0693", word: "hate", meaning: "憎む／嫌う", usedIn: ["s151"] },
-    { vid: "v0694", word: "behave", meaning: "振る舞う", usedIn: ["s151"] },
-    { vid: "v0695", word: "as if", meaning: "まるで～のように", usedIn: ["s151"] },
-    { vid: "v0696", word: "somebody", meaning: "偉い人／大物", usedIn: ["s151"] },
+    { vid: "v0693", word: "hate", meaning: "憎む／嫌う", usedIn: ["s151"], tags: ["verb"] },
+    { vid: "v0694", word: "behave", meaning: "振る舞う", usedIn: ["s151"], tags: ["verb"] },
+    { vid: "v0695", word: "as if", meaning: "まるで～のように", usedIn: ["s151"], tags: ["conj"] },
+    { vid: "v0696", word: "somebody", meaning: "偉い人／大物", usedIn: ["s151"], tags: ["pron"] },
 
-    { vid: "v0697", word: "in spite of", meaning: "～にもかかわらず", usedIn: ["s152"] },
-    { vid: "v0698", word: "compliment", meaning: "褒め言葉", usedIn: ["s152"] },
-    { vid: "v0699", word: "frown", meaning: "眉をひそめる", usedIn: ["s152"] },
-    { vid: "v0700", word: "turn away", meaning: "そっぽを向く", usedIn: ["s152"] },
-    { vid: "v0701", word: "rude", meaning: "失礼な／無礼な", usedIn: ["s152"] },
+    { vid: "v0697", word: "in spite of", meaning: "～にもかかわらず", usedIn: ["s152"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v0698", word: "compliment", meaning: "褒め言葉", usedIn: ["s152"], tags: ["noun"] },
+    { vid: "v0699", word: "frown", meaning: "眉をひそめる", usedIn: ["s152"], tags: ["verb"] },
+    { vid: "v0700", word: "turn away", meaning: "そっぽを向く", usedIn: ["s152"], tags: ["verb"] },
+    { vid: "v0701", word: "rude", meaning: "失礼な／無礼な", usedIn: ["s152"], tags: ["adj"] },
 
-    { vid: "v0702", word: "claim", meaning: "主張する", usedIn: ["s153"] },
-    { vid: "v0703", word: "enormous", meaning: "莫大な／巨大な", usedIn: ["s153"] },
-    { vid: "v0704", word: "property", meaning: "財産／資産", usedIn: ["s153"] },
-    { vid: "v0705", word: "at one’s disposal", meaning: "～の自由にできる", usedIn: ["s153"] },
+    { vid: "v0702", word: "claim", meaning: "主張する", usedIn: ["s153"], tags: ["verb"] },
+    { vid: "v0703", word: "enormous", meaning: "莫大な／巨大な", usedIn: ["s153"], tags: ["adj"] },
+    { vid: "v0704", word: "property", meaning: "財産／資産", usedIn: ["s153"], tags: ["noun"] },
+    { vid: "v0705", word: "at one’s disposal", meaning: "～の自由にできる", usedIn: ["s153"], tags: ["prep"] },
 
-    { vid: "v0706", word: "the more ~, the more", meaning: "～すればするほど、ますます～になる", usedIn: ["s154"] },
-    { vid: "v0707", word: "stubborn", meaning: "頑固な／強情な", usedIn: ["s154"] },
-    { vid: "v0708", word: "isolated", meaning: "孤立した／孤独な", usedIn: ["s154"] },
+    { vid: "v0706", word: "the more ~, the more", meaning: "～すればするほど、ますます～になる", usedIn: ["s154"], tags: ["conj"] },
+    { vid: "v0707", word: "stubborn", meaning: "頑固な／強情な", usedIn: ["s154"], tags: ["adj"] },
+    { vid: "v0708", word: "isolated", meaning: "孤立した／孤独な", usedIn: ["s154"], tags: ["adj"] },
 
-    { vid: "v0709", word: "beat around the bush", meaning: "遠回しに言う／核心を避ける", usedIn: ["s155"] },
-    { vid: "v0710", word: "be supposed to do", meaning: "～することになっている／～すべきである", usedIn: ["s155"] },
-    { vid: "v0711", word: "just wait and see", meaning: "見ていればわかるさ", usedIn: ["s155"] },
-    { vid: "v0712", word: "time will tell", meaning: "時が経てばわかる／いずれ明らかになる", usedIn: ["s155"] }
+    { vid: "v0709", word: "beat around the bush", meaning: "遠回しに言う／核心を避ける", usedIn: ["s155"], tags: ["verb"] },
+    { vid: "v0710", word: "be supposed to do", meaning: "～することになっている／～すべきである", usedIn: ["s155"], tags: ["aux"] },
+    { vid: "v0711", word: "just wait and see", meaning: "見ていればわかるさ", usedIn: ["s155"], tags: ["verb"] },
+    { vid: "v0712", word: "time will tell", meaning: "時が経てばわかる／いずれ明らかになる", usedIn: ["s155"], tags: ["verb"] }
   ]
 };
-
-// export if your project expects it
-// export default section13;

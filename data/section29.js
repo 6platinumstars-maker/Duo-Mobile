@@ -1,10 +1,9 @@
-// section29.js
+// section29.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec29"] = {
   id: "sec29",
   title: "Section 29",
-
   sentences: [
     {
       sid: "s342",
@@ -79,71 +78,74 @@ window.SECTIONS["sec29"] = {
       vocabRefs: ["v1632", "v1633", "v1634", "v1635"]
     }
   ],
+
   vocab: [
-    { vid: "v1583", word: "ripe", meaning: "熟した／時期が来た", usedIn: ["s342"] },
-    { vid: "v1584", word: "bold", meaning: "大胆な", usedIn: ["s342"] },
-    { vid: "v1585", word: "go for", meaning: "思い切って挑戦する", usedIn: ["s342"] },
-    { vid: "v1586", word: "stand by", meaning: "支える／味方でいる", usedIn: ["s342"] },
+    { vid: "v1583", word: "ripe", meaning: "熟した／時期が来た", usedIn: ["s342"], tags: ["adj"] },
+    { vid: "v1584", word: "bold", meaning: "大胆な", usedIn: ["s342"], tags: ["adj"] },
+    { vid: "v1585", word: "go for (it)", meaning: "思い切って挑戦する", usedIn: ["s342"], tags: ["verb", "verb_go"] },
+    { vid: "v1586", word: "stand by", meaning: "支える／味方でいる", usedIn: ["s342"], tags: ["verb"] },
 
-    { vid: "v1587", word: "stand up for", meaning: "〜のために立ち上がる", usedIn: ["s343"] },
-    { vid: "v1588", word: "believe in", meaning: "〜を信じる", usedIn: ["s343"] },
-    { vid: "v1589", word: "yield", meaning: "屈する／譲る", usedIn: ["s343"] },
-    { vid: "v1590", word: "threat", meaning: "脅し／脅威", usedIn: ["s343"] },
+    { vid: "v1587", word: "stand up for", meaning: "〜のために立ち上がる", usedIn: ["s343"], tags: ["verb"] },
+    { vid: "v1588", word: "believe in", meaning: "〜を信じる", usedIn: ["s343"], tags: ["verb"] },
+    { vid: "v1589", word: "yield (to)", meaning: "屈する／譲る", usedIn: ["s343"], tags: ["verb"] },
+    { vid: "v1590", word: "threat", meaning: "脅し／脅威", usedIn: ["s343"], tags: ["noun"] },
 
-    { vid: "v1591", word: "If only", meaning: "〜だったらなあ", usedIn: ["s344"] },
-    { vid: "v1592", word: "conquer", meaning: "克服する", usedIn: ["s344"] },
-    { vid: "v1593", word: "weakness", meaning: "弱点", usedIn: ["s344"] },
-    { vid: "v1594", word: "It's up to", meaning: "〜次第である", usedIn: ["s344"] },
+    { vid: "v1591", word: "If only ...", meaning: "〜だったらなあ", usedIn: ["s344"], tags: ["conj"] },
+    { vid: "v1592", word: "conquer", meaning: "克服する", usedIn: ["s344"], tags: ["verb"] },
+    { vid: "v1593", word: "weakness", meaning: "弱点", usedIn: ["s344"], tags: ["noun"] },
+    { vid: "v1594", word: "It's up to ...", meaning: "〜次第である", usedIn: ["s344"], tags: ["prep", "pattern_prep_phrase"] },
 
-    { vid: "v1595", word: "make the most of", meaning: "最大限に活用する", usedIn: ["s345"] },
-    { vid: "v1596", word: "rare", meaning: "珍しい／貴重な", usedIn: ["s345"] },
-    { vid: "v1597", word: "opportunity", meaning: "機会", usedIn: ["s345"] },
-    { vid: "v1598", word: "demonstrate", meaning: "示す／実演する", usedIn: ["s345"] },
-    { vid: "v1599", word: "talent", meaning: "才能", usedIn: ["s345"] },
+    { vid: "v1595", word: "make the most of", meaning: "最大限に活用する", usedIn: ["s345"], tags: ["verb", "verb_make", "pattern_prep_phrase"] },
+    { vid: "v1596", word: "rare", meaning: "珍しい／貴重な", usedIn: ["s345"], tags: ["adj"] },
+    { vid: "v1597", word: "opportunity", meaning: "機会", usedIn: ["s345"], tags: ["noun"] },
+    { vid: "v1598", word: "demonstrate", meaning: "示す／実演する", usedIn: ["s345"], tags: ["verb"] },
+    { vid: "v1599", word: "talent", meaning: "才能", usedIn: ["s345"], tags: ["noun"] },
 
-    { vid: "v1600", word: "let ... down", meaning: "失望させる", usedIn: ["s346"] },
-    { vid: "v1601", word: "have faith in", meaning: "〜を信頼する", usedIn: ["s346"] },
-    { vid: "v1602", word: "make it", meaning: "成功する／やり遂げる", usedIn: ["s346"] },
+    { vid: "v1600", word: "let ... down", meaning: "失望させる", usedIn: ["s346"], tags: ["verb", "verb_let"] },
+    { vid: "v1601", word: "have faith in", meaning: "〜を信頼する", usedIn: ["s346"], tags: ["verb", "verb_have", "pattern_prep_phrase"] },
+    { vid: "v1602", word: "make it", meaning: "成功する／やり遂げる", usedIn: ["s346"], tags: ["verb", "verb_make"] },
 
-    { vid: "v1603", word: "spectator", meaning: "観客", usedIn: ["s347"] },
-    { vid: "v1604", word: "move", meaning: "感動させる", usedIn: ["s347"] },
-    { vid: "v1605", word: "graceful", meaning: "優雅な", usedIn: ["s347"] },
-    { vid: "v1606", word: "performance", meaning: "演技／演奏", usedIn: ["s347"] },
+    { vid: "v1603", word: "spectator", meaning: "観客", usedIn: ["s347"], tags: ["noun"] },
+    { vid: "v1604", word: "move", meaning: "感動させる", usedIn: ["s347"], tags: ["verb"] },
+    { vid: "v1605", word: "graceful", meaning: "優雅な", usedIn: ["s347"], tags: ["adj"] },
+    { vid: "v1606", word: "performance", meaning: "演技／演奏", usedIn: ["s347"], tags: ["noun"] },
 
-    { vid: "v1607", word: "receive", meaning: "受け取る", usedIn: ["s348"] },
-    { vid: "v1608", word: "architecture", meaning: "建築", usedIn: ["s348"] },
-    { vid: "v1609", word: "prestigious", meaning: "権威ある", usedIn: ["s348"] },
-    { vid: "v1610", word: "award", meaning: "賞", usedIn: ["s348"] },
+    { vid: "v1607", word: "receive", meaning: "受け取る", usedIn: ["s348"], tags: ["verb"] },
+    { vid: "v1608", word: "architecture", meaning: "建築", usedIn: ["s348"], tags: ["noun"] },
+    { vid: "v1609", word: "prestigious", meaning: "権威ある", usedIn: ["s348"], tags: ["adj"] },
+    { vid: "v1610", word: "award", meaning: "賞", usedIn: ["s348"], tags: ["noun"] },
 
-    { vid: "v1611", word: "In the face of", meaning: "〜に直面して", usedIn: ["s349"] },
-    { vid: "v1612", word: "adversity", meaning: "逆境", usedIn: ["s349"] },
-    { vid: "v1613", word: "accomplish", meaning: "成し遂げる", usedIn: ["s349"] },
-    { vid: "v1614", word: "extraordinary", meaning: "並外れた", usedIn: ["s349"] },
-    { vid: "v1615", word: "feat", meaning: "偉業", usedIn: ["s349"] },
-    { vid: "v1616", word: "deserve", meaning: "値する", usedIn: ["s349"] },
-    { vid: "v1617", word: "praise", meaning: "称賛", usedIn: ["s349"] },
+    { vid: "v1611", word: "in the face of", meaning: "〜に直面して", usedIn: ["s349"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v1612", word: "adversity", meaning: "逆境", usedIn: ["s349"], tags: ["noun"] },
+    { vid: "v1613", word: "accomplish", meaning: "成し遂げる", usedIn: ["s349"], tags: ["verb"] },
+    { vid: "v1614", word: "extraordinary", meaning: "並外れた", usedIn: ["s349"], tags: ["adj"] },
+    { vid: "v1615", word: "feat", meaning: "偉業", usedIn: ["s349"], tags: ["noun"] },
+    { vid: "v1616", word: "deserve", meaning: "値する", usedIn: ["s349"], tags: ["verb"] },
+    { vid: "v1617", word: "praise", meaning: "称賛", usedIn: ["s349"], tags: ["noun"] },
 
-    { vid: "v1618", word: "audience", meaning: "聴衆", usedIn: ["s350"] },
-    { vid: "v1619", word: "impress", meaning: "感銘を与える", usedIn: ["s350"] },
-    { vid: "v1620", word: "eloquent", meaning: "雄弁な", usedIn: ["s350"] },
-    { vid: "v1621", word: "lecture", meaning: "講義", usedIn: ["s350"] },
+    { vid: "v1618", word: "audience", meaning: "聴衆", usedIn: ["s350"], tags: ["noun"] },
+    { vid: "v1619", word: "impress", meaning: "感銘を与える", usedIn: ["s350"], tags: ["verb"] },
+    { vid: "v1620", word: "eloquent", meaning: "雄弁な", usedIn: ["s350"], tags: ["adj"] },
+    { vid: "v1621", word: "lecture", meaning: "講義", usedIn: ["s350"], tags: ["noun"] },
 
-    { vid: "v1622", word: "humble", meaning: "質素な", usedIn: ["s351"] },
-    { vid: "v1623", word: "background", meaning: "生い立ち／背景", usedIn: ["s351"] },
-    { vid: "v1624", word: "achieve", meaning: "達成する", usedIn: ["s351"] },
-    { vid: "v1625", word: "worldwide", meaning: "世界的な", usedIn: ["s351"] },
-    { vid: "v1626", word: "fame", meaning: "名声", usedIn: ["s351"] },
+    { vid: "v1622", word: "humble", meaning: "質素な", usedIn: ["s351"], tags: ["adj"] },
+    { vid: "v1623", word: "background", meaning: "生い立ち／背景", usedIn: ["s351"], tags: ["noun"] },
+    { vid: "v1624", word: "achieve", meaning: "達成する", usedIn: ["s351"], tags: ["verb"] },
+    { vid: "v1625", word: "worldwide", meaning: "世界的に／世界中で", usedIn: ["s351"], tags: ["adv"] },
+    { vid: "v1626", word: "fame", meaning: "名声", usedIn: ["s351"], tags: ["noun"] },
 
-    { vid: "v1627", word: "accumulate", meaning: "蓄積する", usedIn: ["s352"] },
-    { vid: "v1628", word: "tremendous", meaning: "莫大な", usedIn: ["s352"] },
-    { vid: "v1629", word: "fortune", meaning: "財産", usedIn: ["s352"] },
-    { vid: "v1630", word: "postwar", meaning: "戦後の", usedIn: ["s352"] },
-    { vid: "v1631", word: "era", meaning: "時代", usedIn: ["s352"] },
+    { vid: "v1627", word: "accumulate", meaning: "蓄積する", usedIn: ["s352"], tags: ["verb"] },
+    { vid: "v1628", word: "tremendous", meaning: "莫大な", usedIn: ["s352"], tags: ["adj"] },
+    { vid: "v1629", word: "fortune", meaning: "財産", usedIn: ["s352"], tags: ["noun"] },
+    { vid: "v1630", word: "postwar", meaning: "戦後の", usedIn: ["s352"], tags: ["adj"] },
+    { vid: "v1631", word: "era", meaning: "時代", usedIn: ["s352"], tags: ["noun"] },
 
-    { vid: "v1632", word: "used to do", meaning: "以前は〜していた", usedIn: ["s353"] },
-    { vid: "v1633", word: "well off", meaning: "裕福な", usedIn: ["s353"] },
-    { vid: "v1634", word: "generous", meaning: "寛大な", usedIn: ["s353"] },
-    { vid: "v1635", word: "live from hand to mouth", meaning: "その日暮らしをする", usedIn: ["s353"] }
+    { vid: "v1632", word: "used to do", meaning: "以前は〜していた", usedIn: ["s353"], tags: ["aux", "verb_do"] },
+    { vid: "v1633", word: "well off", meaning: "裕福な", usedIn: ["s353"], tags: ["adj"] },
+    { vid: "v1634", word: "generous", meaning: "寛大な", usedIn: ["s353"], tags: ["adj"] },
+    { vid: "v1635", word: "live from hand to mouth", meaning: "その日暮らしをする", usedIn: ["s353"], tags: ["verb", "pattern_prep_phrase"] }
   ]
 };
 
+export default window.SECTIONS["sec29"];
+export const section29 = window.SECTIONS["sec29"];

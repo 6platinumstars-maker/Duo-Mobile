@@ -1,11 +1,9 @@
-
-// section25.js
+// section25.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec25"] = {
   id: "sec25",
   title: "Section 25",
-
   sentences: [
     {
       sid: "s294",
@@ -72,60 +70,61 @@ window.SECTIONS["sec25"] = {
       vocabRefs: ["v1416", "v1417", "v1418"],
     },
   ],
+
   vocab: [
-    { vid: "v1375", word: "questionnaire", meaning: "質問票、アンケート", usedIn: ["s294"] },
-    { vid: "v1376", word: "distribute", meaning: "配布する", usedIn: ["s294"] },
-    { vid: "v1377", word: "at random", meaning: "無作為に", usedIn: ["s294"] },
+    { vid: "v1375", word: "questionnaire", meaning: "質問票、アンケート", usedIn: ["s294"], tags: ["noun"] },
+    { vid: "v1376", word: "distribute", meaning: "配布する", usedIn: ["s294"], tags: ["verb"] },
+    { vid: "v1377", word: "at random", meaning: "無作為に", usedIn: ["s294"], tags: ["adv"] },
 
-    { vid: "v1378", word: "All you have to do is ～", meaning: "～するだけでよい", usedIn: ["s295"] },
-    { vid: "v1379", word: "fill ... in", meaning: "…を書き込む、記入する", usedIn: ["s295"] },
-    { vid: "v1380", word: "blank", meaning: "空欄", usedIn: ["s295"] },
-    { vid: "v1381", word: "print", meaning: "活字体で書く", usedIn: ["s295"] },
-    { vid: "v1382", word: "in black", meaning: "黒字で", usedIn: ["s295"] },
+    { vid: "v1378", word: "All you have to do is ～", meaning: "～するだけでよい", usedIn: ["s295"], tags: ["verb", "verb_have", "verb_do"] },
+    { vid: "v1379", word: "fill ... in", meaning: "…を書き込む、記入する", usedIn: ["s295"], tags: ["verb"] },
+    { vid: "v1380", word: "blank", meaning: "空欄", usedIn: ["s295"], tags: ["noun"] },
+    { vid: "v1381", word: "print", meaning: "活字体で書く", usedIn: ["s295"], tags: ["verb"] },
+    { vid: "v1382", word: "in black", meaning: "黒字で", usedIn: ["s295"], tags: ["prep", "pattern_prep_phrase"] },
 
-    { vid: "v1383", word: "in addition to", meaning: "～に加えて", usedIn: ["s296"] },
-    { vid: "v1384", word: "discount", meaning: "割引", usedIn: ["s296"] },
-    { vid: "v1385", word: "pick out", meaning: "選び出す", usedIn: ["s296"] },
-    { vid: "v1386", word: "optional", meaning: "任意の", usedIn: ["s296"] },
-    { vid: "v1387", word: "execution", meaning: "実行、実施", usedIn: ["s296"] },
-    { vid: "v1388", word: "for free", meaning: "無料で", usedIn: ["s296"] },
+    { vid: "v1383", word: "in addition to", meaning: "～に加えて", usedIn: ["s296"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v1384", word: "discount", meaning: "割引", usedIn: ["s296"], tags: ["noun"] },
+    { vid: "v1385", word: "pick out", meaning: "選び出す", usedIn: ["s296"], tags: ["verb"] },
+    { vid: "v1386", word: "optional", meaning: "任意の", usedIn: ["s296"], tags: ["adj"] },
+    { vid: "v1387", word: "execution", meaning: "実行、実施", usedIn: ["s296"], tags: ["noun"] },
+    { vid: "v1388", word: "for free", meaning: "無料で", usedIn: ["s296"], tags: ["adv"] },
 
-    { vid: "v1389", word: "round-trip", meaning: "往復の", usedIn: ["s297"] },
-    { vid: "v1390", word: "fare", meaning: "運賃", usedIn: ["s297"] },
-    { vid: "v1391", word: "destination", meaning: "目的地", usedIn: ["s297"] },
-    { vid: "v1392", word: "as follows", meaning: "次のとおり", usedIn: ["s297"] },
+    { vid: "v1389", word: "round-trip", meaning: "往復の", usedIn: ["s297"], tags: ["adj"] },
+    { vid: "v1390", word: "fare", meaning: "運賃", usedIn: ["s297"], tags: ["noun"] },
+    { vid: "v1391", word: "destination", meaning: "目的地", usedIn: ["s297"], tags: ["noun"] },
+    { vid: "v1392", word: "as follows", meaning: "次のとおり", usedIn: ["s297"], tags: ["adv"] },
 
-    { vid: "v1393", word: "Don't forget to do ～", meaning: "忘れずに～する", usedIn: ["s298"] },
-    { vid: "v1394", word: "confirm", meaning: "確認する", usedIn: ["s298"] },
-    { vid: "v1395", word: "reservation", meaning: "予約", usedIn: ["s298"] },
-    { vid: "v1396", word: "in advance", meaning: "事前に", usedIn: ["s298"] },
+    { vid: "v1393", word: "Don't forget to do ～", meaning: "忘れずに～する", usedIn: ["s298"], tags: ["verb"] },
+    { vid: "v1394", word: "confirm", meaning: "確認する", usedIn: ["s298"], tags: ["verb"] },
+    { vid: "v1395", word: "reservation", meaning: "予約", usedIn: ["s298"], tags: ["noun"] },
+    { vid: "v1396", word: "in advance", meaning: "事前に", usedIn: ["s298"], tags: ["adv"] },
 
-    { vid: "v1397", word: "Be sure to do ～", meaning: "必ず～する", usedIn: ["s299"] },
-    { vid: "v1398", word: "check in", meaning: "チェックインする", usedIn: ["s299"] },
-    { vid: "v1399", word: "at least", meaning: "少なくとも", usedIn: ["s299"] },
-    { vid: "v1400", word: "prior to", meaning: "～より前に", usedIn: ["s299"] },
-    { vid: "v1401", word: "departure", meaning: "出発", usedIn: ["s299"] },
+    { vid: "v1397", word: "Be sure to do ～", meaning: "必ず～する", usedIn: ["s299"], tags: ["verb"] },
+    { vid: "v1398", word: "check in", meaning: "チェックインする", usedIn: ["s299"], tags: ["verb"] },
+    { vid: "v1399", word: "at least", meaning: "少なくとも", usedIn: ["s299"], tags: ["adv"] },
+    { vid: "v1400", word: "prior to", meaning: "～より前に", usedIn: ["s299"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v1401", word: "departure", meaning: "出発", usedIn: ["s299"], tags: ["noun"] },
 
-    { vid: "v1402", word: "attach", meaning: "取り付ける", usedIn: ["s300"] },
-    { vid: "v1403", word: "tag", meaning: "名札", usedIn: ["s300"] },
-    { vid: "v1404", word: "baggage", meaning: "手荷物", usedIn: ["s300"] },
-    { vid: "v1405", word: "come off", meaning: "外れる", usedIn: ["s300"] },
+    { vid: "v1402", word: "attach", meaning: "取り付ける", usedIn: ["s300"], tags: ["verb"] },
+    { vid: "v1403", word: "tag", meaning: "名札", usedIn: ["s300"], tags: ["noun"] },
+    { vid: "v1404", word: "baggage", meaning: "手荷物", usedIn: ["s300"], tags: ["noun"] },
+    { vid: "v1405", word: "come off", meaning: "外れる", usedIn: ["s300"], tags: ["verb"] },
 
-    { vid: "v1406", word: "on average", meaning: "平均して", usedIn: ["s301"] },
-    { vid: "v1407", word: "package", meaning: "小包", usedIn: ["s301"] },
-    { vid: "v1408", word: "weigh", meaning: "（重さが）～ある", usedIn: ["s301"] },
-    { vid: "v1409", word: "pound", meaning: "ポンド", usedIn: ["s301"] },
+    { vid: "v1406", word: "on average", meaning: "平均して", usedIn: ["s301"], tags: ["adv"] },
+    { vid: "v1407", word: "package", meaning: "小包", usedIn: ["s301"], tags: ["noun"] },
+    { vid: "v1408", word: "weigh", meaning: "（重さが）～ある", usedIn: ["s301"], tags: ["verb"] },
+    { vid: "v1409", word: "pound", meaning: "ポンド", usedIn: ["s301"], tags: ["noun"] },
 
-    { vid: "v1410", word: "plastic", meaning: "プラスチックの", usedIn: ["s302"] },
-    { vid: "v1411", word: "garbage", meaning: "ごみ", usedIn: ["s302"] },
-    { vid: "v1412", word: "bag", meaning: "袋", usedIn: ["s302"] },
-    { vid: "v1413", word: "be free of", meaning: "～が含まれていない", usedIn: ["s302"] },
-    { vid: "v1414", word: "hazardous", meaning: "有害な", usedIn: ["s302"] },
-    { vid: "v1415", word: "chemical", meaning: "化学物質", usedIn: ["s302"] },
+    { vid: "v1410", word: "plastic", meaning: "プラスチックの", usedIn: ["s302"], tags: ["adj"] },
+    { vid: "v1411", word: "garbage", meaning: "ごみ", usedIn: ["s302"], tags: ["noun"] },
+    { vid: "v1412", word: "bag", meaning: "袋", usedIn: ["s302"], tags: ["noun"] },
+    { vid: "v1413", word: "be free of", meaning: "～が含まれていない", usedIn: ["s302"], tags: ["adj", "pattern_prep_phrase"] },
+    { vid: "v1414", word: "hazardous", meaning: "有害な", usedIn: ["s302"], tags: ["adj"] },
+    { vid: "v1415", word: "chemical", meaning: "化学物質", usedIn: ["s302"], tags: ["noun"] },
 
-    { vid: "v1416", word: "flashlight", meaning: "懐中電灯", usedIn: ["s303"] },
-    { vid: "v1417", word: "dim", meaning: "薄暗い", usedIn: ["s303"] },
-    { vid: "v1418", word: "battery", meaning: "電池", usedIn: ["s303"] },
+    { vid: "v1416", word: "flashlight", meaning: "懐中電灯", usedIn: ["s303"], tags: ["noun"] },
+    { vid: "v1417", word: "dim", meaning: "薄暗い", usedIn: ["s303"], tags: ["adj"] },
+    { vid: "v1418", word: "battery", meaning: "電池", usedIn: ["s303"], tags: ["noun"] },
   ],
 };
 

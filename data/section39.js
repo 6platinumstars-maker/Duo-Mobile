@@ -1,10 +1,9 @@
-// section39.js
+// section39.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec39"] = {
   id: "sec39",
   title: "Section 39",
-
   sentences: [
     {
       sid: "s466",
@@ -80,69 +79,70 @@ window.SECTIONS["sec39"] = {
       vocabRefs: ["v2210", "v2211", "v2212", "v2213"]
     }
   ],
+
   vocab: [
-    { vid: "v2160", word: "become aware of", meaning: "～に気づく", usedIn: ["s466"] },
-    { vid: "v2161", word: "stare at", meaning: "～をじっと見る", usedIn: ["s466"] },
-    { vid: "v2162", word: "aisle", meaning: "通路", usedIn: ["s466"] },
-    { vid: "v2163", word: "turn around", meaning: "振り向く", usedIn: ["s466"] },
-    { vid: "v2164", word: "in sight", meaning: "見える範囲に", usedIn: ["s466"] },
+    { vid: "v2160", word: "become aware of", meaning: "～に気づく", usedIn: ["s466"], tags: ["verb"] },
+    { vid: "v2161", word: "stare at", meaning: "～をじっと見る", usedIn: ["s466"], tags: ["verb"] },
+    { vid: "v2162", word: "aisle", meaning: "通路", usedIn: ["s466"], tags: ["noun"] },
+    { vid: "v2163", word: "turn around", meaning: "振り向く", usedIn: ["s466"], tags: ["verb"] },
+    { vid: "v2164", word: "in sight", meaning: "見える範囲に", usedIn: ["s466"], tags: ["adv"] },
 
-    { vid: "v2165", word: "scream", meaning: "悲鳴を上げる", usedIn: ["s467"] },
-    { vid: "v2166", word: "with horror", meaning: "恐怖のあまり", usedIn: ["s467"] },
-    { vid: "v2167", word: "take hold of", meaning: "～をつかむ", usedIn: ["s467"] },
+    { vid: "v2165", word: "scream", meaning: "悲鳴を上げる", usedIn: ["s467"], tags: ["verb"] },
+    { vid: "v2166", word: "with horror", meaning: "恐怖のあまり", usedIn: ["s467"], tags: ["prep"] },
+    { vid: "v2167", word: "take hold of", meaning: "～をつかむ", usedIn: ["s467"], tags: ["verb","verb_take"] },
 
-    { vid: "v2168", word: "inform of", meaning: "～を知らせる", usedIn: ["s468"] },
-    { vid: "v2169", word: "safety", meaning: "安全、無事", usedIn: ["s468"] },
-    { vid: "v2170", word: "breathe", meaning: "吸う、吐く", usedIn: ["s468"] },
-    { vid: "v2171", word: "sigh", meaning: "ため息", usedIn: ["s468"] },
-    { vid: "v2172", word: "relief", meaning: "安堵", usedIn: ["s468"] },
+    { vid: "v2168", word: "inform A of B", meaning: "AにBを知らせる", usedIn: ["s468"], tags: ["verb","pattern_A_of_B"] },
+    { vid: "v2169", word: "safety", meaning: "安全、無事", usedIn: ["s468"], tags: ["noun"] },
+    { vid: "v2170", word: "breathe", meaning: "吸う、吐く", usedIn: ["s468"], tags: ["verb"] },
+    { vid: "v2171", word: "sigh", meaning: "ため息", usedIn: ["s468"], tags: ["noun"] },
+    { vid: "v2172", word: "relief", meaning: "安堵", usedIn: ["s468"], tags: ["noun"] },
 
-    { vid: "v2173", word: "bullet", meaning: "弾丸", usedIn: ["s469"] },
-    { vid: "v2174", word: "penetrate", meaning: "貫通する", usedIn: ["s469"] },
-    { vid: "v2175", word: "chest", meaning: "胸", usedIn: ["s469"] },
-    { vid: "v2176", word: "critical", meaning: "危篤の", usedIn: ["s469"] },
-    { vid: "v2177", word: "be in ... condition", meaning: "～の状態である", usedIn: ["s469"] },
+    { vid: "v2173", word: "bullet", meaning: "弾丸", usedIn: ["s469"], tags: ["noun"] },
+    { vid: "v2174", word: "penetrate", meaning: "貫通する", usedIn: ["s469"], tags: ["verb"] },
+    { vid: "v2175", word: "chest", meaning: "胸", usedIn: ["s469"], tags: ["noun"] },
+    { vid: "v2176", word: "critical", meaning: "危篤の", usedIn: ["s469"], tags: ["adj"] },
+    { vid: "v2177", word: "be in ... condition", meaning: "～の状態である", usedIn: ["s469"], tags: ["verb"] },
 
-    { vid: "v2178", word: "at present", meaning: "現在のところ", usedIn: ["s470"] },
-    { vid: "v2179", word: "uncertain", meaning: "不確かな", usedIn: ["s470"] },
-    { vid: "v2181", word: "deliberately", meaning: "故意に", usedIn: ["s470"] },
-    { vid: "v2182", word: "by accident", meaning: "偶然に、誤って", usedIn: ["s470"] },
+    { vid: "v2178", word: "at present", meaning: "現在のところ", usedIn: ["s470"], tags: ["adv"] },
+    { vid: "v2179", word: "uncertain", meaning: "不確かな", usedIn: ["s470"], tags: ["adj"] },
+    { vid: "v2181", word: "deliberately", meaning: "故意に", usedIn: ["s470"], tags: ["adv"] },
+    { vid: "v2182", word: "by accident", meaning: "偶然に、誤って", usedIn: ["s470"], tags: ["adv"] },
 
-    { vid: "v2183", word: "deli", meaning: "惣菜店", usedIn: ["s471"] },
-    { vid: "v2184", word: "catch fire", meaning: "火がつく", usedIn: ["s471"] },
-    { vid: "v2185", word: "burn down", meaning: "全焼する", usedIn: ["s471"] },
-    { vid: "v2186", word: "heap", meaning: "山（かたまり）", usedIn: ["s471"] },
-    { vid: "v2187", word: "ash", meaning: "灰", usedIn: ["s471"] },
+    { vid: "v2183", word: "deli", meaning: "惣菜店", usedIn: ["s471"], tags: ["noun"] },
+    { vid: "v2184", word: "catch fire", meaning: "火がつく", usedIn: ["s471"], tags: ["verb"] },
+    { vid: "v2185", word: "burn down", meaning: "全焼する", usedIn: ["s471"], tags: ["verb"] },
+    { vid: "v2186", word: "heap", meaning: "山（かたまり）", usedIn: ["s471"], tags: ["noun"] },
+    { vid: "v2187", word: "ash", meaning: "灰", usedIn: ["s471"], tags: ["noun"] },
 
-    { vid: "v2188", word: "all of a sudden", meaning: "突然", usedIn: ["s472"] },
-    { vid: "v2189", word: "firework", meaning: "花火", usedIn: ["s472"] },
-    { vid: "v2190", word: "warehouse", meaning: "倉庫", usedIn: ["s472"] },
-    { vid: "v2191", word: "explode", meaning: "爆発する", usedIn: ["s472"] },
-    { vid: "v2192", word: "put out", meaning: "消す", usedIn: ["s472"] },
-    { vid: "v2193", word: "blaze", meaning: "火炎、大火", usedIn: ["s472"] },
+    { vid: "v2188", word: "all of a sudden", meaning: "突然", usedIn: ["s472"], tags: ["adv"] },
+    { vid: "v2189", word: "firework", meaning: "花火", usedIn: ["s472"], tags: ["noun"] },
+    { vid: "v2190", word: "warehouse", meaning: "倉庫", usedIn: ["s472"], tags: ["noun"] },
+    { vid: "v2191", word: "explode", meaning: "爆発する", usedIn: ["s472"], tags: ["verb"] },
+    { vid: "v2192", word: "put out", meaning: "消す", usedIn: ["s472"], tags: ["verb"] },
+    { vid: "v2193", word: "blaze", meaning: "火炎、大火", usedIn: ["s472"], tags: ["noun"] },
 
-    { vid: "v2194", word: "bomb", meaning: "爆弾", usedIn: ["s473"] },
-    { vid: "v2195", word: "go off", meaning: "爆発する", usedIn: ["s473"] },
-    { vid: "v2196", word: "thirty-story building", meaning: "30階建ての建物", usedIn: ["s473"] },
-    { vid: "v2197", word: "seriously", meaning: "ひどく", usedIn: ["s473"] },
-    { vid: "v2198", word: "wounded", meaning: "負傷した", usedIn: ["s473"] },
+    { vid: "v2194", word: "bomb", meaning: "爆弾", usedIn: ["s473"], tags: ["noun"] },
+    { vid: "v2195", word: "go off", meaning: "爆発する", usedIn: ["s473"], tags: ["verb"] },
+    { vid: "v2196", word: "thirty-story building", meaning: "30階建ての建物", usedIn: ["s473"], tags: ["noun"] },
+    { vid: "v2197", word: "seriously", meaning: "ひどく", usedIn: ["s473"], tags: ["adv"] },
+    { vid: "v2198", word: "wounded", meaning: "負傷した", usedIn: ["s473"], tags: ["adj"] },
 
-    { vid: "v2199", word: "cargo", meaning: "貨物", usedIn: ["s474"] },
-    { vid: "v2200", word: "vessel", meaning: "船舶", usedIn: ["s474"] },
-    { vid: "v2201", word: "bound for", meaning: "～行きの", usedIn: ["s474"] },
-    { vid: "v2202", word: "sink", meaning: "沈む", usedIn: ["s474"] },
-    { vid: "v2203", word: "Mediterranean", meaning: "地中海", usedIn: ["s474"] },
-    { vid: "v2204", word: "without a trace", meaning: "跡形もなく", usedIn: ["s474"] },
+    { vid: "v2199", word: "cargo", meaning: "貨物", usedIn: ["s474"], tags: ["noun"] },
+    { vid: "v2200", word: "vessel", meaning: "船舶", usedIn: ["s474"], tags: ["noun"] },
+    { vid: "v2201", word: "bound for", meaning: "～行きの", usedIn: ["s474"], tags: ["adj"] },
+    { vid: "v2202", word: "sink", meaning: "沈む", usedIn: ["s474"], tags: ["verb"] },
+    { vid: "v2203", word: "Mediterranean", meaning: "地中海", usedIn: ["s474"], tags: ["noun"] },
+    { vid: "v2204", word: "without a trace", meaning: "跡形もなく", usedIn: ["s474"], tags: ["adv"] },
 
-    { vid: "v2205", word: "reckless", meaning: "向こう見ずな", usedIn: ["s475"] },
-    { vid: "v2206", word: "freeze", meaning: "凍る", usedIn: ["s475"] },
-    { vid: "v2207", word: "to death", meaning: "～の結果死ぬ", usedIn: ["s475"] },
-    { vid: "v2208", word: "expedition", meaning: "探検", usedIn: ["s475"] },
-    { vid: "v2209", word: "Antarctic", meaning: "南極", usedIn: ["s475"] },
+    { vid: "v2205", word: "reckless", meaning: "向こう見ずな", usedIn: ["s475"], tags: ["adj"] },
+    { vid: "v2206", word: "freeze", meaning: "凍る", usedIn: ["s475"], tags: ["verb"] },
+    { vid: "v2207", word: "to death", meaning: "～の結果死ぬ", usedIn: ["s475"], tags: ["adv"] },
+    { vid: "v2208", word: "expedition", meaning: "探検", usedIn: ["s475"], tags: ["noun"] },
+    { vid: "v2209", word: "Antarctic", meaning: "南極", usedIn: ["s475"], tags: ["noun"] },
 
-    { vid: "v2210", word: "tragedy", meaning: "悲劇", usedIn: ["s476"] },
-    { vid: "v2211", word: "remember", meaning: "覚えておく、覚えている", usedIn: ["s476"] },
-    { vid: "v2212", word: "so as not to do", meaning: "～しないように", usedIn: ["s476"] },
-    { vid: "v2213", word: "repeat", meaning: "繰り返す", usedIn: ["s476"] }
+    { vid: "v2210", word: "tragedy", meaning: "悲劇", usedIn: ["s476"], tags: ["noun"] },
+    { vid: "v2211", word: "remember", meaning: "覚えておく、覚えている", usedIn: ["s476"], tags: ["verb"] },
+    { vid: "v2212", word: "so as not to do", meaning: "～しないように", usedIn: ["s476"], tags: ["conj"] },
+    { vid: "v2213", word: "repeat", meaning: "繰り返す", usedIn: ["s476"], tags: ["verb"] }
   ]
 };

@@ -1,10 +1,9 @@
-// section43.js
+// section43.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec43"] = {
   id: "sec43",
   title: "Section 43",
-
   sentences: [
     {
       sid: "s518",
@@ -85,71 +84,72 @@ window.SECTIONS["sec43"] = {
       vocabRefs: ["v2436", "v2437", "v2438"]
     }
   ],
+
   vocab: [
-    { vid: "v2386", word: "spare", meaning: "（時間・労力などを）割く", usedIn: ["s518"] },
-    { vid: "v2387", word: "discuss", meaning: "話し合う", usedIn: ["s518"] },
-    { vid: "v2388", word: "of importance to", meaning: "～にとって重要な", usedIn: ["s518"] },
+    { vid: "v2386", word: "spare", meaning: "（時間・労力などを）割く", usedIn: ["s518"], tags: ["verb"] },
+    { vid: "v2387", word: "discuss", meaning: "話し合う", usedIn: ["s518"], tags: ["verb"] },
+    { vid: "v2388", word: "of importance to", meaning: "～にとって重要な", usedIn: ["s518"], tags: ["adj"] },
 
-    { vid: "v2389", word: "seem", meaning: "～のように見える", usedIn: ["s519"] },
-    { vid: "v2390", word: "trivial", meaning: "些細な", usedIn: ["s519"] },
-    { vid: "v2391", word: "be worth doing", meaning: "～する価値がある", usedIn: ["s519"] },
-    { vid: "v2392", word: "pay attention to", meaning: "～に注意を払う", usedIn: ["s519"] },
+    { vid: "v2389", word: "seem", meaning: "～のように見える", usedIn: ["s519"], tags: ["verb"] },
+    { vid: "v2390", word: "trivial", meaning: "些細な", usedIn: ["s519"], tags: ["adj"] },
+    { vid: "v2391", word: "be worth doing", meaning: "～する価値がある", usedIn: ["s519"], tags: ["verb"] },
+    { vid: "v2392", word: "pay attention to", meaning: "～に注意を払う", usedIn: ["s519"], tags: ["verb"] },
 
-    { vid: "v2393", word: "as far as A is concerned", meaning: "Aに関する限り", usedIn: ["s520"] },
-    { vid: "v2394", word: "anything goes", meaning: "何でもありだ", usedIn: ["s520"] },
-    { vid: "v2395", word: "by contrast", meaning: "対照的に", usedIn: ["s520"] },
-    { vid: "v2396", word: "cautious", meaning: "慎重な", usedIn: ["s520"] },
+    { vid: "v2393", word: "as far as A is concerned", meaning: "Aに関する限り", usedIn: ["s520"], tags: ["conj"] },
+    { vid: "v2394", word: "anything goes", meaning: "何でもありだ", usedIn: ["s520"], tags: ["verb", "verb_go"] },
+    { vid: "v2395", word: "by contrast", meaning: "対照的に", usedIn: ["s520"], tags: ["adv"] },
+    { vid: "v2396", word: "cautious", meaning: "慎重な", usedIn: ["s520"], tags: ["adj"] },
 
-    { vid: "v2397", word: "awkward", meaning: "気まずい", usedIn: ["s521"] },
-    { vid: "v2398", word: "pause", meaning: "沈黙、間", usedIn: ["s521"] },
-    { vid: "v2399", word: "take ... by the hand", meaning: "～の手を取る", usedIn: ["s521"] },
-    { vid: "v2400", word: "drag", meaning: "引きずる", usedIn: ["s521"] },
-    { vid: "v2401", word: "upstairs", meaning: "階上へ", usedIn: ["s521"] },
+    { vid: "v2397", word: "awkward", meaning: "気まずい", usedIn: ["s521"], tags: ["adj"] },
+    { vid: "v2398", word: "pause", meaning: "沈黙、間", usedIn: ["s521"], tags: ["noun"] },
+    { vid: "v2399", word: "take ... by the hand", meaning: "～の手を取る", usedIn: ["s521"], tags: ["verb", "verb_take"] },
+    { vid: "v2400", word: "drag", meaning: "引きずる", usedIn: ["s521"], tags: ["verb"] },
+    { vid: "v2401", word: "upstairs", meaning: "階上へ", usedIn: ["s521"], tags: ["adv"] },
 
-    { vid: "v2402", word: "comfort", meaning: "慰める", usedIn: ["s522"] },
-    { vid: "v2403", word: "interpret A as B", meaning: "AをBと解釈する", usedIn: ["s522"] },
-    { vid: "v2404", word: "romantic", meaning: "恋愛の", usedIn: ["s522"] },
-    { vid: "v2405", word: "interest", meaning: "関心、興味", usedIn: ["s522"] },
+    { vid: "v2402", word: "comfort", meaning: "慰める", usedIn: ["s522"], tags: ["verb"] },
+    { vid: "v2403", word: "interpret A as B", meaning: "AをBと解釈する", usedIn: ["s522"], tags: ["verb"] },
+    { vid: "v2404", word: "romantic", meaning: "恋愛の", usedIn: ["s522"], tags: ["adj"] },
+    { vid: "v2405", word: "interest", meaning: "関心、興味", usedIn: ["s522"], tags: ["noun"] },
 
-    { vid: "v2406", word: "make sure", meaning: "確かめる", usedIn: ["s523"] },
-    { vid: "v2407", word: "sound", meaning: "ぐっすりした", usedIn: ["s523"] },
-    { vid: "v2408", word: "be asleep", meaning: "眠っている", usedIn: ["s523"] },
-    { vid: "v2409", word: "creep", meaning: "そっと動く", usedIn: ["s523"] },
-    { vid: "v2410", word: "set off", meaning: "出発する", usedIn: ["s523"] },
+    { vid: "v2406", word: "make sure", meaning: "確かめる", usedIn: ["s523"], tags: ["verb"] },
+    { vid: "v2407", word: "sound", meaning: "ぐっすりした", usedIn: ["s523"], tags: ["adj"] },
+    { vid: "v2408", word: "be asleep", meaning: "眠っている", usedIn: ["s523"], tags: ["adj"] },
+    { vid: "v2409", word: "creep", meaning: "そっと動く", usedIn: ["s523"], tags: ["verb"] },
+    { vid: "v2410", word: "set off", meaning: "出発する", usedIn: ["s523"], tags: ["verb"] },
 
-    { vid: "v2411", word: "between you and me", meaning: "ここだけの話だが", usedIn: ["s524"] },
-    { vid: "v2412", word: "come across", meaning: "偶然出くわす", usedIn: ["s524"] },
-    { vid: "v2413", word: "passionately", meaning: "情熱的に", usedIn: ["s524"] },
-    { vid: "v2414", word: "embrace", meaning: "抱きしめる", usedIn: ["s524"] },
+    { vid: "v2411", word: "between you and me", meaning: "ここだけの話だが", usedIn: ["s524"], tags: ["conj"] },
+    { vid: "v2412", word: "come across", meaning: "偶然出くわす", usedIn: ["s524"], tags: ["verb"] },
+    { vid: "v2413", word: "passionately", meaning: "情熱的に", usedIn: ["s524"], tags: ["adv"] },
+    { vid: "v2414", word: "embrace", meaning: "抱きしめる", usedIn: ["s524"], tags: ["verb"] },
 
-    { vid: "v2415", word: "remark", meaning: "発言", usedIn: ["s525"] },
-    { vid: "v2416", word: "be open to", meaning: "～の余地がある", usedIn: ["s525"] },
-    { vid: "v2417", word: "misunderstanding", meaning: "誤解", usedIn: ["s525"] },
+    { vid: "v2415", word: "remark", meaning: "発言", usedIn: ["s525"], tags: ["noun"] },
+    { vid: "v2416", word: "be open to", meaning: "～の余地がある", usedIn: ["s525"], tags: ["adj"] },
+    { vid: "v2417", word: "misunderstanding", meaning: "誤解", usedIn: ["s525"], tags: ["noun"] },
 
-    { vid: "v2418", word: "stand", meaning: "我慢する", usedIn: ["s526"] },
-    { vid: "v2419", word: "not anymore", meaning: "もはや～ない", usedIn: ["s526"] },
-    { vid: "v2420", word: "calm down", meaning: "落ち着く", usedIn: ["s526"] },
-    { vid: "v2421", word: "come over", meaning: "訪ねる", usedIn: ["s526"] },
-    { vid: "v2422", word: "as ... as possible", meaning: "できるだけ～", usedIn: ["s526"] },
+    { vid: "v2418", word: "stand", meaning: "我慢する", usedIn: ["s526"], tags: ["verb"] },
+    { vid: "v2419", word: "not anymore", meaning: "もはや～ない", usedIn: ["s526"], tags: ["adv"] },
+    { vid: "v2420", word: "calm down", meaning: "落ち着く", usedIn: ["s526"], tags: ["verb"] },
+    { vid: "v2421", word: "come over", meaning: "訪ねる", usedIn: ["s526"], tags: ["verb"] },
+    { vid: "v2422", word: "as ... as possible", meaning: "できるだけ～", usedIn: ["s526"], tags: ["adv"] },
 
-    { vid: "v2423", word: "literally", meaning: "文字通りに", usedIn: ["s527"] },
-    { vid: "v2424", word: "be inclined to", meaning: "～する傾向がある", usedIn: ["s527"] },
-    { vid: "v2425", word: "exaggerate", meaning: "誇張する", usedIn: ["s527"] },
+    { vid: "v2423", word: "literally", meaning: "文字通りに", usedIn: ["s527"], tags: ["adv"] },
+    { vid: "v2424", word: "be inclined to", meaning: "～する傾向がある", usedIn: ["s527"], tags: ["adj"] },
+    { vid: "v2425", word: "exaggerate", meaning: "誇張する", usedIn: ["s527"], tags: ["verb"] },
 
-    { vid: "v2426", word: "apologize to", meaning: "～に謝る", usedIn: ["s528"] },
-    { vid: "v2427", word: "make fun of", meaning: "～をからかう", usedIn: ["s528"] },
-    { vid: "v2428", word: "go too far", meaning: "行き過ぎる", usedIn: ["s528"] },
-    { vid: "v2429", word: "sometime", meaning: "いつか", usedIn: ["s528"] },
-    { vid: "v2430", word: "be in a good mood", meaning: "機嫌が良い", usedIn: ["s528"] },
+    { vid: "v2426", word: "apologize to", meaning: "～に謝る", usedIn: ["s528"], tags: ["verb"] },
+    { vid: "v2427", word: "make fun of", meaning: "～をからかう", usedIn: ["s528"], tags: ["verb", "verb_make"] },
+    { vid: "v2428", word: "go too far", meaning: "行き過ぎる", usedIn: ["s528"], tags: ["verb", "verb_go"] },
+    { vid: "v2429", word: "sometime", meaning: "いつか", usedIn: ["s528"], tags: ["adv"] },
+    { vid: "v2430", word: "be in a good mood", meaning: "機嫌が良い", usedIn: ["s528"], tags: ["adj"] },
 
-    { vid: "v2431", word: "get along with", meaning: "～とうまくやる", usedIn: ["s529"] },
-    { vid: "v2432", word: "once in a while", meaning: "時々", usedIn: ["s529"] },
-    { vid: "v2433", word: "think of", meaning: "～を考える", usedIn: ["s529"] },
-    { vid: "v2434", word: "divorce", meaning: "離婚する", usedIn: ["s529"] },
-    { vid: "v2435", word: "You must be kidding.", meaning: "冗談でしょ", usedIn: ["s529"] },
+    { vid: "v2431", word: "get along with", meaning: "～とうまくやる", usedIn: ["s529"], tags: ["verb", "verb_get"] },
+    { vid: "v2432", word: "once in a while", meaning: "時々", usedIn: ["s529"], tags: ["adv"] },
+    { vid: "v2433", word: "think of", meaning: "～を考える", usedIn: ["s529"], tags: ["verb"] },
+    { vid: "v2434", word: "divorce", meaning: "離婚する／離婚", usedIn: ["s529"], tags: ["verb", "noun"] },
+    { vid: "v2435", word: "You must be kidding.", meaning: "冗談でしょ", usedIn: ["s529"], tags: ["interj"] },
 
-    { vid: "v2436", word: "in tears", meaning: "涙ながらに", usedIn: ["s530"] },
-    { vid: "v2437", word: "tear ... up", meaning: "～を破る", usedIn: ["s530"] },
-    { vid: "v2438", word: "throw ... away", meaning: "～を捨てる", usedIn: ["s530"] }
+    { vid: "v2436", word: "in tears", meaning: "涙ながらに", usedIn: ["s530"], tags: ["adv"] },
+    { vid: "v2437", word: "tear ... up", meaning: "～を破る", usedIn: ["s530"], tags: ["verb"] },
+    { vid: "v2438", word: "throw ... away", meaning: "～を捨てる", usedIn: ["s530"], tags: ["verb"] }
   ]
 };

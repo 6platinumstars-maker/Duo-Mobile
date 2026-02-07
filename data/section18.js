@@ -1,10 +1,9 @@
-// section18.js
+// section18.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec18"] = {
   id: "sec18",
   title: "Section 18",
-
   sentences: [
     {
       sid: "s198",
@@ -25,22 +24,19 @@ window.SECTIONS["sec18"] = {
       sid: "s200",
       english:
         "I must admit we quarrel every now and then, but generally we're on good terms with each other.",
-      japanese:
-        "確かに私たちは時々口げんかするが、普段は仲が良い。",
+      japanese: "確かに私たちは時々口げんかするが、普段は仲が良い。",
       vocabRefs: ["v0917", "v0918", "v0919", "v0920", "v0921"],
     },
     {
       sid: "s201",
       english:
-        "\"Do you mind if I stop by your house?\" \"No, not at all. Be my guest!\"",
-      japanese:
-        "「君の家に寄ってもいいかい？」「もちろん、どうぞ。遠慮しないで！」",
+        '"Do you mind if I stop by your house?" "No, not at all. Be my guest!"',
+      japanese: "「君の家に寄ってもいいかい？」「もちろん、どうぞ。遠慮しないで！」",
       vocabRefs: ["v0922", "v0923", "v0924", "v0925"],
     },
     {
       sid: "s202",
-      english:
-        "\"Hold on. I'll be right back. Don't hang up!\"",
+      english: '"Hold on. I\'ll be right back. Don\'t hang up!"',
       japanese: "「ちょっと待ってて。すぐ戻るから。切らないで！」",
       vocabRefs: ["v0926", "v0927", "v0928"],
     },
@@ -48,30 +44,28 @@ window.SECTIONS["sec18"] = {
       sid: "s203",
       english:
         "I can't put you up. For one thing, my dad drops in on me from time to time.",
-      japanese:
-        "君を泊めることはできないよ。まず一つ、父が時々急に来るんだ。",
+      japanese: "君を泊めることはできないよ。まず一つ、父が時々急に来るんだ。",
       vocabRefs: ["v0929", "v0930", "v0931", "v0932", "v0933"],
     },
     {
       sid: "s204",
       english:
         "While Jennifer was standing still, Bob was pacing back and forth along the sidewalk.",
-      japanese:
-        "ジェニファーが立ち止まっている間、ボブは歩道を行ったり来たりしていた。",
+      japanese: "ジェニファーが立ち止まっている間、ボブは歩道を行ったり来たりしていた。",
       vocabRefs: ["v0934", "v0935", "v0936", "v0937"],
     },
     {
       sid: "s205",
       english:
-        "\"Let's make up, Lisa. Stop taking me for granted! We're through for good this time. I mean it!\"",
+        '"Let’s make up, Lisa. Stop taking me for granted! We’re through for good this time. I mean it!"',
       japanese:
-        "「仲直りしようよ、リサ。僕を当然だと思うのはやめてくれ！ 今回は本当に終わりだ。本気なんだ！」",
+        "「仲直りしよう、リサ。僕を当然だと思うのはやめてくれ！今回は本当に終わりだ。本気なんだ！」",
       vocabRefs: ["v0938", "v0939", "v0940", "v0941", "v0942"],
     },
     {
       sid: "s206",
       english:
-        "\"Come on! Don't get so emotional, Lisa. I didn't mean to hurt you. Let's talk it over.\"",
+        '"Come on! Don’t get so emotional, Lisa. I didn’t mean to hurt you. Let’s talk it over."',
       japanese:
         "「おいおい！そんなに感情的になるなよ、リサ。傷つけるつもりはなかったんだ。話し合おう。」",
       vocabRefs: ["v0943", "v0944", "v0945", "v0946", "v0947"],
@@ -79,7 +73,7 @@ window.SECTIONS["sec18"] = {
     {
       sid: "s207",
       english:
-        "\"You betrayed me! Please forgive me. How can I make it up to you? I'll get even!\"",
+        '"You betrayed me! Please forgive me. How can I make it up to you? I’ll get even!"',
       japanese:
         "「君は僕を裏切ったんだ！お願いだ、許してくれ。どう償えばいい？ 絶対仕返ししてやる！」",
       vocabRefs: ["v0948", "v0949", "v0950", "v0951"],
@@ -107,94 +101,102 @@ window.SECTIONS["sec18"] = {
     {
       sid: "s211",
       english:
-        "\"Cheer up! You couldn't help it. I did my best. I know. Don't dwell on the past. You can start over!\"",
+        '"Cheer up! You couldn’t help it. I did my best. I know. Don’t dwell on the past. You can start over!"',
       japanese:
         "「元気を出せよ！仕方なかったんだ。僕は最善を尽くしたよ。分かってる。過去にこだわるなよ。やり直せるさ！」",
       vocabRefs: ["v0965", "v0966", "v0967", "v0968", "v0969", "v0970"],
     },
   ],
+
   vocab: [
-    { vid: "v0909", word: "occur", meaning: "（考えなどが）ふと思い浮かぶ", usedIn: ["s198"] },
-    { vid: "v0910", word: "hold … back", meaning: "（感情・情報など）を隠す／抑える", usedIn: ["s198"] },
-    { vid: "v0911", word: "look A in the eye", meaning: "Aの目をまっすぐ見る", usedIn: ["s198"] },
+    // 198
+    { vid: "v0909", word: "occur", meaning: "（考えなどが）ふと思い浮かぶ", usedIn: ["s198"], tags: ["verb"] },
+    { vid: "v0910", word: "hold … back", meaning: "（感情・情報など）を隠す／抑える", usedIn: ["s198"], tags: ["verb"] },
+    { vid: "v0911", word: "look A in the eye", meaning: "Aの目をまっすぐ見る", usedIn: ["s198"], tags: ["verb"] },
 
-    { vid: "v0912", word: "patience", meaning: "我慢、忍耐", usedIn: ["s199"] },
-    { vid: "v0913", word: "give out", meaning: "（我慢・電池などが）尽きる", usedIn: ["s199"] },
-    { vid: "v0914", word: "grab", meaning: "つかむ、つかみ取る", usedIn: ["s199"] },
-    { vid: "v0915", word: "collar", meaning: "襟、えり", usedIn: ["s199"] },
-    { vid: "v0916", word: "swear at", meaning: "～をののしる、悪態をつく", usedIn: ["s199"] },
+    // 199
+    { vid: "v0912", word: "patience", meaning: "我慢、忍耐", usedIn: ["s199"], tags: ["noun"] },
+    { vid: "v0913", word: "give out", meaning: "（我慢・電池などが）尽きる", usedIn: ["s199"], tags: ["verb", "verb_give"] },
+    { vid: "v0914", word: "grab", meaning: "つかむ、つかみ取る", usedIn: ["s199"], tags: ["verb"] },
+    { vid: "v0915", word: "collar", meaning: "襟", usedIn: ["s199"], tags: ["noun"] },
+    { vid: "v0916", word: "swear at", meaning: "～をののしる、悪態をつく", usedIn: ["s199"], tags: ["verb"] },
 
-    { vid: "v0917", word: "admit", meaning: "認める", usedIn: ["s200"] },
-    { vid: "v0918", word: "quarrel", meaning: "口げんかする", usedIn: ["s200"] },
-    { vid: "v0919", word: "every now and then", meaning: "時折、ときどき", usedIn: ["s200"] },
-    { vid: "v0920", word: "generally", meaning: "一般的に／普段は", usedIn: ["s200"] },
-    { vid: "v0921", word: "be on good terms with", meaning: "～と仲良くやっている", usedIn: ["s200"] },
+    // 200
+    { vid: "v0917", word: "admit", meaning: "認める", usedIn: ["s200"], tags: ["verb"] },
+    { vid: "v0918", word: "quarrel", meaning: "口げんかする", usedIn: ["s200"], tags: ["verb"] },
+    { vid: "v0919", word: "every now and then", meaning: "時折、ときどき", usedIn: ["s200"], tags: ["adv"] },
+    { vid: "v0920", word: "generally", meaning: "一般的に／普段は", usedIn: ["s200"], tags: ["adv"] },
+    { vid: "v0921", word: "be on good terms with", meaning: "～と仲良くやっている", usedIn: ["s200"], tags: ["verb"] },
 
-    { vid: "v0922", word: "Do you mind if I do", meaning: "～してもいいですか", usedIn: ["s201"] },
-    { vid: "v0923", word: "stop by", meaning: "（人の家・場所に）立ち寄る", usedIn: ["s201"] },
-    { vid: "v0924", word: "not at all", meaning: "全然かまいません", usedIn: ["s201"] },
-    { vid: "v0925", word: "Be my guest", meaning: "ご自由にどうぞ", usedIn: ["s201"] },
+    // 201
+    { vid: "v0922", word: "Do you mind if I do ...?", meaning: "～してもいいですか", usedIn: ["s201"], tags: ["verb", "aux"] },
+    { vid: "v0923", word: "stop by", meaning: "（人の家・場所に）立ち寄る", usedIn: ["s201"], tags: ["verb"] },
+    { vid: "v0924", word: "not at all", meaning: "全然かまいません", usedIn: ["s201"], tags: ["adv"] },
+    { vid: "v0925", word: "Be my guest", meaning: "どうぞご自由に", usedIn: ["s201"], tags: ["interj"] },
 
-    { vid: "v0926", word: "hold on", meaning: "（電話で）切らずに待つ／ちょっと待って", usedIn: ["s202"] },
-    { vid: "v0927", word: "I'll be right back", meaning: "すぐ戻るよ", usedIn: ["s202"] },
-    { vid: "v0928", word: "hang up", meaning: "（電話を）切る", usedIn: ["s202"] },
+    // 202
+    { vid: "v0926", word: "hold on", meaning: "（電話で）切らずに待つ／ちょっと待って", usedIn: ["s202"], tags: ["verb"] },
+    { vid: "v0927", word: "I'll be right back", meaning: "すぐ戻るよ", usedIn: ["s202"], tags: ["aux"] },
+    { vid: "v0928", word: "hang up", meaning: "（電話を）切る", usedIn: ["s202"], tags: ["verb"] },
 
-    { vid: "v0929", word: "put … up", meaning: "（人を）泊める", usedIn: ["s203"] },
-    { vid: "v0930", word: "for one thing", meaning: "まず一つには", usedIn: ["s203"] },
-    { vid: "v0931", word: "dad", meaning: "父、父親", usedIn: ["s203"] },
-    { vid: "v0932", word: "drop in", meaning: "ひょっこり立ち寄る", usedIn: ["s203"] },
-    { vid: "v0933", word: "from time to time", meaning: "時々", usedIn: ["s203"] },
+    // 203
+    { vid: "v0929", word: "put … up", meaning: "（人を）泊める", usedIn: ["s203"], tags: ["verb"] },
+    { vid: "v0930", word: "for one thing", meaning: "まず一つには", usedIn: ["s203"], tags: ["conj"] },
+    { vid: "v0931", word: "dad", meaning: "父", usedIn: ["s203"], tags: ["noun"] },
+    { vid: "v0932", word: "drop in", meaning: "ひょっこり立ち寄る", usedIn: ["s203"], tags: ["verb"] },
+    { vid: "v0933", word: "from time to time", meaning: "時々", usedIn: ["s203"], tags: ["adv"] },
 
-    { vid: "v0934", word: "still", meaning: "じっとして、静止して", usedIn: ["s204"] },
-    { vid: "v0935", word: "pace", meaning: "行ったり来たり歩く", usedIn: ["s204"] },
-    { vid: "v0936", word: "back and forth", meaning: "前後に、行ったり来たり", usedIn: ["s204"] },
-    { vid: "v0937", word: "sidewalk", meaning: "歩道", usedIn: ["s204"] },
+    // 204
+    { vid: "v0934", word: "still", meaning: "じっとして／静止して", usedIn: ["s204"], tags: ["adv"] },
+    { vid: "v0935", word: "pace", meaning: "行ったり来たり歩く", usedIn: ["s204"], tags: ["verb"] },
+    { vid: "v0936", word: "back and forth", meaning: "行ったり来たり", usedIn: ["s204"], tags: ["adv"] },
+    { vid: "v0937", word: "sidewalk", meaning: "歩道", usedIn: ["s204"], tags: ["noun"] },
 
-    { vid: "v0938", word: "make up", meaning: "仲直りする", usedIn: ["s205"] },
-    {
-      vid: "v0939",
-      word: "take A for granted",
-      meaning: "Aをいて当たり前と思う",
-      usedIn: ["s205"],
-    },
-    { vid: "v0940", word: "be through", meaning: "（関係などが）終わっている", usedIn: ["s205"] },
-    { vid: "v0941", word: "for good", meaning: "永久に、二度と", usedIn: ["s205"] },
-    { vid: "v0942", word: "I mean it", meaning: "本気だよ", usedIn: ["s205"] },
+    // 205
+    { vid: "v0938", word: "make up", meaning: "仲直りする", usedIn: ["s205"], tags: ["verb", "verb_make"] },
+    { vid: "v0939", word: "take A for granted", meaning: "Aを当然のことと思う", usedIn: ["s205"], tags: ["verb", "verb_take"] },
+    { vid: "v0940", word: "be through", meaning: "（関係などが）終わっている", usedIn: ["s205"], tags: ["adj"] },
+    { vid: "v0941", word: "for good", meaning: "永久に、二度と", usedIn: ["s205"], tags: ["adv"] },
+    { vid: "v0942", word: "I mean it", meaning: "本気だよ", usedIn: ["s205"], tags: ["interj"] },
 
-    { vid: "v0943", word: "come on", meaning: "おいおい／さあ、元気を出して", usedIn: ["s206"] },
-    { vid: "v0944", word: "emotional", meaning: "感情的な", usedIn: ["s206"] },
-    { vid: "v0945", word: "mean to do", meaning: "～するつもりである", usedIn: ["s206"] },
-    { vid: "v0946", word: "hurt", meaning: "傷つける", usedIn: ["s206"] },
-    { vid: "v0947", word: "talk … over", meaning: "～についてよく話し合う", usedIn: ["s206"] },
+    // 206
+    { vid: "v0943", word: "come on", meaning: "おいおい／さあ", usedIn: ["s206"], tags: ["interj"] },
+    { vid: "v0944", word: "emotional", meaning: "感情的な", usedIn: ["s206"], tags: ["adj"] },
+    { vid: "v0945", word: "mean to do", meaning: "～するつもりである", usedIn: ["s206"], tags: ["verb"] },
+    { vid: "v0946", word: "hurt", meaning: "傷つける", usedIn: ["s206"], tags: ["verb"] },
+    { vid: "v0947", word: "talk … over", meaning: "～についてよく話し合う", usedIn: ["s206"], tags: ["verb"] },
 
-    { vid: "v0948", word: "betray", meaning: "裏切る", usedIn: ["s207"] },
-    { vid: "v0949", word: "forgive", meaning: "許す", usedIn: ["s207"] },
-    { vid: "v0950", word: "make it up to", meaning: "～に償う、埋め合わせをする", usedIn: ["s207"] },
-    { vid: "v0951", word: "get even", meaning: "仕返しをする", usedIn: ["s207"] },
+    // 207
+    { vid: "v0948", word: "betray", meaning: "裏切る", usedIn: ["s207"], tags: ["verb"] },
+    { vid: "v0949", word: "forgive", meaning: "許す", usedIn: ["s207"], tags: ["verb"] },
+    { vid: "v0950", word: "make it up to", meaning: "～に償う、埋め合わせをする", usedIn: ["s207"], tags: ["verb", "verb_make"] },
+    { vid: "v0951", word: "get even", meaning: "仕返しをする", usedIn: ["s207"], tags: ["verb", "verb_get"] },
 
-    { vid: "v0952", word: "confess", meaning: "告白する、打ち明ける", usedIn: ["s208"] },
-    { vid: "v0953", word: "sin", meaning: "罪", usedIn: ["s208"] },
-    { vid: "v0954", word: "conceal", meaning: "隠す", usedIn: ["s208"] },
+    // 208
+    { vid: "v0952", word: "confess", meaning: "告白する", usedIn: ["s208"], tags: ["verb"] },
+    { vid: "v0953", word: "sin", meaning: "罪", usedIn: ["s208"], tags: ["noun"] },
+    { vid: "v0954", word: "conceal", meaning: "隠す", usedIn: ["s208"], tags: ["verb"] },
 
-    { vid: "v0955", word: "keep one's word", meaning: "約束を守る", usedIn: ["s209"] },
-    { vid: "v0956", word: "otherwise", meaning: "さもないと", usedIn: ["s209"] },
-    { vid: "v0957", word: "end up doing", meaning: "結局～することになる", usedIn: ["s209"] },
-    { vid: "v0958", word: "lose face", meaning: "面目を失う", usedIn: ["s209"] },
+    // 209
+    { vid: "v0955", word: "keep one's word", meaning: "約束を守る", usedIn: ["s209"], tags: ["verb"] },
+    { vid: "v0956", word: "otherwise", meaning: "さもないと", usedIn: ["s209"], tags: ["conj"] },
+    { vid: "v0957", word: "end up doing", meaning: "結局～することになる", usedIn: ["s209"], tags: ["verb"] },
+    { vid: "v0958", word: "lose face", meaning: "面目を失う", usedIn: ["s209"], tags: ["verb"] },
 
-    { vid: "v0959", word: "stick to", meaning: "～を守る、～に固執する", usedIn: ["s210"] },
-    { vid: "v0960", word: "moral", meaning: "道徳的な", usedIn: ["s210"] },
-    { vid: "v0961", word: "principle", meaning: "信条、主義", usedIn: ["s210"] },
-    { vid: "v0962", word: "honesty", meaning: "正直さ", usedIn: ["s210"] },
-    { vid: "v0963", word: "pay off", meaning: "（努力などが）報われる", usedIn: ["s210"] },
-    { vid: "v0964", word: "in the long run", meaning: "長い目で見れば", usedIn: ["s210"] },
+    // 210
+    { vid: "v0959", word: "stick to", meaning: "～を守る／固執する", usedIn: ["s210"], tags: ["verb"] },
+    { vid: "v0960", word: "moral", meaning: "道徳的な", usedIn: ["s210"], tags: ["adj"] },
+    { vid: "v0961", word: "principle", meaning: "信条、主義", usedIn: ["s210"], tags: ["noun"] },
+    { vid: "v0962", word: "honesty", meaning: "正直さ", usedIn: ["s210"], tags: ["noun"] },
+    { vid: "v0963", word: "pay off", meaning: "（努力などが）報われる", usedIn: ["s210"], tags: ["verb"] },
+    { vid: "v0964", word: "in the long run", meaning: "長い目で見れば", usedIn: ["s210"], tags: ["prep", "pattern_prep_phrase"] },
 
-    { vid: "v0965", word: "cheer up", meaning: "元気を出す", usedIn: ["s211"] },
-    { vid: "v0966", word: "can't help it", meaning: "仕方がない", usedIn: ["s211"] },
-    { vid: "v0967", word: "do one's best", meaning: "最善を尽くす", usedIn: ["s211"] },
-    { vid: "v0968", word: "dwell on", meaning: "（過去のことなどを）くよくよ考える", usedIn: ["s211"] },
-    { vid: "v0969", word: "past", meaning: "過去", usedIn: ["s211"] },
-    { vid: "v0970", word: "start over", meaning: "やり直す", usedIn: ["s211"] },
+    // 211
+    { vid: "v0965", word: "cheer up", meaning: "元気を出す", usedIn: ["s211"], tags: ["verb"] },
+    { vid: "v0966", word: "can't help it", meaning: "仕方がない", usedIn: ["s211"], tags: ["aux"] },
+    { vid: "v0967", word: "do one's best", meaning: "最善を尽くす", usedIn: ["s211"], tags: ["verb", "verb_do"] },
+    { vid: "v0968", word: "dwell on", meaning: "（過去などを）くよくよ考える", usedIn: ["s211"], tags: ["verb"] },
+    { vid: "v0969", word: "past", meaning: "過去", usedIn: ["s211"], tags: ["noun"] },
+    { vid: "v0970", word: "start over", meaning: "やり直す", usedIn: ["s211"], tags: ["verb"] },
   ],
 };
-
-

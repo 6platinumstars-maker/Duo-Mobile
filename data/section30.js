@@ -1,10 +1,9 @@
-// section30.js
+// section30.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec30"] = {
   id: "sec30",
   title: "Section 30",
-
   sentences: [
     {
       sid: "s354",
@@ -84,74 +83,74 @@ window.SECTIONS["sec30"] = {
       vocabRefs: ["v1687", "v1688", "v1689", "v1690", "v1691"]
     }
   ],
+
   vocab: [
-    { vid: "v1636", word: "by no means", meaning: "決して～ない", usedIn: ["s354"] },
-    { vid: "v1637", word: "be satisfied with", meaning: "～に満足している", usedIn: ["s354"] },
-    { vid: "v1638", word: "reward", meaning: "報酬", usedIn: ["s354"] },
-    { vid: "v1639", word: "selfish", meaning: "自己中心的な", usedIn: ["s354"] },
-    { vid: "v1640", word: "greedy", meaning: "欲深い", usedIn: ["s354"] },
+    { vid: "v1636", word: "by no means", meaning: "決して～ない", usedIn: ["s354"], tags: ["adv"] },
+    { vid: "v1637", word: "be satisfied with", meaning: "～に満足している", usedIn: ["s354"], tags: ["adj"] },
+    { vid: "v1638", word: "reward", meaning: "報酬", usedIn: ["s354"], tags: ["noun"] },
+    { vid: "v1639", word: "selfish", meaning: "自己中心的な", usedIn: ["s354"], tags: ["adj"] },
+    { vid: "v1640", word: "greedy", meaning: "欲深い", usedIn: ["s354"], tags: ["adj"] },
 
-    { vid: "v1641", word: "owe A B", meaning: "AにBを借りている", usedIn: ["s355"] },
-    { vid: "v1642", word: "altogether", meaning: "合計で", usedIn: ["s355"] },
-    { vid: "v1643", word: "pay ... back", meaning: "返済する", usedIn: ["s355"] },
-    { vid: "v1644", word: "be hard up", meaning: "金に困っている", usedIn: ["s355"] },
-    { vid: "v1645", word: "There you go again!", meaning: "またそれか！", usedIn: ["s355"] },
+    { vid: "v1641", word: "owe A B", meaning: "AにBを借りている", usedIn: ["s355"], tags: ["verb"] },
+    { vid: "v1642", word: "altogether", meaning: "合計で", usedIn: ["s355"], tags: ["adv"] },
+    { vid: "v1643", word: "pay ... back", meaning: "返済する", usedIn: ["s355"], tags: ["verb"] },
+    { vid: "v1644", word: "be hard up", meaning: "金に困っている", usedIn: ["s355"], tags: ["adj"] },
+    { vid: "v1645", word: "There you go again!", meaning: "またそれか！", usedIn: ["s355"], tags: ["interj"] },
 
-    { vid: "v1646", word: "to one’s surprise", meaning: "驚いたことに", usedIn: ["s356"] },
-    { vid: "v1647", word: "debt", meaning: "借金", usedIn: ["s356"] },
-    { vid: "v1648", word: "amount to", meaning: "～に達する", usedIn: ["s356"] },
-    { vid: "v1649", word: "considerable", meaning: "かなりの", usedIn: ["s356"] },
-    { vid: "v1650", word: "sum", meaning: "金額、合計", usedIn: ["s356"] },
+    { vid: "v1646", word: "to one’s surprise", meaning: "驚いたことに", usedIn: ["s356"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v1647", word: "debt", meaning: "借金", usedIn: ["s356"], tags: ["noun"] },
+    { vid: "v1648", word: "amount to", meaning: "～に達する", usedIn: ["s356"], tags: ["verb"] },
+    { vid: "v1649", word: "considerable", meaning: "かなりの", usedIn: ["s356"], tags: ["adj"] },
+    { vid: "v1650", word: "sum", meaning: "金額、合計", usedIn: ["s356"], tags: ["noun"] },
 
-    { vid: "v1651", word: "cling to", meaning: "～にしがみつく", usedIn: ["s357"] },
-    { vid: "v1652", word: "glory", meaning: "栄光", usedIn: ["s357"] },
-    { vid: "v1653", word: "leave ... behind", meaning: "～を取り残す", usedIn: ["s357"] },
+    { vid: "v1651", word: "cling to", meaning: "～にしがみつく", usedIn: ["s357"], tags: ["verb"] },
+    { vid: "v1652", word: "glory", meaning: "栄光", usedIn: ["s357"], tags: ["noun"] },
+    { vid: "v1653", word: "leave ... behind", meaning: "～を取り残す", usedIn: ["s357"], tags: ["verb"] },
 
-    { vid: "v1654", word: "escape from", meaning: "～から逃れる", usedIn: ["s358"] },
-    { vid: "v1655", word: "harsh", meaning: "厳しい", usedIn: ["s358"] },
-    { vid: "v1656", word: "reality", meaning: "現実", usedIn: ["s358"] },
-    { vid: "v1657", word: "adapt to", meaning: "～に適応する", usedIn: ["s358"] },
+    { vid: "v1654", word: "escape from", meaning: "～から逃れる", usedIn: ["s358"], tags: ["verb"] },
+    { vid: "v1655", word: "harsh", meaning: "厳しい", usedIn: ["s358"], tags: ["adj"] },
+    { vid: "v1656", word: "reality", meaning: "現実", usedIn: ["s358"], tags: ["noun"] },
+    { vid: "v1657", word: "adapt to", meaning: "～に適応する", usedIn: ["s358"], tags: ["verb"] },
 
-    { vid: "v1658", word: "prosperity", meaning: "繁栄", usedIn: ["s359"] },
-    { vid: "v1659", word: "last", meaning: "続く", usedIn: ["s359"] },
-    { vid: "v1660", word: "forever", meaning: "永遠に", usedIn: ["s359"] },
-    { vid: "v1661", word: "in other words", meaning: "言い換えれば", usedIn: ["s359"] },
-    { vid: "v1662", word: "come to an end", meaning: "終わる", usedIn: ["s359"] },
-    { vid: "v1663", word: "one of these days", meaning: "いつか", usedIn: ["s359"] },
+    { vid: "v1658", word: "prosperity", meaning: "繁栄", usedIn: ["s359"], tags: ["noun"] },
+    { vid: "v1659", word: "last", meaning: "続く", usedIn: ["s359"], tags: ["verb"] },
+    { vid: "v1660", word: "forever", meaning: "永遠に", usedIn: ["s359"], tags: ["adv"] },
+    { vid: "v1661", word: "in other words", meaning: "言い換えれば", usedIn: ["s359"], tags: ["adv"] },
+    { vid: "v1662", word: "come to an end", meaning: "終わる", usedIn: ["s359"], tags: ["verb"] },
+    { vid: "v1663", word: "one of these days", meaning: "いつか", usedIn: ["s359"], tags: ["adv"] },
 
-    { vid: "v1664", word: "proper", meaning: "適切な", usedIn: ["s360"] },
-    { vid: "v1665", word: "clarification", meaning: "説明、明確化", usedIn: ["s360"] },
-    { vid: "v1666", word: "require", meaning: "要求する", usedIn: ["s360"] },
-    { vid: "v1667", word: "position", meaning: "職、地位", usedIn: ["s360"] },
-    { vid: "v1668", word: "computer literacy", meaning: "コンピューターの基礎知識", usedIn: ["s360"] },
-    { vid: "v1669", word: "be a must", meaning: "必須である", usedIn: ["s360"] },
+    { vid: "v1664", word: "proper", meaning: "適切な", usedIn: ["s360"], tags: ["adj"] },
+    { vid: "v1665", word: "clarification", meaning: "説明、明確化", usedIn: ["s360"], tags: ["noun"] },
+    { vid: "v1666", word: "require", meaning: "要求する", usedIn: ["s360"], tags: ["verb"] },
+    { vid: "v1667", word: "position", meaning: "職、地位", usedIn: ["s360"], tags: ["noun"] },
+    { vid: "v1668", word: "computer literacy", meaning: "コンピューターの基礎知識", usedIn: ["s360"], tags: ["noun"] },
+    { vid: "v1669", word: "be a must", meaning: "必須である", usedIn: ["s360"], tags: ["aux"] },
 
-    { vid: "v1670", word: "enclose", meaning: "同封する", usedIn: ["s361"] },
-    { vid: "v1671", word: "resume", meaning: "履歴書", usedIn: ["s361"] },
-    { vid: "v1672", word: "envelope", meaning: "封筒", usedIn: ["s361"] },
-    { vid: "v1673", word: "submit ... to", meaning: "～に提出する", usedIn: ["s361"] },
-    { vid: "v1674", word: "personnel", meaning: "人事", usedIn: ["s361"] },
-    { vid: "v1675", word: "department", meaning: "部署", usedIn: ["s361"] },
+    { vid: "v1670", word: "enclose", meaning: "同封する", usedIn: ["s361"], tags: ["verb"] },
+    { vid: "v1671", word: "resume", meaning: "履歴書", usedIn: ["s361"], tags: ["noun"] },
+    { vid: "v1672", word: "envelope", meaning: "封筒", usedIn: ["s361"], tags: ["noun"] },
+    { vid: "v1673", word: "submit ... to", meaning: "～に提出する", usedIn: ["s361"], tags: ["verb"] },
+    { vid: "v1674", word: "personnel", meaning: "人事", usedIn: ["s361"], tags: ["noun"] },
+    { vid: "v1675", word: "department", meaning: "部署", usedIn: ["s361"], tags: ["noun"] },
 
-    { vid: "v1676", word: "optimistic", meaning: "楽観的な", usedIn: ["s362"] },
-    { vid: "v1677", word: "work out", meaning: "うまくいく", usedIn: ["s362"] },
-    { vid: "v1678", word: "at best", meaning: "良くても", usedIn: ["s362"] },
-    { vid: "v1679", word: "fifty-fifty", meaning: "五分五分", usedIn: ["s362"] },
+    { vid: "v1676", word: "optimistic", meaning: "楽観的な", usedIn: ["s362"], tags: ["adj"] },
+    { vid: "v1677", word: "work out", meaning: "うまくいく", usedIn: ["s362"], tags: ["verb"] },
+    { vid: "v1678", word: "at best", meaning: "良くても", usedIn: ["s362"], tags: ["adv"] },
+    { vid: "v1679", word: "fifty-fifty", meaning: "五分五分", usedIn: ["s362"], tags: ["adj"] },
 
-    { vid: "v1680", word: "registration", meaning: "登録", usedIn: ["s363"] },
-    { vid: "v1681", word: "form", meaning: "用紙", usedIn: ["s363"] },
-    { vid: "v1682", word: "obtain", meaning: "入手する", usedIn: ["s363"] },
-    { vid: "v1683", word: "free of charge", meaning: "無料で", usedIn: ["s363"] },
+    { vid: "v1680", word: "registration", meaning: "登録", usedIn: ["s363"], tags: ["noun"] },
+    { vid: "v1681", word: "form", meaning: "用紙", usedIn: ["s363"], tags: ["noun"] },
+    { vid: "v1682", word: "obtain", meaning: "入手する", usedIn: ["s363"], tags: ["verb"] },
+    { vid: "v1683", word: "free of charge", meaning: "無料で", usedIn: ["s363"], tags: ["adv", "pattern_prep_phrase"] },
 
-    { vid: "v1684", word: "give ... a call", meaning: "電話する", usedIn: ["s364"] },
-    { vid: "v1685", word: "participate in", meaning: "～に参加する", usedIn: ["s364"] },
-    { vid: "v1686", word: "workshop", meaning: "研修会、講習会", usedIn: ["s364"] },
+    { vid: "v1684", word: "give ... a call", meaning: "電話する", usedIn: ["s364"], tags: ["verb", "verb_give"] },
+    { vid: "v1685", word: "participate in", meaning: "～に参加する", usedIn: ["s364"], tags: ["verb"] },
+    { vid: "v1686", word: "workshop", meaning: "研修会、講習会", usedIn: ["s364"], tags: ["noun"] },
 
-    { vid: "v1687", word: "further", meaning: "さらなる", usedIn: ["s365"] },
-    { vid: "v1688", word: "inquiry", meaning: "問い合わせ", usedIn: ["s365"] },
-    { vid: "v1689", word: "feel free to do", meaning: "遠慮なく～する", usedIn: ["s365"] },
-    { vid: "v1690", word: "contact", meaning: "連絡する", usedIn: ["s365"] },
-    { vid: "v1691", word: "toll-free", meaning: "通話料無料の", usedIn: ["s365"] }
+    { vid: "v1687", word: "further", meaning: "さらなる", usedIn: ["s365"], tags: ["adj"] },
+    { vid: "v1688", word: "inquiry", meaning: "問い合わせ", usedIn: ["s365"], tags: ["noun"] },
+    { vid: "v1689", word: "feel free to do", meaning: "遠慮なく～する", usedIn: ["s365"], tags: ["aux"] },
+    { vid: "v1690", word: "contact", meaning: "連絡する", usedIn: ["s365"], tags: ["verb"] },
+    { vid: "v1691", word: "toll-free", meaning: "通話料無料の", usedIn: ["s365"], tags: ["adj"] }
   ]
 };
-

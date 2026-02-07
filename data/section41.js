@@ -1,10 +1,9 @@
-// section41.js
+// section41.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
 window.SECTIONS["sec41"] = {
   id: "sec41",
   title: "Section 41",
-
   sentences: [
     {
       sid: "s492",
@@ -99,78 +98,76 @@ window.SECTIONS["sec41"] = {
   ],
 
   vocab: [
-    { vid: "v2288", word: "quite a few", meaning: "かなり多くの", usedIn: ["s492"] },
-    { vid: "v2289", word: "invite", meaning: "招待する", usedIn: ["s492"] },
-    { vid: "v2290", word: "celebrate", meaning: "祝う", usedIn: ["s492"] },
-    { vid: "v2291", word: "anniversary", meaning: "記念日", usedIn: ["s492"] },
+    { vid: "v2288", word: "quite a few", meaning: "かなり多くの", usedIn: ["s492"], tags: ["adv"] },
+    { vid: "v2289", word: "invite", meaning: "招待する", usedIn: ["s492"], tags: ["verb"] },
+    { vid: "v2290", word: "celebrate", meaning: "祝う", usedIn: ["s492"], tags: ["verb"] },
+    { vid: "v2291", word: "anniversary", meaning: "記念日", usedIn: ["s492"], tags: ["noun"] },
 
-    { vid: "v2292", word: "It won’t be long before", meaning: "～するのも間もなくである", usedIn: ["s493"] },
-    { vid: "v2293", word: "in the meantime", meaning: "その間に", usedIn: ["s493"] },
-    { vid: "v2294", word: "help oneself to", meaning: "～を自由に取って食べる", usedIn: ["s493"] },
-    { vid: "v2295", word: "snack", meaning: "軽食、お菓子", usedIn: ["s493"] },
+    { vid: "v2292", word: "It won’t be long before", meaning: "～するのも間もなくである", usedIn: ["s493"], tags: ["conj"] },
+    { vid: "v2293", word: "in the meantime", meaning: "その間に", usedIn: ["s493"], tags: ["adv"] },
+    { vid: "v2294", word: "help oneself to", meaning: "～を自由に取って食べる", usedIn: ["s493"], tags: ["verb"] },
+    { vid: "v2295", word: "snack", meaning: "軽食、お菓子", usedIn: ["s493"], tags: ["noun"] },
 
-    { vid: "v2296", word: "be dressed in", meaning: "～を着ている", usedIn: ["s494"] },
-    { vid: "v2297", word: "loud", meaning: "派手な", usedIn: ["s494"] },
-    { vid: "v2298", word: "peculiar", meaning: "奇妙な、風変わりな", usedIn: ["s494"] },
-    { vid: "v2299", word: "outfit", meaning: "服装、一式の衣装", usedIn: ["s494"] },
-    { vid: "v2300", word: "stand out", meaning: "目立つ", usedIn: ["s494"] },
-    { vid: "v2301", word: "crowd", meaning: "群衆", usedIn: ["s494"] },
+    { vid: "v2296", word: "be dressed in", meaning: "～を着ている", usedIn: ["s494"], tags: ["verb"] },
+    { vid: "v2297", word: "loud", meaning: "派手な", usedIn: ["s494"], tags: ["adj"] },
+    { vid: "v2298", word: "peculiar", meaning: "奇妙な、風変わりな", usedIn: ["s494"], tags: ["adj"] },
+    { vid: "v2299", word: "outfit", meaning: "服装、一式の衣装", usedIn: ["s494"], tags: ["noun"] },
+    { vid: "v2300", word: "stand out", meaning: "目立つ", usedIn: ["s494"], tags: ["verb"] },
+    { vid: "v2301", word: "crowd", meaning: "群衆", usedIn: ["s494"], tags: ["noun"] },
 
-    { vid: "v2302", word: "be touched by", meaning: "～に感動する", usedIn: ["s495"] },
-    { vid: "v2303", word: "hospitality", meaning: "もてなし、歓待", usedIn: ["s495"] },
+    { vid: "v2302", word: "be touched by", meaning: "～に感動する", usedIn: ["s495"], tags: ["verb"] },
+    { vid: "v2303", word: "hospitality", meaning: "もてなし、歓待", usedIn: ["s495"], tags: ["noun"] },
 
-    { vid: "v2304", word: "shabby", meaning: "みすぼらしい", usedIn: ["s496"] },
-    { vid: "v2305", word: "clothes", meaning: "衣類、洋服", usedIn: ["s496"] },
-    { vid: "v2306", word: "suitable for", meaning: "～にふさわしい", usedIn: ["s496"] },
-    { vid: "v2307", word: "occasion", meaning: "場合、特別な行事", usedIn: ["s496"] },
+    { vid: "v2304", word: "shabby", meaning: "みすぼらしい", usedIn: ["s496"], tags: ["adj"] },
+    { vid: "v2305", word: "clothes", meaning: "衣類、洋服", usedIn: ["s496"], tags: ["noun"] },
+    { vid: "v2306", word: "suitable for", meaning: "～にふさわしい", usedIn: ["s496"], tags: ["adj"] },
+    { vid: "v2307", word: "occasion", meaning: "場合、特別な行事", usedIn: ["s496"], tags: ["noun"] },
 
-    { vid: "v2308", word: "topic", meaning: "話題", usedIn: ["s497"] },
-    { vid: "v2309", word: "too ... to do", meaning: "～するにはあまりに過ぎる", usedIn: ["s497"] },
-    { vid: "v2310", word: "intimate", meaning: "親密な、込み入った", usedIn: ["s497"] },
-    { vid: "v2311", word: "share with", meaning: "～と共有する、話す", usedIn: ["s497"] },
-    { vid: "v2312", word: "casual", meaning: "親しくない、偶然の", usedIn: ["s497"] },
-    { vid: "v2313", word: "acquaintance", meaning: "知人", usedIn: ["s497"] },
+    { vid: "v2308", word: "topic", meaning: "話題", usedIn: ["s497"], tags: ["noun"] },
+    { vid: "v2309", word: "too ... to do", meaning: "～するにはあまりに過ぎる", usedIn: ["s497"], tags: ["adv"] },
+    { vid: "v2310", word: "intimate", meaning: "親密な、込み入った", usedIn: ["s497"], tags: ["adj"] },
+    { vid: "v2311", word: "share with", meaning: "～と共有する、話す", usedIn: ["s497"], tags: ["verb"] },
+    { vid: "v2312", word: "casual", meaning: "親しくない、偶然の", usedIn: ["s497"], tags: ["adj"] },
+    { vid: "v2313", word: "acquaintance", meaning: "知人", usedIn: ["s497"], tags: ["noun"] },
 
-    { vid: "v2314", word: "get drunk", meaning: "酔う", usedIn: ["s498"] },
-    { vid: "v2315", word: "crude", meaning: "下品な、粗野な", usedIn: ["s498"] },
-    { vid: "v2316", word: "offensive", meaning: "不快な、侮辱的な", usedIn: ["s498"] },
-    { vid: "v2317", word: "stay away from", meaning: "～から離れている", usedIn: ["s498"] },
+    { vid: "v2314", word: "get drunk", meaning: "酔う", usedIn: ["s498"], tags: ["verb", "verb_get"] },
+    { vid: "v2315", word: "crude", meaning: "下品な、粗野な", usedIn: ["s498"], tags: ["adj"] },
+    { vid: "v2316", word: "offensive", meaning: "不快な、侮辱的な", usedIn: ["s498"], tags: ["adj"] },
+    { vid: "v2317", word: "stay away from", meaning: "～から離れている", usedIn: ["s498"], tags: ["verb"] },
 
-    { vid: "v2318", word: "hardly", meaning: "ほとんど～ない", usedIn: ["s499"] },
-    { vid: "v2319", word: "comprehend", meaning: "理解する", usedIn: ["s499"] },
-    { vid: "v2320", word: "imply", meaning: "ほのめかす、暗示する", usedIn: ["s499"] },
+    { vid: "v2318", word: "hardly", meaning: "ほとんど～ない", usedIn: ["s499"], tags: ["adv"] },
+    { vid: "v2319", word: "comprehend", meaning: "理解する", usedIn: ["s499"], tags: ["verb"] },
+    { vid: "v2320", word: "imply", meaning: "ほのめかす、暗示する", usedIn: ["s499"], tags: ["verb"] },
 
-    { vid: "v2321", word: "embarrassed", meaning: "恥ずかしい、気まずい", usedIn: ["s500"] },
-    { vid: "v2322", word: "tease", meaning: "からかう", usedIn: ["s500"] },
-    { vid: "v2323", word: "in front of", meaning: "～の前で", usedIn: ["s500"] },
+    { vid: "v2321", word: "embarrassed", meaning: "恥ずかしい、気まずい", usedIn: ["s500"], tags: ["adj"] },
+    { vid: "v2322", word: "tease", meaning: "からかう", usedIn: ["s500"], tags: ["verb"] },
+    { vid: "v2323", word: "in front of", meaning: "～の前で", usedIn: ["s500"], tags: ["prep", "pattern_prep_phrase"] },
 
-    { vid: "v2324", word: "ambiguous", meaning: "あいまいな", usedIn: ["s501"] },
-    { vid: "v2325", word: "reply", meaning: "返答する", usedIn: ["s501"] },
-    { vid: "v2326", word: "all the more", meaning: "いっそうさらに", usedIn: ["s501"] },
-    { vid: "v2327", word: "irritate", meaning: "いらだたせる", usedIn: ["s501"] },
+    { vid: "v2324", word: "ambiguous", meaning: "あいまいな", usedIn: ["s501"], tags: ["adj"] },
+    { vid: "v2325", word: "reply", meaning: "返答する", usedIn: ["s501"], tags: ["verb"] },
+    { vid: "v2326", word: "all the more", meaning: "いっそうさらに", usedIn: ["s501"], tags: ["adv"] },
+    { vid: "v2327", word: "irritate", meaning: "いらだたせる", usedIn: ["s501"], tags: ["verb"] },
 
-    { vid: "v2328", word: "timid", meaning: "臆病な", usedIn: ["s502"] },
-    { vid: "v2329", word: "blush", meaning: "顔を赤らめる", usedIn: ["s502"] },
-    { vid: "v2330", word: "chat with", meaning: "～とおしゃべりする", usedIn: ["s502"] },
+    { vid: "v2328", word: "timid", meaning: "臆病な", usedIn: ["s502"], tags: ["adj"] },
+    { vid: "v2329", word: "blush", meaning: "顔を赤らめる", usedIn: ["s502"], tags: ["verb"] },
+    { vid: "v2330", word: "chat with", meaning: "～とおしゃべりする", usedIn: ["s502"], tags: ["verb"] },
 
-    { vid: "v2331", word: "look down on", meaning: "見下す", usedIn: ["s503"] },
-    { vid: "v2332", word: "come from", meaning: "～出身である", usedIn: ["s503"] },
-    { vid: "v2333", word: "rural", meaning: "田舎", usedIn: ["s503"] },
+    { vid: "v2331", word: "look down on", meaning: "見下す", usedIn: ["s503"], tags: ["verb"] },
+    { vid: "v2332", word: "come from", meaning: "～出身である", usedIn: ["s503"], tags: ["verb"] },
+    { vid: "v2333", word: "rural", meaning: "田舎", usedIn: ["s503"], tags: ["adj"] },
 
-    { vid: "v2334", word: "what’s the matter", meaning: "どうしたの？", usedIn: ["s504"] },
-    { vid: "v2335", word: "miserable", meaning: "みじめな、悲しい", usedIn: ["s504"] },
-    { vid: "v2336", word: "leave me alone", meaning: "放っておいて", usedIn: ["s504"] },
-    { vid: "v2337", word: "none of your business", meaning: "お前には関係ない", usedIn: ["s504"] },
+    { vid: "v2334", word: "what’s the matter", meaning: "どうしたの？", usedIn: ["s504"], tags: ["fixed_phrase"] },
+    { vid: "v2335", word: "miserable", meaning: "みじめな、悲しい", usedIn: ["s504"], tags: ["adj"] },
+    { vid: "v2336", word: "leave me alone", meaning: "放っておいて", usedIn: ["s504"], tags: ["verb"] },
+    { vid: "v2337", word: "none of your business", meaning: "お前には関係ない", usedIn: ["s504"], tags: ["fixed_phrase"] },
 
-    { vid: "v2338", word: "in disguise", meaning: "変装して", usedIn: ["s505"] },
-    { vid: "v2339", word: "recognize", meaning: "～だとわかる、認識する", usedIn: ["s505"] },
-    { vid: "v2340", word: "at a glance", meaning: "一目で", usedIn: ["s505"] },
+    { vid: "v2338", word: "in disguise", meaning: "変装して", usedIn: ["s505"], tags: ["prep", "pattern_prep_phrase"] },
+    { vid: "v2339", word: "recognize", meaning: "～だとわかる、認識する", usedIn: ["s505"], tags: ["verb"] },
+    { vid: "v2340", word: "at a glance", meaning: "一目で", usedIn: ["s505"], tags: ["adv"] },
 
-    { vid: "v2341", word: "chuckle", meaning: "クスクス笑う", usedIn: ["s506"] },
-    { vid: "v2342", word: "have ... on", meaning: "～を身に着けている", usedIn: ["s506"] },
-    { vid: "v2343", word: "sweatshirt", meaning: "スウェットシャツ", usedIn: ["s506"] },
-    { vid: "v2344", word: "backwards", meaning: "後ろ前に、逆に", usedIn: ["s506"] }
+    { vid: "v2341", word: "chuckle", meaning: "クスクス笑う", usedIn: ["s506"], tags: ["verb"] },
+    { vid: "v2342", word: "have ... on", meaning: "～を身に着けている", usedIn: ["s506"], tags: ["verb", "verb_have"] },
+    { vid: "v2343", word: "sweatshirt", meaning: "スウェットシャツ", usedIn: ["s506"], tags: ["noun"] },
+    { vid: "v2344", word: "backwards", meaning: "後ろ前に、逆に", usedIn: ["s506"], tags: ["adv"] }
   ]
 };
-
-

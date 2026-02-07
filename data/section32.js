@@ -1,10 +1,9 @@
-// section32.js
+// section32.js（tags付与版）
 window.SECTIONS = window.SECTIONS || {};
 
-window.SECTIONS["sec31"] = {
-  id: "sec31",
-  title: "Section 31",
-  
+window.SECTIONS["sec32"] = {
+  id: "sec32",
+  title: "Section 32",
   sentences: [
     {
       sid: "s383",
@@ -71,69 +70,327 @@ window.SECTIONS["sec31"] = {
       vocabRefs: ["v1803", "v1804", "v1805", "v1806"],
     },
   ],
+
   vocab: [
     // 383
-    { vid: "v1764", word: "spend A doing", meaning: "Aを〜することに費やす", usedIn: ["s383"] },
-    { vid: "v1765", word: "rest", meaning: "残り", usedIn: ["s383"] },
-    { vid: "v1766", word: "pursuing", meaning: "追求していること", usedIn: ["s383"] },
-    { vid: "v1767", word: "ideals", meaning: "理想（複数）", usedIn: ["s383"] },
+    {
+      vid: "v1764",
+      word: "spend A doing",
+      meaning: "Aを〜することに費やす",
+      usedIn: ["s383"],
+      tags: ["verb", "pattern_A_that_clause"],
+    },
+    {
+      vid: "v1765",
+      word: "rest",
+      meaning: "残り",
+      usedIn: ["s383"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1766",
+      word: "pursue / pursuing",
+      meaning: "追求する／追求していること",
+      usedIn: ["s383"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1767",
+      word: "ideal(s)",
+      meaning: "理想",
+      usedIn: ["s383"],
+      tags: ["noun"],
+    },
 
     // 384
-    { vid: "v1768", word: "retirement", meaning: "引退、退職", usedIn: ["s384"] },
-    { vid: "v1769", word: "devote A to B", meaning: "AをBに捧げる", usedIn: ["s384"] },
-    { vid: "v1770", word: "care for", meaning: "〜の世話をする", usedIn: ["s384"] },
-    { vid: "v1771", word: "orphan", meaning: "孤児", usedIn: ["s384"] },
+    {
+      vid: "v1768",
+      word: "retirement",
+      meaning: "引退、退職",
+      usedIn: ["s384"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1769",
+      word: "devote A to B",
+      meaning: "AをBに捧げる",
+      usedIn: ["s384"],
+      tags: ["verb", "pattern_prep_phrase"],
+    },
+    {
+      vid: "v1770",
+      word: "care for",
+      meaning: "〜の世話をする",
+      usedIn: ["s384"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1771",
+      word: "orphan",
+      meaning: "孤児",
+      usedIn: ["s384"],
+      tags: ["noun"],
+    },
 
     // 385
-    { vid: "v1772", word: "for the sake of", meaning: "〜のために", usedIn: ["s385"] },
-    { vid: "v1773", word: "in need", meaning: "困っている", usedIn: ["s385"] },
-    { vid: "v1774", word: "cooperate", meaning: "協力する", usedIn: ["s385"] },
-    { vid: "v1775", word: "collect", meaning: "集める", usedIn: ["s385"] },
-    { vid: "v1776", word: "donation", meaning: "寄付", usedIn: ["s385"] },
+    {
+      vid: "v1772",
+      word: "for the sake of",
+      meaning: "〜のために",
+      usedIn: ["s385"],
+      tags: ["prep", "pattern_prep_phrase"],
+    },
+    {
+      vid: "v1773",
+      word: "in need",
+      meaning: "困っている",
+      usedIn: ["s385"],
+      tags: ["prep", "pattern_prep_phrase"],
+    },
+    {
+      vid: "v1774",
+      word: "cooperate",
+      meaning: "協力する",
+      usedIn: ["s385"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1775",
+      word: "collect",
+      meaning: "集める",
+      usedIn: ["s385"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1776",
+      word: "donation",
+      meaning: "寄付",
+      usedIn: ["s385"],
+      tags: ["noun"],
+    },
 
     // 386
-    { vid: "v1777", word: "charity", meaning: "慈善団体", usedIn: ["s386"] },
-    { vid: "v1778", word: "name A after B", meaning: "AをBにちなんで名付ける", usedIn: ["s386"] },
-    { vid: "v1779", word: "give away", meaning: "与える、寄付する", usedIn: ["s386"] },
-    { vid: "v1780", word: "some", meaning: "約〜", usedIn: ["s386"] },
-    { vid: "v1781", word: "billion", meaning: "10億", usedIn: ["s386"] },
+    {
+      vid: "v1777",
+      word: "charity",
+      meaning: "慈善団体",
+      usedIn: ["s386"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1778",
+      word: "name A after B",
+      meaning: "AをBにちなんで名付ける",
+      usedIn: ["s386"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1779",
+      word: "give away",
+      meaning: "与える、寄付する",
+      usedIn: ["s386"],
+      tags: ["verb", "verb_give"],
+    },
+    {
+      vid: "v1780",
+      word: "some",
+      meaning: "約〜",
+      usedIn: ["s386"],
+      tags: ["adv"],
+    },
+    {
+      vid: "v1781",
+      word: "billion",
+      meaning: "10億",
+      usedIn: ["s386"],
+      tags: ["noun"],
+    },
 
     // 387
-    { vid: "v1782", word: "autobiography", meaning: "自叙伝", usedIn: ["s387"] },
-    { vid: "v1783", word: "release", meaning: "発売する", usedIn: ["s387"] },
-    { vid: "v1784", word: "be sold out", meaning: "売り切れる", usedIn: ["s387"] },
+    {
+      vid: "v1782",
+      word: "autobiography",
+      meaning: "自叙伝",
+      usedIn: ["s387"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1783",
+      word: "release",
+      meaning: "発売する",
+      usedIn: ["s387"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1784",
+      word: "be sold out",
+      meaning: "売り切れる",
+      usedIn: ["s387"],
+      tags: ["verb"],
+    },
 
     // 388
-    { vid: "v1785", word: "refer to", meaning: "〜と呼ぶ／言及する", usedIn: ["s388"] },
-    { vid: "v1786", word: "integrity", meaning: "高潔さ、誠実さ", usedIn: ["s388"] },
-    { vid: "v1787", word: "run for", meaning: "〜に立候補する", usedIn: ["s388"] },
-    { vid: "v1788", word: "mayor", meaning: "市長", usedIn: ["s388"] },
+    {
+      vid: "v1785",
+      word: "refer to",
+      meaning: "〜と呼ぶ／言及する",
+      usedIn: ["s388"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1786",
+      word: "integrity",
+      meaning: "高潔さ、誠実さ",
+      usedIn: ["s388"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1787",
+      word: "run for",
+      meaning: "〜に立候補する",
+      usedIn: ["s388"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1788",
+      word: "mayor",
+      meaning: "市長",
+      usedIn: ["s388"],
+      tags: ["noun"],
+    },
 
     // 389
-    { vid: "v1789", word: "candidate", meaning: "候補者", usedIn: ["s389"] },
-    { vid: "v1790", word: "be disappointed", meaning: "失望する", usedIn: ["s389"] },
-    { vid: "v1791", word: "outcome", meaning: "結果", usedIn: ["s389"] },
-    { vid: "v1792", word: "election", meaning: "選挙", usedIn: ["s389"] },
+    {
+      vid: "v1789",
+      word: "candidate",
+      meaning: "候補者",
+      usedIn: ["s389"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1790",
+      word: "be disappointed (by)",
+      meaning: "（〜に）失望する",
+      usedIn: ["s389"],
+      tags: ["adj"],
+    },
+    {
+      vid: "v1791",
+      word: "outcome",
+      meaning: "結果",
+      usedIn: ["s389"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1792",
+      word: "election",
+      meaning: "選挙",
+      usedIn: ["s389"],
+      tags: ["noun"],
+    },
 
     // 390
-    { vid: "v1793", word: "municipal", meaning: "市の", usedIn: ["s390"] },
-    { vid: "v1794", word: "council", meaning: "議会", usedIn: ["s390"] },
-    { vid: "v1795", word: "concentrate on", meaning: "〜に集中する", usedIn: ["s390"] },
-    { vid: "v1796", word: "specific", meaning: "具体的な", usedIn: ["s390"] },
-    { vid: "v1797", word: "issues", meaning: "問題（複数）", usedIn: ["s390"] },
+    {
+      vid: "v1793",
+      word: "municipal",
+      meaning: "市の",
+      usedIn: ["s390"],
+      tags: ["adj"],
+    },
+    {
+      vid: "v1794",
+      word: "council",
+      meaning: "議会",
+      usedIn: ["s390"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1795",
+      word: "concentrate on",
+      meaning: "〜に集中する",
+      usedIn: ["s390"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1796",
+      word: "specific",
+      meaning: "具体的な",
+      usedIn: ["s390"],
+      tags: ["adj"],
+    },
+    {
+      vid: "v1797",
+      word: "issue(s)",
+      meaning: "問題",
+      usedIn: ["s390"],
+      tags: ["noun"],
+    },
 
     // 391
-    { vid: "v1798", word: "It is the case that", meaning: "〜というのは事実だ", usedIn: ["s391"] },
-    { vid: "v1799", word: "live on", meaning: "〜で生活する", usedIn: ["s391"] },
-    { vid: "v1800", word: "pension", meaning: "年金", usedIn: ["s391"] },
-    { vid: "v1801", word: "force A to do", meaning: "Aに〜することを強いる", usedIn: ["s391"] },
-    { vid: "v1802", word: "lead a ... life", meaning: "〜な生活を送る", usedIn: ["s391"] },
+    {
+      vid: "v1798",
+      word: "It is the case that ...",
+      meaning: "〜というのは事実だ",
+      usedIn: ["s391"],
+      tags: ["pattern_A_that_clause"],
+    },
+    {
+      vid: "v1799",
+      word: "live on",
+      meaning: "〜で生活する",
+      usedIn: ["s391"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1800",
+      word: "pension",
+      meaning: "年金",
+      usedIn: ["s391"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1801",
+      word: "force A to do",
+      meaning: "Aに〜することを強いる",
+      usedIn: ["s391"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1802",
+      word: "lead a ... life",
+      meaning: "〜な生活を送る",
+      usedIn: ["s391"],
+      tags: ["verb"],
+    },
 
     // 392
-    { vid: "v1803", word: "leave out", meaning: "除外する", usedIn: ["s392"] },
-    { vid: "v1804", word: "data", meaning: "データ", usedIn: ["s392"] },
-    { vid: "v1805", word: "far from", meaning: "〜とは程遠い", usedIn: ["s392"] },
-    { vid: "v1806", word: "accurate", meaning: "正確な", usedIn: ["s392"] },
+    {
+      vid: "v1803",
+      word: "leave out",
+      meaning: "除外する",
+      usedIn: ["s392"],
+      tags: ["verb"],
+    },
+    {
+      vid: "v1804",
+      word: "data",
+      meaning: "データ",
+      usedIn: ["s392"],
+      tags: ["noun"],
+    },
+    {
+      vid: "v1805",
+      word: "far from",
+      meaning: "〜とは程遠い",
+      usedIn: ["s392"],
+      tags: ["prep", "pattern_prep_phrase"],
+    },
+    {
+      vid: "v1806",
+      word: "accurate",
+      meaning: "正確な",
+      usedIn: ["s392"],
+      tags: ["adj"],
+    },
   ],
 };
-
