@@ -293,9 +293,6 @@
   let audioAdvanceTimer = null;
   let shouldAutoStartAudio = false;
 
-  const EN_AUDIO_SEQUENCE = ["fast", "slow", "slow", "fast", "fast"];
-  const EN_AUDIO_GAP_MS = 6000;
-
   // vocab state
   let vocabIndex = 0;
   let revealed = false;
@@ -392,18 +389,8 @@
   function getAudioPath(sentence, kind) {
     const sectionFolder = getAudioSectionFolder();
     const sentenceId = getAudioSentenceId(sentence);
-    if (kind === "en-fast") return `mp3/en/${sectionFolder}/${sentenceId}_female_fast.mp3`;
-    if (kind === "en-slow") return `mp3/en/${sectionFolder}/${sentenceId}_female_slow.mp3`;
+    if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.mp3`;
     return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3`;
-  }
-
-  function sleep(ms) {
-    return new Promise((resolve) => {
-      audioAdvanceTimer = setTimeout(() => {
-        audioAdvanceTimer = null;
-        resolve();
-      }, ms);
-    });
   }
 
   function playAudioFile(src) {
@@ -564,7 +551,7 @@
       ? "例文欄をタップすると 英文 → 日本語訳 → 単語 の順で表示します。"
       : "例文欄をタップすると 英文 → 単語 の順で表示します。";
     audioStatusEl.textContent = currentView === "enAudio"
-      ? "再生順: Fast → Slow → Slow → Fast → Fast"
+      ? "連続音声: Fast → Slow → Slow → Fast → Fast"
       : "次の文へは「次 →」を押して進みます。";
 
     renderAudioReveal(sentence, sec);
@@ -583,15 +570,8 @@
       const sentence = sec.sentences[audioSentenceIndex];
       try {
         if (currentView === "enAudio") {
-          for (let i = 0; i < EN_AUDIO_SEQUENCE.length; i += 1) {
-            const kind = EN_AUDIO_SEQUENCE[i] === "fast" ? "en-fast" : "en-slow";
-            await playAudioFile(getAudioPath(sentence, kind));
-            if (playbackToken !== audioPlaybackToken) return;
-            if (i < EN_AUDIO_SEQUENCE.length - 1) {
-              await sleep(EN_AUDIO_GAP_MS);
-              if (playbackToken !== audioPlaybackToken) return;
-            }
-          }
+          await playAudioFile(getAudioPath(sentence, "en-5x"));
+          if (playbackToken !== audioPlaybackToken) return;
         } else {
           await playAudioFile(getAudioPath(sentence, "jp"));
           return;
