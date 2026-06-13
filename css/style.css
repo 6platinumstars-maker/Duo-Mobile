@@ -178,3 +178,25 @@ body {
   border-radius: 12px;
   font-size: 16px;
 }
+
+.audio-reveal-area {
+  min-height: 180px;
+  margin-top: 12px;
+  border-radius: 16px;
+  border: 1px dashed var(--line);
+  background: rgba(255,255,255,0.03);
+  padding: 14px;
+}
+
+.audio-reveal-area.is-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--muted);
+}
+
+.audio-reveal-area .japanese {
+  border-top: none;
+  padding-top: 0;
+}

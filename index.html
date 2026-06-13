@@ -16,6 +16,8 @@
       <div class="seg">
         <button id="tabSentences" class="seg-btn is-active" type="button">例文</button>
         <button id="tabVocab" class="seg-btn" type="button">単語</button>
+        <button id="tabEnAudio" class="seg-btn" type="button">英語音声</button>
+        <button id="tabJpAudio" class="seg-btn" type="button">日本語音声</button>
       </div>
     </div>
   </header>
@@ -84,6 +86,28 @@
     </div>
   </div>
 </section>
+
+    <section id="viewAudio" class="view is-hidden">
+      <div class="card">
+        <div class="meta">
+          <span id="audioSid" class="pill">s000</span>
+          <span id="audioProgress" class="meta-text">0 / 0</span>
+        </div>
+
+        <div id="audioModeTitle" class="card-title">英語音声</div>
+        <div id="audioHint" class="meta-text">例文欄をタップして内容を表示します。</div>
+
+        <div id="audioRevealArea" class="audio-reveal-area is-empty"></div>
+
+        <div class="actions">
+          <button id="audioPrevBtn" class="btn" type="button">← 前</button>
+          <button id="audioReplayBtn" class="btn" type="button">もう一回聞く</button>
+          <button id="audioNextBtn" class="btn primary" type="button">次 →</button>
+        </div>
+
+        <div id="audioStatus" class="meta-text" style="margin-top: 12px;"></div>
+      </div>
+    </section>
   </main>
 
   <!-- まずは sec01 だけでOK（後で 02〜45 を足す） -->

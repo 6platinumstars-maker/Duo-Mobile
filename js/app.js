@@ -9,8 +9,11 @@
   const sectionSelect = $("sectionSelect");
   const tabSentences = $("tabSentences");
   const tabVocab = $("tabVocab");
+  const tabEnAudio = $("tabEnAudio");
+  const tabJpAudio = $("tabJpAudio");
   const viewSentences = $("viewSentences");
   const viewVocab = $("viewVocab");
+  const viewAudio = $("viewAudio");
 
   // ---- sentences UI ----
   const sidEl = $("sid");
@@ -21,6 +24,17 @@
   const prevBtn = $("prevBtn");
   const nextBtn = $("nextBtn");
   const toggleJPBtn = $("toggleJPBtn");
+
+  // ---- audio UI ----
+  const audioSidEl = $("audioSid");
+  const audioProgressEl = $("audioProgress");
+  const audioModeTitleEl = $("audioModeTitle");
+  const audioHintEl = $("audioHint");
+  const audioRevealAreaEl = $("audioRevealArea");
+  const audioPrevBtn = $("audioPrevBtn");
+  const audioReplayBtn = $("audioReplayBtn");
+  const audioNextBtn = $("audioNextBtn");
+  const audioStatusEl = $("audioStatus");
 
   // ---- vocab UI ----
   const vocabIdEl = $("vocabId");
@@ -168,7 +182,9 @@
     const state = {
       v: 1,
       lastSection: currentSectionId,
+      currentView,
       sentenceIndex,
+      audioSentenceIndex,
       showJP,
       mcqMode,
       vocab: {
@@ -227,7 +243,11 @@
 
     showJP = typeof state.showJP === "boolean" ? state.showJP : showJP;
     mcqMode = typeof state.mcqMode === "boolean" ? state.mcqMode : mcqMode;
+    currentView = typeof state.currentView === "string" ? state.currentView : currentView;
     sentenceIndex = isFiniteNumber(state.sentenceIndex) ? Math.trunc(state.sentenceIndex) : sentenceIndex;
+    audioSentenceIndex = isFiniteNumber(state.audioSentenceIndex)
+      ? Math.trunc(state.audioSentenceIndex)
+      : audioSentenceIndex;
 
     const sec = window.SECTIONS[currentSectionId];
     const list = sec?.vocab || [];
@@ -263,8 +283,18 @@
   // ---- state ----
   // =========================
   let currentSectionId = "sec01";
+  let currentView = "sentences";
   let sentenceIndex = 0;
+  let audioSentenceIndex = 0;
   let showJP = true;
+  let audioRevealStage = 0;
+  let audioElement = null;
+  let audioPlaybackToken = 0;
+  let audioAdvanceTimer = null;
+  let shouldAutoStartAudio = false;
+
+  const EN_AUDIO_SEQUENCE = ["fast", "slow", "slow", "fast", "fast"];
+  const EN_AUDIO_GAP_MS = 6000;
 
   // vocab state
   let vocabIndex = 0;
@@ -308,6 +338,19 @@
     }
   }
 
+  function stopAudioPlayback() {
+    audioPlaybackToken += 1;
+    if (audioAdvanceTimer) {
+      clearTimeout(audioAdvanceTimer);
+      audioAdvanceTimer = null;
+    }
+    if (audioElement) {
+      audioElement.pause();
+      audioElement.src = "";
+      audioElement = null;
+    }
+  }
+
   function focusVocabInput() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -336,6 +379,61 @@
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
+  }
+
+  function getAudioSectionFolder() {
+    return currentSectionId.replace(/^sec/, "section");
+  }
+
+  function getAudioSentenceId(sentence) {
+    return sentence.sid.replace(/^s/, "");
+  }
+
+  function getAudioPath(sentence, kind) {
+    const sectionFolder = getAudioSectionFolder();
+    const sentenceId = getAudioSentenceId(sentence);
+    if (kind === "en-fast") return `mp3/en/${sectionFolder}/${sentenceId}_female_fast.mp3`;
+    if (kind === "en-slow") return `mp3/en/${sectionFolder}/${sentenceId}_female_slow.mp3`;
+    return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3`;
+  }
+
+  function sleep(ms) {
+    return new Promise((resolve) => {
+      audioAdvanceTimer = setTimeout(() => {
+        audioAdvanceTimer = null;
+        resolve();
+      }, ms);
+    });
+  }
+
+  function playAudioFile(src) {
+    return new Promise((resolve, reject) => {
+      const audio = new Audio(src);
+      audioElement = audio;
+
+      const cleanup = () => {
+        audio.removeEventListener("ended", onEnded);
+        audio.removeEventListener("error", onError);
+        if (audioElement === audio) audioElement = null;
+      };
+
+      const onEnded = () => {
+        cleanup();
+        resolve();
+      };
+
+      const onError = () => {
+        cleanup();
+        reject(new Error(`Audio playback failed: ${src}`));
+      };
+
+      audio.addEventListener("ended", onEnded, { once: true });
+      audio.addEventListener("error", onError, { once: true });
+      audio.play().catch((err) => {
+        cleanup();
+        reject(err);
+      });
+    });
   }
 
   function renderSectionOptions() {
@@ -386,6 +484,145 @@
 
     prevBtn.disabled = sentenceIndex === 0;
     nextBtn.disabled = sentenceIndex === sec.sentences.length - 1;
+  }
+
+  function getSentenceVocab(sentence, sec) {
+    const vocabMap = new Map((sec.vocab || []).map((v) => [v.vid, v]));
+    return (sentence.vocabRefs || [])
+      .map((vid) => vocabMap.get(vid))
+      .filter(Boolean);
+  }
+
+  function renderAudioReveal(sentence, sec) {
+    audioRevealAreaEl.innerHTML = "";
+    audioRevealAreaEl.classList.remove("is-empty");
+
+    const vocabItems = getSentenceVocab(sentence, sec);
+
+    if (currentView === "enAudio") {
+      if (audioRevealStage === 0) {
+        audioRevealAreaEl.classList.add("is-empty");
+        audioRevealAreaEl.textContent = "1回タップ: 英文 / 2回タップ: 日本語訳 / 3回タップ: 単語";
+        return;
+      }
+      if (audioRevealStage === 1) {
+        const en = document.createElement("div");
+        en.className = "english";
+        en.textContent = sentence.english;
+        audioRevealAreaEl.appendChild(en);
+        return;
+      }
+      if (audioRevealStage === 2) {
+        const jp = document.createElement("div");
+        jp.className = "japanese";
+        jp.textContent = sentence.japanese;
+        audioRevealAreaEl.appendChild(jp);
+        return;
+      }
+    } else {
+      if (audioRevealStage === 0) {
+        audioRevealAreaEl.classList.add("is-empty");
+        audioRevealAreaEl.textContent = "1回タップ: 英文 / 2回タップ: 単語";
+        return;
+      }
+      if (audioRevealStage === 1) {
+        const en = document.createElement("div");
+        en.className = "english";
+        en.textContent = sentence.english;
+        audioRevealAreaEl.appendChild(en);
+        return;
+      }
+    }
+
+    const chips = document.createElement("div");
+    chips.className = "chips";
+    chips.innerHTML = vocabItems.length
+      ? vocabItems.map((v) => `<div class="chip">${v.word}<span>${v.meaning}</span></div>`).join("")
+      : `<div class="chip">(未登録)<span>この文の重要語リストは未登録です。</span></div>`;
+    audioRevealAreaEl.appendChild(chips);
+  }
+
+  function renderAudioView() {
+    const sec = getCurrentSection();
+    if (!sec?.sentences?.length) {
+      audioSidEl.textContent = "—";
+      audioProgressEl.textContent = "0 / 0";
+      audioModeTitleEl.textContent = currentView === "enAudio" ? "英語音声" : "日本語音声";
+      audioHintEl.textContent = "";
+      audioRevealAreaEl.textContent = "No audio sentences.";
+      audioStatusEl.textContent = "";
+      return;
+    }
+
+    audioSentenceIndex = ((audioSentenceIndex % sec.sentences.length) + sec.sentences.length) % sec.sentences.length;
+    const sentence = sec.sentences[audioSentenceIndex];
+
+    audioSidEl.textContent = sentence.sid;
+    audioProgressEl.textContent = `${audioSentenceIndex + 1} / ${sec.sentences.length}`;
+    audioModeTitleEl.textContent = currentView === "enAudio" ? "英語音声" : "日本語音声";
+    audioHintEl.textContent = currentView === "enAudio"
+      ? "例文欄をタップすると 英文 → 日本語訳 → 単語 の順で表示します。"
+      : "例文欄をタップすると 英文 → 単語 の順で表示します。";
+    audioStatusEl.textContent = currentView === "enAudio"
+      ? "再生順: Fast → Slow → Slow → Fast → Fast"
+      : "次の文へは「次 →」を押して進みます。";
+
+    renderAudioReveal(sentence, sec);
+  }
+
+  async function autoplayAudioSentence(startIndex = audioSentenceIndex) {
+    const sec = getCurrentSection();
+    if (!sec?.sentences?.length) return;
+
+    audioSentenceIndex = ((startIndex % sec.sentences.length) + sec.sentences.length) % sec.sentences.length;
+    const playbackToken = ++audioPlaybackToken;
+    renderAudioView();
+    scheduleSave();
+
+    while (playbackToken === audioPlaybackToken) {
+      const sentence = sec.sentences[audioSentenceIndex];
+      try {
+        if (currentView === "enAudio") {
+          for (let i = 0; i < EN_AUDIO_SEQUENCE.length; i += 1) {
+            const kind = EN_AUDIO_SEQUENCE[i] === "fast" ? "en-fast" : "en-slow";
+            await playAudioFile(getAudioPath(sentence, kind));
+            if (playbackToken !== audioPlaybackToken) return;
+            if (i < EN_AUDIO_SEQUENCE.length - 1) {
+              await sleep(EN_AUDIO_GAP_MS);
+              if (playbackToken !== audioPlaybackToken) return;
+            }
+          }
+        } else {
+          await playAudioFile(getAudioPath(sentence, "jp"));
+          return;
+        }
+      } catch (error) {
+        console.error(error);
+        return;
+      }
+
+      audioSentenceIndex = (audioSentenceIndex + 1) % sec.sentences.length;
+      audioRevealStage = 0;
+      renderAudioView();
+      scheduleSave();
+    }
+  }
+
+  function restartAudioPlayback() {
+    stopAudioPlayback();
+    shouldAutoStartAudio = false;
+    autoplayAudioSentence(audioSentenceIndex);
+  }
+
+  function moveAudioSentence(delta) {
+    const sec = getCurrentSection();
+    if (!sec?.sentences?.length) return;
+    audioSentenceIndex = (audioSentenceIndex + delta + sec.sentences.length) % sec.sentences.length;
+    audioRevealStage = 0;
+    stopAudioPlayback();
+    shouldAutoStartAudio = false;
+    renderAudioView();
+    autoplayAudioSentence(audioSentenceIndex);
   }
 
   // ---- Vocab UI helpers ----
@@ -717,15 +954,37 @@
 
   // ---- View switching ----
   function setView(mode) {
+    currentView = mode;
     const isSent = mode === "sentences";
-    tabSentences.classList.toggle("is-active", isSent);
-    tabVocab.classList.toggle("is-active", !isSent);
-    viewSentences.classList.toggle("is-hidden", !isSent);
-    viewVocab.classList.toggle("is-hidden", isSent);
+    const isVocab = mode === "vocab";
+    const isAudio = mode === "enAudio" || mode === "jpAudio";
 
-    if (!isSent) {
+    if (!isAudio) {
+      stopAudioPlayback();
+    }
+
+    tabSentences.classList.toggle("is-active", isSent);
+    tabVocab.classList.toggle("is-active", isVocab);
+    tabEnAudio.classList.toggle("is-active", mode === "enAudio");
+    tabJpAudio.classList.toggle("is-active", mode === "jpAudio");
+
+    viewSentences.classList.toggle("is-hidden", !isSent);
+    viewVocab.classList.toggle("is-hidden", !isVocab);
+    viewAudio.classList.toggle("is-hidden", !isAudio);
+
+    if (isVocab) {
       const sec = getCurrentSection();
       if (sec?.vocab?.length && !mcqMode) focusVocabInput();
+    }
+
+    if (isAudio) {
+      audioRevealStage = 0;
+      shouldAutoStartAudio = true;
+      renderAudioView();
+      if (shouldAutoStartAudio) {
+        shouldAutoStartAudio = false;
+        autoplayAudioSentence(audioSentenceIndex);
+      }
     }
     scheduleSave();
   }
@@ -738,6 +997,8 @@
     currentSectionId = id;
 
     sentenceIndex = 0;
+    audioSentenceIndex = 0;
+    audioRevealStage = 0;
     vocabIndex = 0;
     queue = [];
     queuePos = 0;
@@ -746,9 +1007,18 @@
 
     unlockVocabInput();
     clearAutoTimer();
+    stopAudioPlayback();
 
     renderSentence();
     renderVocabQuestion();
+    if (currentView === "enAudio" || currentView === "jpAudio") {
+      shouldAutoStartAudio = true;
+      renderAudioView();
+      if (shouldAutoStartAudio) {
+        shouldAutoStartAudio = false;
+        autoplayAudioSentence(audioSentenceIndex);
+      }
+    }
 
     scheduleSave();
   });
@@ -775,6 +1045,21 @@
   // tabs
   tabSentences.addEventListener("click", () => setView("sentences"));
   tabVocab.addEventListener("click", () => setView("vocab"));
+  tabEnAudio.addEventListener("click", () => setView("enAudio"));
+  tabJpAudio.addEventListener("click", () => setView("jpAudio"));
+
+  audioRevealAreaEl.addEventListener("click", () => {
+    if (currentView === "enAudio") {
+      audioRevealStage = (audioRevealStage + 1) % 4;
+    } else {
+      audioRevealStage = (audioRevealStage + 1) % 3;
+    }
+    renderAudioView();
+  });
+
+  audioPrevBtn.addEventListener("click", () => moveAudioSentence(-1));
+  audioReplayBtn.addEventListener("click", () => restartAudioPlayback());
+  audioNextBtn.addEventListener("click", () => moveAudioSentence(1));
 
   // vocab controls (queuePosで移動)
   vocabPrevBtn.addEventListener("click", () => {
@@ -848,7 +1133,8 @@
   renderSectionOptions();
   renderSentence();
   renderVocabQuestion();
-  setView("sentences");
+  renderAudioView();
+  setView(currentView);
 
   // 3) 初回も保存（互換/壊れ対策）
   scheduleSave();
