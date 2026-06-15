@@ -35,6 +35,9 @@
   const audioReplayBtn = $("audioReplayBtn");
   const audioNextBtn = $("audioNextBtn");
   const audioStatusEl = $("audioStatus");
+  const audioBatchToggleBtn = $("audioBatchToggleBtn");
+  const audioBatchPickerEl = $("audioBatchPicker");
+  const audioBatchOptionEls = Array.from(document.querySelectorAll("[data-batch-index]"));
 
   // ---- vocab UI ----
   const vocabIdEl = $("vocabId");
@@ -293,6 +296,11 @@
   let audioPlaybackToken = 0;
   let audioAdvanceTimer = null;
   let shouldAutoStartAudio = false;
+  let isAudioBatchMenuOpen = false;
+  let isAudioBatchPlaying = false;
+  let activeAudioBatchIndex = null;
+  let audioBatchSectionIds = [];
+  let audioBatchSectionPos = 0;
 
   // vocab state
   let vocabIndex = 0;
@@ -329,11 +337,38 @@
     return window.SECTIONS?.[currentSectionId];
   }
 
+  function getAudioBatchGroups() {
+    const ids = getSectionIds().filter((id) => /^sec\d+$/.test(id));
+    const groups = [];
+    for (let i = 0; i < ids.length; i += 5) {
+      groups.push(ids.slice(i, i + 5));
+    }
+    return groups;
+  }
+
+  function getAudioBatchSections(batchIndex) {
+    return getAudioBatchGroups()[batchIndex - 1] || [];
+  }
+
+  function getAudioBatchRangeLabel(sectionIds) {
+    if (!sectionIds.length) return "";
+    const first = sectionIds[0].replace(/^sec/, "");
+    const last = sectionIds[sectionIds.length - 1].replace(/^sec/, "");
+    return `${first}-${last}`;
+  }
+
   function clearAutoTimer() {
     if (autoNextTimer) {
       clearTimeout(autoNextTimer);
       autoNextTimer = null;
     }
+  }
+
+  function resetAudioBatchState() {
+    isAudioBatchPlaying = false;
+    activeAudioBatchIndex = null;
+    audioBatchSectionIds = [];
+    audioBatchSectionPos = 0;
   }
 
   function stopAudioPlayback() {
@@ -347,6 +382,7 @@
       audioElement.src = "";
       audioElement = null;
     }
+    resetAudioBatchState();
   }
 
   function focusVocabInput() {
@@ -392,6 +428,38 @@
     const sentenceId = getAudioSentenceId(sentence);
     if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.mp3?v=${AUDIO_ASSET_VERSION}`;
     return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3?v=${AUDIO_ASSET_VERSION}`;
+  }
+
+  function applyCurrentSection(sectionId, { resetSentenceIndices = false } = {}) {
+    currentSectionId = sectionId;
+    sectionSelect.value = sectionId;
+    if (resetSentenceIndices) {
+      sentenceIndex = 0;
+      audioSentenceIndex = 0;
+    }
+    renderSectionOptions();
+    renderSentence();
+    renderVocabQuestion();
+  }
+
+  function renderAudioBatchControls() {
+    if (!audioBatchToggleBtn || !audioBatchPickerEl) return;
+    audioBatchToggleBtn.parentElement.style.display = currentView === "enAudio" ? "grid" : "none";
+
+    const rangeLabel = activeAudioBatchIndex
+      ? getAudioBatchRangeLabel(getAudioBatchSections(activeAudioBatchIndex))
+      : "";
+
+    audioBatchToggleBtn.classList.toggle("primary", isAudioBatchPlaying);
+    audioBatchToggleBtn.textContent = isAudioBatchPlaying
+      ? `5連続: ${activeAudioBatchIndex}${rangeLabel ? ` (${rangeLabel})` : ""}`
+      : "5連続";
+
+    audioBatchPickerEl.classList.toggle("is-hidden", !isAudioBatchMenuOpen);
+    audioBatchOptionEls.forEach((btn) => {
+      const idx = Number(btn.dataset.batchIndex);
+      btn.classList.toggle("primary", idx === activeAudioBatchIndex);
+    });
   }
 
   function playAudioFile(src) {
@@ -562,12 +630,18 @@
     audioProgressEl.textContent = `${audioSentenceIndex + 1} / ${sec.sentences.length}`;
     audioModeTitleEl.textContent = currentView === "enAudio" ? "英語音声" : "日本語音声";
     audioHintEl.textContent = currentView === "enAudio"
-      ? "例文欄をタップすると 単語 → 英文 + 単語 → 英文 + 日本語訳 + 単語 の順で表示します。"
+      ? "例文欄をタップすると 単語 → 英文 + 単語 → 英文 + 日本語訳 + 単語 の順で表示します。5連続で Section をまとめて再生できます。"
       : "例文欄をタップすると 英文 → 単語 の順で表示します。";
-    audioStatusEl.textContent = currentView === "enAudio"
-      ? "連続音声: Fast → Slow → Slow → Fast → Fast"
-      : "次の文へは「次 →」を押して進みます。";
+    if (currentView === "enAudio" && isAudioBatchPlaying) {
+      const rangeLabel = getAudioBatchRangeLabel(audioBatchSectionIds);
+      audioStatusEl.textContent = `5連続 ${activeAudioBatchIndex} (${rangeLabel}) を再生中: ${audioBatchSectionPos + 1} / ${audioBatchSectionIds.length} セクション`;
+    } else {
+      audioStatusEl.textContent = currentView === "enAudio"
+        ? "連続音声: Fast → Slow → Slow → Fast → Fast"
+        : "次の文へは「次 →」を押して進みます。";
+    }
 
+    renderAudioBatchControls();
     renderAudioReveal(sentence, sec);
   }
 
@@ -604,7 +678,9 @@
 
   function restartAudioPlayback() {
     stopAudioPlayback();
+    isAudioBatchMenuOpen = false;
     shouldAutoStartAudio = false;
+    renderAudioBatchControls();
     autoplayAudioSentence(audioSentenceIndex);
   }
 
@@ -614,9 +690,56 @@
     audioSentenceIndex = (audioSentenceIndex + delta + sec.sentences.length) % sec.sentences.length;
     audioRevealStage = 0;
     stopAudioPlayback();
+    isAudioBatchMenuOpen = false;
     shouldAutoStartAudio = false;
     renderAudioView();
     autoplayAudioSentence(audioSentenceIndex);
+  }
+
+  async function autoplayAudioBatch(batchIndex) {
+    const sectionIds = getAudioBatchSections(batchIndex);
+    if (!sectionIds.length) return;
+
+    const playbackToken = ++audioPlaybackToken;
+    isAudioBatchPlaying = true;
+    activeAudioBatchIndex = batchIndex;
+    audioBatchSectionIds = sectionIds.slice();
+    audioBatchSectionPos = 0;
+    isAudioBatchMenuOpen = false;
+
+    for (let i = 0; i < sectionIds.length; i += 1) {
+      if (playbackToken !== audioPlaybackToken) return;
+
+      const sectionId = sectionIds[i];
+      const sec = window.SECTIONS?.[sectionId];
+      if (!sec?.sentences?.length) continue;
+
+      audioBatchSectionPos = i;
+      applyCurrentSection(sectionId, { resetSentenceIndices: true });
+
+      for (let j = 0; j < sec.sentences.length; j += 1) {
+        if (playbackToken !== audioPlaybackToken) return;
+
+        audioSentenceIndex = j;
+        audioRevealStage = 0;
+        renderAudioView();
+        scheduleSave();
+
+        try {
+          await playAudioFile(getAudioPath(sec.sentences[j], "en-5x"));
+        } catch (error) {
+          console.error(error);
+          resetAudioBatchState();
+          renderAudioView();
+          return;
+        }
+      }
+    }
+
+    if (playbackToken !== audioPlaybackToken) return;
+    resetAudioBatchState();
+    renderAudioView();
+    scheduleSave();
   }
 
   // ---- Vocab UI helpers ----
@@ -955,6 +1078,7 @@
 
     if (!isAudio) {
       stopAudioPlayback();
+      isAudioBatchMenuOpen = false;
     }
 
     tabSentences.classList.toggle("is-active", isSent);
@@ -1002,6 +1126,7 @@
     unlockVocabInput();
     clearAutoTimer();
     stopAudioPlayback();
+    isAudioBatchMenuOpen = false;
 
     renderSentence();
     renderVocabQuestion();
@@ -1054,6 +1179,31 @@
   audioPrevBtn.addEventListener("click", () => moveAudioSentence(-1));
   audioReplayBtn.addEventListener("click", () => restartAudioPlayback());
   audioNextBtn.addEventListener("click", () => moveAudioSentence(1));
+
+  if (audioBatchToggleBtn) {
+    audioBatchToggleBtn.addEventListener("click", () => {
+      if (isAudioBatchPlaying) {
+        stopAudioPlayback();
+        isAudioBatchMenuOpen = false;
+        renderAudioView();
+        scheduleSave();
+        return;
+      }
+      isAudioBatchMenuOpen = !isAudioBatchMenuOpen;
+      renderAudioBatchControls();
+    });
+  }
+
+  audioBatchOptionEls.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const batchIndex = Number(btn.dataset.batchIndex);
+      if (!Number.isInteger(batchIndex)) return;
+      stopAudioPlayback();
+      shouldAutoStartAudio = false;
+      audioRevealStage = 0;
+      autoplayAudioBatch(batchIndex);
+    });
+  });
 
   // vocab controls (queuePosで移動)
   vocabPrevBtn.addEventListener("click", () => {
