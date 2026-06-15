@@ -389,7 +389,7 @@
   function getAudioPath(sentence, kind) {
     const sectionFolder = getAudioSectionFolder();
     const sentenceId = getAudioSentenceId(sentence);
-    if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.wav`;
+    if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.mp3`;
     return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3`;
   }
 
