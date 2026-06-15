@@ -624,18 +624,27 @@
 
     if (audioRevealStage === 0) {
       audioRevealAreaEl.classList.add("is-empty");
-      audioRevealAreaEl.textContent = "1回タップ: 英文 / 2回タップ: 単語";
+      audioRevealAreaEl.textContent = "1回タップ: 単語 / 2回タップ: 例文 + 単語 + 日本語";
       return;
     }
     if (audioRevealStage === 1) {
+      appendVocabChips();
+      return;
+    }
+
+    if (audioRevealStage === 2) {
       const en = document.createElement("div");
       en.className = "english";
       en.textContent = sentence.english;
       audioRevealAreaEl.appendChild(en);
-      return;
-    }
 
-    appendVocabChips();
+      const jp = document.createElement("div");
+      jp.className = "japanese";
+      jp.textContent = sentence.japanese;
+      audioRevealAreaEl.appendChild(jp);
+
+      appendVocabChips();
+    }
   }
 
   function renderAudioView() {
