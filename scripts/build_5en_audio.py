@@ -21,9 +21,7 @@ END_SILENCE_SECONDS = 10
 
 def collect_sentence_ids(section_dir: Path) -> list[str]:
     ids = set()
-    for path in section_dir.glob("*_female_fast.mp3"):
-        ids.add(path.name.split("_", 1)[0])
-    for path in section_dir.glob("*_female_slow.mp3"):
+    for path in section_dir.glob("*.mp3"):
         ids.add(path.name.split("_", 1)[0])
     return sorted(ids, key=lambda value: int(value))
 

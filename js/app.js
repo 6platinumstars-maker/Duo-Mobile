@@ -389,8 +389,7 @@
   function getAudioPath(sentence, kind) {
     const sectionFolder = getAudioSectionFolder();
     const sentenceId = getAudioSentenceId(sentence);
-    if (kind === "en-fast") return `mp3/en/${sectionFolder}/${sentenceId}_male_fast.mp3`;
-    if (kind === "en-slow") return `mp3/en/${sectionFolder}/${sentenceId}_male_slow.mp3`;
+    if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.wav`;
     return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3`;
   }
 
@@ -584,11 +583,8 @@
       const sentence = sec.sentences[audioSentenceIndex];
       try {
         if (currentView === "enAudio") {
-          const playlist = ["en-fast", "en-slow", "en-slow", "en-fast", "en-fast"];
-          for (const kind of playlist) {
-            await playAudioFile(getAudioPath(sentence, kind));
-            if (playbackToken !== audioPlaybackToken) return;
-          }
+          await playAudioFile(getAudioPath(sentence, "en-5x"));
+          if (playbackToken !== audioPlaybackToken) return;
         } else {
           await playAudioFile(getAudioPath(sentence, "jp"));
           return;
