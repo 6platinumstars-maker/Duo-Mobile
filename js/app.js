@@ -64,7 +64,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
-  const AUDIO_ASSET_VERSION = "20260615-4";
+  const AUDIO_ASSET_VERSION = "20260615-7";
 
   // --- stats state (永続) ---
   // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
@@ -350,6 +350,26 @@
     return getAudioBatchGroups()[batchIndex - 1] || [];
   }
 
+  function buildAudioBatchPlaylist(batchIndex) {
+    const sectionIds = getAudioBatchSections(batchIndex);
+    const playlist = [];
+
+    sectionIds.forEach((sectionId, sectionPos) => {
+      const sec = window.SECTIONS?.[sectionId];
+      if (!sec?.sentences?.length) return;
+      sec.sentences.forEach((sentence, sentencePos) => {
+        playlist.push({
+          sectionId,
+          sectionPos,
+          sentence,
+          sentencePos,
+        });
+      });
+    });
+
+    return { sectionIds, playlist };
+  }
+
   function getAudioBatchRangeLabel(sectionIds) {
     if (!sectionIds.length) return "";
     const first = sectionIds[0].replace(/^sec/, "");
@@ -415,16 +435,16 @@
     return arr;
   }
 
-  function getAudioSectionFolder() {
-    return currentSectionId.replace(/^sec/, "section");
+  function getAudioSectionFolder(sectionId = currentSectionId) {
+    return sectionId.replace(/^sec/, "section");
   }
 
   function getAudioSentenceId(sentence) {
     return sentence.sid.replace(/^s/, "");
   }
 
-  function getAudioPath(sentence, kind) {
-    const sectionFolder = getAudioSectionFolder();
+  function getAudioPath(sentence, kind, sectionId = currentSectionId) {
+    const sectionFolder = getAudioSectionFolder(sectionId);
     const sentenceId = getAudioSentenceId(sentence);
     if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.mp3?v=${AUDIO_ASSET_VERSION}`;
     return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3?v=${AUDIO_ASSET_VERSION}`;
@@ -440,6 +460,13 @@
     renderSectionOptions();
     renderSentence();
     renderVocabQuestion();
+  }
+
+  function applyAudioBatchSection(sectionId, sentencePos = 0) {
+    currentSectionId = sectionId;
+    sectionSelect.value = sectionId;
+    sentenceIndex = sentencePos;
+    audioSentenceIndex = sentencePos;
   }
 
   function renderAudioBatchControls() {
@@ -646,6 +673,8 @@
   }
 
   async function autoplayAudioSentence(startIndex = audioSentenceIndex) {
+    if (isAudioBatchPlaying) return;
+    const sectionId = currentSectionId;
     const sec = getCurrentSection();
     if (!sec?.sentences?.length) return;
 
@@ -658,10 +687,10 @@
       const sentence = sec.sentences[audioSentenceIndex];
       try {
         if (currentView === "enAudio") {
-          await playAudioFile(getAudioPath(sentence, "en-5x"));
+          await playAudioFile(getAudioPath(sentence, "en-5x", sectionId));
           if (playbackToken !== audioPlaybackToken) return;
         } else {
-          await playAudioFile(getAudioPath(sentence, "jp"));
+          await playAudioFile(getAudioPath(sentence, "jp", sectionId));
           return;
         }
       } catch (error) {
@@ -697,8 +726,8 @@
   }
 
   async function autoplayAudioBatch(batchIndex) {
-    const sectionIds = getAudioBatchSections(batchIndex);
-    if (!sectionIds.length) return;
+    const { sectionIds, playlist } = buildAudioBatchPlaylist(batchIndex);
+    if (!sectionIds.length || !playlist.length) return;
 
     const playbackToken = ++audioPlaybackToken;
     isAudioBatchPlaying = true;
@@ -707,32 +736,30 @@
     audioBatchSectionPos = 0;
     isAudioBatchMenuOpen = false;
 
-    for (let i = 0; i < sectionIds.length; i += 1) {
+    for (let i = 0; i < playlist.length; i += 1) {
       if (playbackToken !== audioPlaybackToken) return;
 
-      const sectionId = sectionIds[i];
-      const sec = window.SECTIONS?.[sectionId];
-      if (!sec?.sentences?.length) continue;
+      const item = playlist[i];
+      const { sectionId, sectionPos, sentence, sentencePos } = item;
 
-      audioBatchSectionPos = i;
-      applyCurrentSection(sectionId, { resetSentenceIndices: true });
+      if (currentSectionId !== sectionId || audioBatchSectionPos !== sectionPos) {
+        audioBatchSectionPos = sectionPos;
+        applyAudioBatchSection(sectionId, 0);
+      }
 
-      for (let j = 0; j < sec.sentences.length; j += 1) {
-        if (playbackToken !== audioPlaybackToken) return;
+      sentenceIndex = sentencePos;
+      audioSentenceIndex = sentencePos;
+      audioRevealStage = 0;
+      renderAudioView();
+      scheduleSave();
 
-        audioSentenceIndex = j;
-        audioRevealStage = 0;
+      try {
+        await playAudioFile(getAudioPath(sentence, "en-5x", sectionId));
+      } catch (error) {
+        console.error(error);
+        resetAudioBatchState();
         renderAudioView();
-        scheduleSave();
-
-        try {
-          await playAudioFile(getAudioPath(sec.sentences[j], "en-5x"));
-        } catch (error) {
-          console.error(error);
-          resetAudioBatchState();
-          renderAudioView();
-          return;
-        }
+        return;
       }
     }
 
