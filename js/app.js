@@ -61,6 +61,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
+  const AUDIO_ASSET_VERSION = "20260615-4";
 
   // --- stats state (永続) ---
   // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
@@ -389,8 +390,8 @@
   function getAudioPath(sentence, kind) {
     const sectionFolder = getAudioSectionFolder();
     const sentenceId = getAudioSentenceId(sentence);
-    if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.mp3`;
-    return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3`;
+    if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.mp3?v=${AUDIO_ASSET_VERSION}`;
+    return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3?v=${AUDIO_ASSET_VERSION}`;
   }
 
   function playAudioFile(src) {

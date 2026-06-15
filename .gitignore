@@ -1,4 +1,4 @@
 
-mp3/5en/
+mp3/5en/**/*.wav
 __pycache__/
 *.pyc
