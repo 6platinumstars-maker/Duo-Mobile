@@ -389,7 +389,7 @@
   function getAudioPath(sentence, kind) {
     const sectionFolder = getAudioSectionFolder();
     const sentenceId = getAudioSentenceId(sentence);
-    if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.mp3`;
+    if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.wav`;
     return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3`;
   }
 
@@ -485,48 +485,61 @@
     audioRevealAreaEl.classList.remove("is-empty");
 
     const vocabItems = getSentenceVocab(sentence, sec);
+    const appendVocabChips = () => {
+      const chips = document.createElement("div");
+      chips.className = "chips";
+      chips.innerHTML = vocabItems.length
+        ? vocabItems.map((v) => `<div class="chip">${v.word}<span>${v.meaning}</span></div>`).join("")
+        : `<div class="chip">(未登録)<span>この文の重要語リストは未登録です。</span></div>`;
+      audioRevealAreaEl.appendChild(chips);
+    };
 
     if (currentView === "enAudio") {
       if (audioRevealStage === 0) {
         audioRevealAreaEl.classList.add("is-empty");
-        audioRevealAreaEl.textContent = "1回タップ: 英文 / 2回タップ: 日本語訳 / 3回タップ: 単語";
+        audioRevealAreaEl.textContent = "1回タップ: 単語 / 2回タップ: 英文 + 単語 / 3回タップ: 英文 + 日本語訳 + 単語";
         return;
       }
       if (audioRevealStage === 1) {
-        const en = document.createElement("div");
-        en.className = "english";
-        en.textContent = sentence.english;
-        audioRevealAreaEl.appendChild(en);
+        appendVocabChips();
         return;
       }
       if (audioRevealStage === 2) {
-        const jp = document.createElement("div");
-        jp.className = "japanese";
-        jp.textContent = sentence.japanese;
-        audioRevealAreaEl.appendChild(jp);
-        return;
-      }
-    } else {
-      if (audioRevealStage === 0) {
-        audioRevealAreaEl.classList.add("is-empty");
-        audioRevealAreaEl.textContent = "1回タップ: 英文 / 2回タップ: 単語";
-        return;
-      }
-      if (audioRevealStage === 1) {
         const en = document.createElement("div");
         en.className = "english";
         en.textContent = sentence.english;
         audioRevealAreaEl.appendChild(en);
+        appendVocabChips();
         return;
       }
+
+      const en = document.createElement("div");
+      en.className = "english";
+      en.textContent = sentence.english;
+      audioRevealAreaEl.appendChild(en);
+
+      const jp = document.createElement("div");
+      jp.className = "japanese";
+      jp.textContent = sentence.japanese;
+      audioRevealAreaEl.appendChild(jp);
+      appendVocabChips();
+      return;
     }
 
-    const chips = document.createElement("div");
-    chips.className = "chips";
-    chips.innerHTML = vocabItems.length
-      ? vocabItems.map((v) => `<div class="chip">${v.word}<span>${v.meaning}</span></div>`).join("")
-      : `<div class="chip">(未登録)<span>この文の重要語リストは未登録です。</span></div>`;
-    audioRevealAreaEl.appendChild(chips);
+    if (audioRevealStage === 0) {
+      audioRevealAreaEl.classList.add("is-empty");
+      audioRevealAreaEl.textContent = "1回タップ: 英文 / 2回タップ: 単語";
+      return;
+    }
+    if (audioRevealStage === 1) {
+      const en = document.createElement("div");
+      en.className = "english";
+      en.textContent = sentence.english;
+      audioRevealAreaEl.appendChild(en);
+      return;
+    }
+
+    appendVocabChips();
   }
 
   function renderAudioView() {
@@ -548,7 +561,7 @@
     audioProgressEl.textContent = `${audioSentenceIndex + 1} / ${sec.sentences.length}`;
     audioModeTitleEl.textContent = currentView === "enAudio" ? "英語音声" : "日本語音声";
     audioHintEl.textContent = currentView === "enAudio"
-      ? "例文欄をタップすると 英文 → 日本語訳 → 単語 の順で表示します。"
+      ? "例文欄をタップすると 単語 → 英文 + 単語 → 英文 + 日本語訳 + 単語 の順で表示します。"
       : "例文欄をタップすると 英文 → 単語 の順で表示します。";
     audioStatusEl.textContent = currentView === "enAudio"
       ? "連続音声: Fast → Slow → Slow → Fast → Fast"
