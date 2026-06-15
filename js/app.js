@@ -64,7 +64,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
-  const AUDIO_ASSET_VERSION = "20260615-7";
+  const AUDIO_ASSET_VERSION = "20260615-8";
 
   // --- stats state (永続) ---
   // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
