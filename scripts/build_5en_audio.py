@@ -15,8 +15,8 @@ SEQUENCE = [
     ("male", "fast"),
     ("female", "fast"),
 ]
-MID_SILENCE_SECONDS = 6
-END_SILENCE_SECONDS = 10
+MID_SILENCE_SECONDS = 1
+END_SILENCE_SECONDS = 3
 
 
 def collect_sentence_ids(section_dir: Path) -> list[str]:

@@ -200,3 +200,19 @@ body {
   border-top: none;
   padding-top: 0;
 }
+
+.audio-batch-controls {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.audio-batch-picker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.audio-batch-picker.is-hidden {
+  display: none;
+}
