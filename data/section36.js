@@ -6,6 +6,42 @@ window.SECTIONS["sec36"] = {
   title: "Section 36",
   sentences: [
     {
+      sid: "s433",
+      english: "An immense monument was erected in honor of the noble patriot.",
+      japanese: "その高潔な愛国者に敬意を表して、巨大な記念碑が建てられた。",
+      vocabRefs: ["v1999", "v2000", "v2001", "v2002", "v2003", "v2004"]
+    },
+    {
+      sid: "s434",
+      english: "He got down on his knees and prayed for the souls of the deceased.",
+      japanese: "彼はひざまずき、亡くなった人々の魂のために祈った。",
+      vocabRefs: ["v2005", "v2006", "v2007", "v2008"]
+    },
+    {
+      sid: "s435",
+      english: "The Supreme Court is located near the Imperial Palace.",
+      japanese: "最高裁判所は皇居の近くにある。",
+      vocabRefs: ["v2009", "v2010", "v2011", "v2012", "v2013"]
+    },
+    {
+      sid: "s436",
+      english: "The pro-choice group protested against the ban on abortion.",
+      japanese: "その中絶の権利を支持する団体は、中絶禁止に抗議した。",
+      vocabRefs: ["v2014", "v2015", "v2016", "v2017"]
+    },
+    {
+      sid: "s437",
+      english: "Senator Ford remained neutral in the bitter controversy.",
+      japanese: "フォード上院議員は、その激しい論争において中立を保った。",
+      vocabRefs: ["v2018", "v2019", "v2020", "v2021", "v2022"]
+    },
+    {
+      sid: "s438",
+      english: "Ford has been in a difficult situation all week long. He is no longer capable of coping with it.",
+      japanese: "フォードはこの一週間ずっと難しい状況に置かれている。彼はもはやそれに対処できない。",
+      vocabRefs: ["v2023", "v2024", "v2025", "v2026", "v2027"]
+    },
+    {
       sid: "s439",
       english: "The summit talks are to be broadcast simultaneously throughout the world.",
       japanese: "首脳会談は、世界中に同時放送される予定である。",
@@ -68,6 +104,41 @@ window.SECTIONS["sec36"] = {
   ],
 
   vocab: [
+    { vid:"v1999", word:"immense", meaning:"巨大な、非常に大きい", usedIn:["s433"], tags:["adj"] },
+    { vid:"v2000", word:"monument", meaning:"記念碑、記念像", usedIn:["s433"], tags:["noun"] },
+    { vid:"v2001", word:"erect", meaning:"建てる、建立する", usedIn:["s433"], tags:["verb"] },
+    { vid:"v2002", word:"in honor of", meaning:"～に敬意を表して", usedIn:["s433"], tags:["prep","pattern_prep_phrase"] },
+    { vid:"v2003", word:"noble", meaning:"高潔な、気高い", usedIn:["s433"], tags:["adj"] },
+    { vid:"v2004", word:"patriot", meaning:"愛国者", usedIn:["s433"], tags:["noun"] },
+
+    { vid:"v2005", word:"knee", meaning:"ひざ", usedIn:["s434"], tags:["noun"] },
+    { vid:"v2006", word:"pray", meaning:"祈る", usedIn:["s434"], tags:["verb"] },
+    { vid:"v2007", word:"soul", meaning:"魂", usedIn:["s434"], tags:["noun"] },
+    { vid:"v2008", word:"the deceased", meaning:"亡くなった人（たち）", usedIn:["s434"], tags:["noun"] },
+
+    { vid:"v2009", word:"Supreme", meaning:"最高の", usedIn:["s435"], tags:["adj"] },
+    { vid:"v2010", word:"Court", meaning:"裁判所", usedIn:["s435"], tags:["noun"] },
+    { vid:"v2011", word:"locate", meaning:"位置する、置かれている", usedIn:["s435"], tags:["verb"] },
+    { vid:"v2012", word:"Imperial", meaning:"皇室の、帝国の", usedIn:["s435"], tags:["adj"] },
+    { vid:"v2013", word:"Palace", meaning:"宮殿、皇居", usedIn:["s435"], tags:["noun"] },
+
+    { vid:"v2014", word:"pro-choice", meaning:"「中絶の権利を支持する」立場", usedIn:["s436"], tags:["adj"] },
+    { vid:"v2015", word:"protest against", meaning:"～に抗議する", usedIn:["s436"], tags:["verb"] },
+    { vid:"v2016", word:"ban on", meaning:"～の禁止", usedIn:["s436"], tags:["noun"] },
+    { vid:"v2017", word:"abortion", meaning:"中絶", usedIn:["s436"], tags:["noun"] },
+
+    { vid:"v2018", word:"Senator", meaning:"上院議員", usedIn:["s437"], tags:["noun"] },
+    { vid:"v2019", word:"remain", meaning:"～のままである", usedIn:["s437"], tags:["verb"] },
+    { vid:"v2020", word:"neutral", meaning:"中立の", usedIn:["s437"], tags:["adj"] },
+    { vid:"v2021", word:"bitter", meaning:"（対立が）激しい、苦い", usedIn:["s437"], tags:["adj"] },
+    { vid:"v2022", word:"controversy", meaning:"論争、対立", usedIn:["s437"], tags:["noun"] },
+
+    { vid:"v2023", word:"situation", meaning:"状況、立場", usedIn:["s438"], tags:["noun"] },
+    { vid:"v2024", word:"all week long", meaning:"この一週間ずっと", usedIn:["s438"], tags:["adv"] },
+    { vid:"v2025", word:"no longer", meaning:"もはや～ない", usedIn:["s438"], tags:["adv"] },
+    { vid:"v2026", word:"capable of doing", meaning:"～する能力がある", usedIn:["s438"], tags:["adj"] },
+    { vid:"v2027", word:"cope with", meaning:"～に対処する", usedIn:["s438"], tags:["verb"] },
+
     { vid:"v2028", word:"summit", meaning:"首脳会談", usedIn:["s439"], tags:["noun"] },
     { vid:"v2029", word:"talks", meaning:"会談、交渉", usedIn:["s439"], tags:["noun"] },
     { vid:"v2030", word:"be to do", meaning:"～する予定である", usedIn:["s439"], tags:["aux"] },
