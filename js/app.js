@@ -391,6 +391,20 @@
     audioBatchSectionPos = 0;
   }
 
+  function isAudioPaused() {
+    return !!audioElement && audioElement.paused && !audioElement.ended;
+  }
+
+  function isAudioPlaying() {
+    return !!audioElement && !audioElement.paused && !audioElement.ended;
+  }
+
+  function renderAudioPauseButton() {
+    if (!audioReplayBtn) return;
+    audioReplayBtn.disabled = currentView !== "enAudio" && currentView !== "jpAudio";
+    audioReplayBtn.classList.toggle("primary", isAudioPaused());
+  }
+
   function stopAudioPlayback() {
     audioPlaybackToken += 1;
     if (audioAdvanceTimer) {
@@ -403,6 +417,7 @@
       audioElement = null;
     }
     resetAudioBatchState();
+    renderAudioPauseButton();
   }
 
   function focusVocabInput() {
@@ -497,7 +512,10 @@
       const cleanup = () => {
         audio.removeEventListener("ended", onEnded);
         audio.removeEventListener("error", onError);
+        audio.removeEventListener("pause", onPauseOrPlay);
+        audio.removeEventListener("play", onPauseOrPlay);
         if (audioElement === audio) audioElement = null;
+        renderAudioPauseButton();
       };
 
       const onEnded = () => {
@@ -510,8 +528,19 @@
         reject(new Error(`Audio playback failed: ${src}`));
       };
 
+      const onPauseOrPlay = () => {
+        if (currentView === "enAudio" || currentView === "jpAudio") {
+          renderAudioView();
+          return;
+        }
+        renderAudioPauseButton();
+      };
+
       audio.addEventListener("ended", onEnded, { once: true });
       audio.addEventListener("error", onError, { once: true });
+      audio.addEventListener("pause", onPauseOrPlay);
+      audio.addEventListener("play", onPauseOrPlay);
+      renderAudioPauseButton();
       audio.play().catch((err) => {
         cleanup();
         reject(err);
@@ -656,6 +685,7 @@
       audioHintEl.textContent = "";
       audioRevealAreaEl.textContent = "No audio sentences.";
       audioStatusEl.textContent = "";
+      renderAudioPauseButton();
       return;
     }
 
@@ -676,8 +706,12 @@
         ? "連続音声: Fast → Slow → Slow → Fast → Fast"
         : "次の文へは「次 →」を押して進みます。";
     }
+    if (isAudioPaused()) {
+      audioStatusEl.textContent += " / 一時停止中";
+    }
 
     renderAudioBatchControls();
+    renderAudioPauseButton();
     renderAudioReveal(sentence, sec);
   }
 
@@ -714,7 +748,21 @@
     }
   }
 
-  function restartAudioPlayback() {
+  function toggleAudioPlayback() {
+    if (isAudioPlaying()) {
+      audioElement.pause();
+      renderAudioView();
+      return;
+    }
+
+    if (isAudioPaused()) {
+      audioElement.play().catch((error) => {
+        console.error(error);
+      });
+      renderAudioView();
+      return;
+    }
+
     stopAudioPlayback();
     isAudioBatchMenuOpen = false;
     shouldAutoStartAudio = false;
@@ -1213,7 +1261,7 @@
   });
 
   audioPrevBtn.addEventListener("click", () => moveAudioSentence(-1));
-  audioReplayBtn.addEventListener("click", () => restartAudioPlayback());
+  audioReplayBtn.addEventListener("click", () => toggleAudioPlayback());
   audioNextBtn.addEventListener("click", () => moveAudioSentence(1));
 
   if (audioBatchToggleBtn) {
