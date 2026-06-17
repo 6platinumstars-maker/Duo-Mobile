@@ -1,5 +1,6 @@
 #!/home/ps/.venv/bin/python
 from pathlib import Path
+import re
 
 import lameenc
 import miniaudio
@@ -23,7 +24,13 @@ def collect_sentence_ids(section_dir: Path) -> list[str]:
     ids = set()
     for path in section_dir.glob("*.mp3"):
         ids.add(path.name.split("_", 1)[0])
-    return sorted(ids, key=lambda value: int(value))
+    def sort_key(value: str) -> tuple[int, str]:
+        match = re.match(r"(\d+)([A-Za-z]*)$", value)
+        if not match:
+            return (10**9, value)
+        return (int(match.group(1)), match.group(2))
+
+    return sorted(ids, key=sort_key)
 
 
 def load_pcm(path: Path) -> tuple[bytes, int, int, int]:

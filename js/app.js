@@ -65,7 +65,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
-  const AUDIO_ASSET_VERSION = "20260617-4";
+  const AUDIO_ASSET_VERSION = "20260617-5";
 
   // --- stats state (永続) ---
   // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
@@ -494,7 +494,7 @@
   }
 
   function getAudioSentenceId(sentence) {
-    return sentence.sid.replace(/^s/, "").replace(/[a-z]+$/i, "");
+    return sentence.sid.replace(/^s/, "");
   }
 
   function getAudioPath(sentence, kind, sectionId = currentSectionId) {
