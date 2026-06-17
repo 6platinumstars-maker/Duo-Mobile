@@ -65,7 +65,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
-  const AUDIO_ASSET_VERSION = "20260617-2";
+  const AUDIO_ASSET_VERSION = "20260617-3";
 
   // --- stats state (永続) ---
   // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
@@ -504,6 +504,10 @@
     return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3?v=${AUDIO_ASSET_VERSION}`;
   }
 
+  function getDefaultAudioRevealStage(view = currentView) {
+    return view === "enAudio" ? 3 : 2;
+  }
+
   function applyCurrentSection(sectionId, { resetSentenceIndices = false } = {}) {
     currentSectionId = sectionId;
     sectionSelect.value = sectionId;
@@ -667,7 +671,7 @@
     if (currentView === "enAudio") {
       if (audioRevealStage === 0) {
         audioRevealAreaEl.classList.add("is-empty");
-        audioRevealAreaEl.textContent = "1回タップ: 単語 / 2回タップ: 英文 + 単語 / 3回タップ: 英文 + 日本語訳 + 単語";
+        audioRevealAreaEl.textContent = "タップで 単語のみ → 英文 + 単語 → 英文 + 日本語訳 + 単語 を切り替えます。";
         return;
       }
       if (audioRevealStage === 1) {
@@ -698,7 +702,7 @@
 
     if (audioRevealStage === 0) {
       audioRevealAreaEl.classList.add("is-empty");
-      audioRevealAreaEl.textContent = "1回タップ: 単語 / 2回タップ: 例文 + 単語 + 日本語";
+      audioRevealAreaEl.textContent = "タップで 単語のみ → 例文 + 日本語 + 単語 を切り替えます。";
       return;
     }
     if (audioRevealStage === 1) {
@@ -741,14 +745,14 @@
     audioProgressEl.textContent = `${audioSentenceIndex + 1} / ${sec.sentences.length}`;
     audioModeTitleEl.textContent = currentView === "enAudio" ? "英語音声" : "日本語音声";
     audioHintEl.textContent = currentView === "enAudio"
-      ? "例文欄をタップすると 単語 → 英文 + 単語 → 英文 + 日本語訳 + 単語 の順で表示します。5連続で Section をまとめて再生できます。"
-      : "例文欄をタップすると 英文 → 単語 の順で表示します。";
+      ? "最初から 例文 + 日本語訳 + 単語 を表示します。例文欄タップで表示内容を切り替えられます。5連続で Section をまとめて再生できます。"
+      : "最初から 例文 + 日本語 + 単語 を表示します。例文欄タップで表示内容を切り替えられます。";
     if (currentView === "enAudio" && isAudioBatchPlaying) {
       const rangeLabel = getAudioBatchRangeLabel(audioBatchSectionIds);
       audioStatusEl.textContent = `5連続 ${activeAudioBatchIndex} (${rangeLabel}) を再生中: ${audioBatchSectionPos + 1} / ${audioBatchSectionIds.length} セクション`;
     } else {
       audioStatusEl.textContent = currentView === "enAudio"
-        ? "連続音声: Fast → Slow → Slow → Fast → Fast"
+        ? "連続音声: Female Slow → Female Slow → Male Slow → Male Slow → Female Slow"
         : "次の文へは「次 →」を押して進みます。";
     }
     if (isAudioPaused()) {
@@ -787,7 +791,7 @@
       }
 
       audioSentenceIndex = (audioSentenceIndex + 1) % sec.sentences.length;
-      audioRevealStage = 0;
+      audioRevealStage = getDefaultAudioRevealStage();
       renderAudioView();
       scheduleSave();
     }
@@ -819,7 +823,7 @@
     const sec = getCurrentSection();
     if (!sec?.sentences?.length) return;
     audioSentenceIndex = (audioSentenceIndex + delta + sec.sentences.length) % sec.sentences.length;
-    audioRevealStage = 0;
+    audioRevealStage = getDefaultAudioRevealStage();
     stopAudioPlayback();
     isAudioBatchMenuOpen = false;
     shouldAutoStartAudio = false;
@@ -851,7 +855,7 @@
 
       sentenceIndex = sentencePos;
       audioSentenceIndex = sentencePos;
-      audioRevealStage = 0;
+      audioRevealStage = getDefaultAudioRevealStage();
       renderAudioView();
       scheduleSave();
 
@@ -1231,7 +1235,7 @@
     }
 
     if (isAudio) {
-      audioRevealStage = 0;
+      audioRevealStage = getDefaultAudioRevealStage(mode);
       shouldAutoStartAudio = true;
       renderAudioView();
       if (shouldAutoStartAudio) {
@@ -1251,7 +1255,7 @@
 
     sentenceIndex = 0;
     audioSentenceIndex = 0;
-    audioRevealStage = 0;
+    audioRevealStage = getDefaultAudioRevealStage(currentView);
     vocabIndex = 0;
     queue = [];
     queuePos = 0;
@@ -1335,7 +1339,7 @@
       if (!Number.isInteger(batchIndex)) return;
       stopAudioPlayback();
       shouldAutoStartAudio = false;
-      audioRevealStage = 0;
+      audioRevealStage = getDefaultAudioRevealStage(currentView);
       autoplayAudioBatch(batchIndex);
     });
   });

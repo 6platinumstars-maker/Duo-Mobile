@@ -9,11 +9,11 @@ BASE_DIR = Path("/home/ps/duo-mobile/mp3")
 EN_DIR = BASE_DIR / "en"
 OUT_DIR = BASE_DIR / "5en"
 SEQUENCE = [
-    ("female", "fast"),
+    ("female", "slow"),
+    ("female", "slow"),
+    ("male", "slow"),
     ("male", "slow"),
     ("female", "slow"),
-    ("male", "fast"),
-    ("female", "fast"),
 ]
 MID_SILENCE_SECONDS = 1
 END_SILENCE_SECONDS = 3
@@ -38,7 +38,7 @@ def make_silence(sample_rate: int, channels: int, sample_width: int, seconds: in
 
 def encode_mp3(pcm: bytes, sample_rate: int, channels: int, sample_width: int) -> bytes:
     if sample_width != 2:
-      raise RuntimeError(f"Unsupported sample width for mp3 encoding: {sample_width}")
+        raise RuntimeError(f"Unsupported sample width for mp3 encoding: {sample_width}")
 
     encoder = lameenc.Encoder()
     encoder.set_bit_rate(128)
