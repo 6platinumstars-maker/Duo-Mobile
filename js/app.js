@@ -50,6 +50,7 @@
   const vocabRevealBtn = $("vocabRevealBtn");
   const vocabAnswerBox = $("vocabAnswerBox");
   const vocabAnswerEl = $("vocabAnswer");
+  const vocabIpaEl = $("vocabIpa");
   const vocabExtraEl = $("vocabExtra");
 
   // ---- MCQ (4 choices) UI ----
@@ -115,6 +116,29 @@
       .trim()
       .toLowerCase()
       .replace(/\s+/g, " ");
+  }
+
+  function escapeHtml(s) {
+    return String(s ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function renderVocabChip(v) {
+    if (!v) return `<div class="chip"><div class="chip-word">(not found)</div></div>`;
+
+    const ipa = v.ipa ? `<div class="chip-ipa">${escapeHtml(v.ipa)}</div>` : "";
+    const meaning = v.meaning ? `<div class="chip-meaning">${escapeHtml(v.meaning)}</div>` : "";
+    return `<div class="chip"><div class="chip-word">${escapeHtml(v.word)}</div>${ipa}${meaning}</div>`;
+  }
+
+  function renderVocabAnswerMeta(v) {
+    vocabAnswerEl.textContent = v.word || "";
+    vocabIpaEl.textContent = v.ipa || "";
+    vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
   }
 
   // =========================
@@ -589,8 +613,8 @@
     vocabChipsEl.innerHTML = refs
       .map((vid) => {
         const v = vocabMap.get(vid);
-        if (!v) return `<div class="chip">${vid}<span>(not found)</span></div>`;
-        return `<div class="chip">${v.word}<span>${v.meaning}</span></div>`;
+        if (!v) return `<div class="chip"><div class="chip-word">${escapeHtml(vid)}</div><div class="chip-meaning">(not found)</div></div>`;
+        return renderVocabChip(v);
       })
       .join("");
 
@@ -614,8 +638,8 @@
       const chips = document.createElement("div");
       chips.className = "chips";
       chips.innerHTML = vocabItems.length
-        ? vocabItems.map((v) => `<div class="chip">${v.word}<span>${v.meaning}</span></div>`).join("")
-        : `<div class="chip">(未登録)<span>この文の重要語リストは未登録です。</span></div>`;
+        ? vocabItems.map((v) => renderVocabChip(v)).join("")
+        : `<div class="chip"><div class="chip-word">(未登録)</div><div class="chip-meaning">この文の重要語リストは未登録です。</div></div>`;
       audioRevealAreaEl.appendChild(chips);
     };
 
@@ -992,7 +1016,13 @@
 
         // 答え表示
         showAnswerBox();
-        vocabAnswerEl.textContent = correctWord;
+        if (curVocab) {
+          renderVocabAnswerMeta(curVocab);
+        } else {
+          vocabAnswerEl.textContent = correctWord;
+          vocabIpaEl.textContent = "";
+          vocabExtraEl.textContent = "";
+        }
 
         if (ok) {
           mcqHintEl.textContent = "✅ 正解！";
@@ -1026,6 +1056,7 @@
       vocabInputEl.value = "";
       vocabFeedbackEl.textContent = "";
       vocabAnswerEl.textContent = "";
+      vocabIpaEl.textContent = "";
       vocabExtraEl.textContent = "";
       vocabPrevBtn.disabled = true;
       vocabNextBtn.disabled = true;
@@ -1066,6 +1097,7 @@
       : (roundText || "英語を入力して Enter（または答えボタン）");
 
     vocabAnswerEl.textContent = v.word;
+    vocabIpaEl.textContent = "";
     vocabExtraEl.textContent = "";
 
     vocabPrevBtn.disabled = queuePos === 0;
@@ -1107,8 +1139,7 @@
     function showAnswerWith(msg) {
       revealed = true;
       showAnswerBox();
-      vocabAnswerEl.textContent = v.word;
-      vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
+      renderVocabAnswerMeta(v);
       vocabFeedbackEl.textContent = msg;
 
       lockVocabInput();
@@ -1145,8 +1176,7 @@
     const v = list[vocabIndex];
     revealed = true;
     showAnswerBox();
-    vocabAnswerEl.textContent = v.word;
-    vocabExtraEl.textContent = `usedIn: ${(v.usedIn || []).join(", ")}`;
+    renderVocabAnswerMeta(v);
     vocabFeedbackEl.textContent = "答えを表示しました。";
     if (!mcqMode) focusVocabInput();
     scheduleSave();

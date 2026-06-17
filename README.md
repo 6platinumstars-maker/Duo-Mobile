@@ -83,6 +83,7 @@ DUO 形式の英語学習用モバイル Web アプリです。
 
 - `data/section01.js` 〜 `data/section45.js`
   - section 単位の例文・訳・単語データ
+  - `vocab` 要素は `ipa` フィールドを持ち、CMU Pronouncing Dictionary ベースの IPA を保持
 - `js/app.js`
   - 画面制御
   - 音声再生制御
@@ -111,6 +112,12 @@ localStorage を使用します。
   - 単語ごとの正誤履歴
 
 ## 音声生成スクリプト
+
+## 発音記号データ
+
+- 追加スクリプト: `scripts/add_ipa_from_cmudict.py`
+- 辞書ソース: `cmudict.dict`（CMU Pronouncing Dictionary）
+- 熟語や文型項目は、CMU 辞書に載る各語の発音を連結して `ipa` を生成
 
 ### 英語・日本語素材音声の生成
 
