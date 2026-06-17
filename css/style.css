@@ -252,14 +252,14 @@ body {
 
 @media (min-width: 900px) {
   :root {
-    --content-max-width: 920px;
-    --content-padding-x: 16px;
-    --english-size: 22px;
-    --japanese-size: 17px;
-    --title-size: 21px;
+    --content-max-width: 1180px;
+    --content-padding-x: 20px;
+    --english-size: 24px;
+    --japanese-size: 18px;
+    --title-size: 22px;
     --subtitle-size: 14px;
-    --button-size: 15px;
-    --chip-min-width: 180px;
+    --button-size: 16px;
+    --chip-min-width: 200px;
   }
 
   .topbar {
@@ -267,15 +267,15 @@ body {
   }
 
   .controls {
-    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+    grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
     align-items: end;
-    gap: 6px 12px;
+    gap: 8px 14px;
   }
 
   .select {
-    height: 42px;
-    padding: 10px 12px;
-    font-size: 17px;
+    height: 46px;
+    padding: 11px 14px;
+    font-size: 18px;
   }
 
   .seg {
@@ -284,8 +284,8 @@ body {
   }
 
   .seg-btn {
-    height: 38px;
-    font-size: 15px;
+    height: 42px;
+    font-size: 16px;
   }
 
   .meta-text,
@@ -297,7 +297,7 @@ body {
   }
 
   .card {
-    padding: 12px;
+    padding: 14px 16px;
   }
 
   .container {
@@ -316,29 +316,29 @@ body {
 
   .english {
     line-height: 1.4;
-    margin: 6px 0 8px;
+    margin: 8px 0 10px;
   }
 
   .japanese {
     line-height: 1.5;
-    padding-top: 8px;
+    padding-top: 10px;
   }
 
   .actions {
-    grid-template-columns: repeat(3, minmax(0, 220px));
+    grid-template-columns: repeat(3, minmax(0, 240px));
     justify-content: start;
     margin-top: 6px;
     gap: 6px;
   }
 
   .btn {
-    height: 42px;
+    height: 44px;
   }
 
   .audio-reveal-area {
-    min-height: 108px;
+    min-height: 124px;
     margin-top: 6px;
-    padding: 12px;
+    padding: 14px;
   }
 
   .audio-batch-controls {
