@@ -6,6 +6,14 @@
   --line: rgba(255,255,255,0.08);
   --btn: rgba(255,255,255,0.10);
   --btn2: rgba(255,255,255,0.16);
+  --content-max-width: 720px;
+  --content-padding-x: 12px;
+  --english-size: 18px;
+  --japanese-size: 15px;
+  --title-size: 18px;
+  --subtitle-size: 12px;
+  --button-size: 15px;
+  --chip-min-width: 160px;
 }
 
 * { box-sizing: border-box; }
@@ -26,8 +34,8 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
-.brand .title { font-size: 18px; font-weight: 700; }
-.brand .subtitle { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.brand .title { font-size: var(--title-size); font-weight: 700; }
+.brand .subtitle { font-size: var(--subtitle-size); color: var(--muted); margin-top: 2px; }
 
 .controls {
   margin-top: 10px;
@@ -71,8 +79,8 @@ body {
 .seg-btn.is-active { background: var(--btn2); }
 
 .container {
-  padding: 14px 12px 24px;
-  max-width: 720px;
+  padding: 14px var(--content-padding-x) 24px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
 }
 
@@ -109,14 +117,14 @@ body {
 .meta-text { font-size: 12px; color: var(--muted); }
 
 .english {
-  font-size: 18px;
+  font-size: var(--english-size);
   line-height: 1.5;
   font-weight: 650;
   margin: 8px 0 10px;
 }
 
 .japanese {
-  font-size: 15px;
+  font-size: var(--japanese-size);
   line-height: 1.6;
   color: var(--muted);
   border-top: 1px solid var(--line);
@@ -138,7 +146,7 @@ body {
   border: 1px solid var(--line);
   background: var(--btn);
   color: var(--text);
-  font-size: 15px;
+  font-size: var(--button-size);
 }
 
 .btn.primary { background: var(--btn2); font-weight: 700; }
@@ -158,7 +166,7 @@ body {
   color: var(--text);
   display: grid;
   gap: 4px;
-  min-width: 160px;
+  min-width: var(--chip-min-width);
 }
 
 .chip-word {
@@ -238,4 +246,82 @@ body {
 
 .audio-batch-picker.is-hidden {
   display: none;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --content-max-width: 920px;
+    --content-padding-x: 16px;
+    --english-size: 20px;
+    --japanese-size: 16px;
+    --title-size: 20px;
+    --subtitle-size: 14px;
+    --button-size: 16px;
+    --chip-min-width: 180px;
+  }
+
+  .topbar {
+    padding: 10px 16px 8px;
+  }
+
+  .controls {
+    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+    align-items: end;
+    gap: 8px 12px;
+  }
+
+  .select {
+    padding: 10px 12px;
+  }
+
+  .seg {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .seg-btn {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .meta-text,
+  .pill,
+  .chip-ipa,
+  .ipa-text,
+  .chip {
+    font-size: 14px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .container {
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
+
+  .view {
+    gap: 8px;
+  }
+
+  .actions {
+    grid-template-columns: repeat(3, minmax(0, 220px));
+    justify-content: start;
+    margin-top: 8px;
+  }
+
+  .audio-reveal-area {
+    min-height: 120px;
+    margin-top: 8px;
+  }
+
+  .audio-batch-controls {
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .audio-batch-picker {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
 }
