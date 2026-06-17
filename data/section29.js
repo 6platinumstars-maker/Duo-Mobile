@@ -146,6 +146,3 @@ window.SECTIONS["sec29"] = {
     { vid: "v1635", word:"live from hand to mouth", ipa:"/ˈlaɪv ˈfrʌm ˈhænd ˈtu ˈmaʊθ/", meaning: "その日暮らしをする", usedIn: ["s353"], tags: ["verb", "pattern_prep_phrase"] }
   ]
 };
-
-export default window.SECTIONS["sec29"];
-export const section29 = window.SECTIONS["sec29"];

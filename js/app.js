@@ -65,7 +65,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
-  const AUDIO_ASSET_VERSION = "20260616-1";
+  const AUDIO_ASSET_VERSION = "20260617-2";
 
   // --- stats state (永続) ---
   // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
@@ -354,7 +354,13 @@
 
   // --- helpers ---
   function getSectionIds() {
-    return Object.keys(window.SECTIONS || {}).sort();
+    // Keep the UI in numeric section order even if lexical sort would misplace sec10, sec29, etc.
+    return Object.keys(window.SECTIONS || {}).sort((a, b) => getSectionNumber(a) - getSectionNumber(b));
+  }
+
+  function getSectionNumber(sectionId) {
+    const match = /^sec(\d+)$/.exec(sectionId || "");
+    return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
   }
 
   function getCurrentSection() {
@@ -363,10 +369,19 @@
 
   function getAudioBatchGroups() {
     const ids = getSectionIds().filter((id) => /^sec\d+$/.test(id));
-    const groups = [];
-    for (let i = 0; i < ids.length; i += 5) {
-      groups.push(ids.slice(i, i + 5));
-    }
+    const maxGroupIndex = ids.reduce((max, id) => {
+      const sectionNumber = getSectionNumber(id);
+      return Number.isFinite(sectionNumber) ? Math.max(max, Math.floor((sectionNumber - 1) / 5)) : max;
+    }, -1);
+    const groups = Array.from({ length: Math.max(0, maxGroupIndex + 1) }, () => []);
+
+    ids.forEach((id) => {
+      const sectionNumber = getSectionNumber(id);
+      if (!Number.isFinite(sectionNumber) || sectionNumber <= 0) return;
+      // Batch ranges stay fixed as 01-05, 06-10, ... even if one section fails to load.
+      groups[Math.floor((sectionNumber - 1) / 5)].push(id);
+    });
+
     return groups;
   }
 
@@ -524,6 +539,12 @@
     audioBatchPickerEl.classList.toggle("is-hidden", !isAudioBatchMenuOpen);
     audioBatchOptionEls.forEach((btn) => {
       const idx = Number(btn.dataset.batchIndex);
+      const sectionIds = getAudioBatchSections(idx);
+      const rangeStart = String((idx - 1) * 5 + 1).padStart(2, "0");
+      const rangeEnd = String(idx * 5).padStart(2, "0");
+      btn.textContent = `${idx}`;
+      btn.title = `Section ${rangeStart}-${rangeEnd}`;
+      btn.disabled = sectionIds.length === 0;
       btn.classList.toggle("primary", idx === activeAudioBatchIndex);
     });
   }
