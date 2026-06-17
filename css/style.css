@@ -252,14 +252,14 @@ body {
 
 @media (min-width: 900px) {
   :root {
-    --content-max-width: 1180px;
-    --content-padding-x: 20px;
-    --english-size: 24px;
-    --japanese-size: 18px;
+    --content-max-width: 1560px;
+    --content-padding-x: 24px;
+    --english-size: 26px;
+    --japanese-size: 19px;
     --title-size: 22px;
     --subtitle-size: 14px;
     --button-size: 16px;
-    --chip-min-width: 200px;
+    --chip-min-width: 220px;
   }
 
   .topbar {
@@ -301,12 +301,21 @@ body {
   }
 
   .container {
+    width: min(96vw, var(--content-max-width));
+    max-width: none;
     padding-top: 6px;
     padding-bottom: 10px;
   }
 
   .view {
     gap: 6px;
+  }
+
+  #viewSentences,
+  #viewVocab,
+  #viewAudio {
+    width: min(100%, 1320px);
+    justify-self: center;
   }
 
   .meta,
@@ -322,6 +331,10 @@ body {
   .japanese {
     line-height: 1.5;
     padding-top: 10px;
+  }
+
+  .card-title {
+    font-size: 20px;
   }
 
   .actions {
