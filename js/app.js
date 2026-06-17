@@ -65,7 +65,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
-  const AUDIO_ASSET_VERSION = "20260617-5";
+  const AUDIO_ASSET_VERSION = "20260617-6";
 
   // --- stats state (永続) ---
   // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
@@ -766,34 +766,26 @@
 
   async function autoplayAudioSentence(startIndex = audioSentenceIndex) {
     if (isAudioBatchPlaying) return;
-    const sectionId = currentSectionId;
     const sec = getCurrentSection();
     if (!sec?.sentences?.length) return;
 
     audioSentenceIndex = ((startIndex % sec.sentences.length) + sec.sentences.length) % sec.sentences.length;
+    const sectionId = currentSectionId;
     const playbackToken = ++audioPlaybackToken;
+    const sentence = sec.sentences[audioSentenceIndex];
     renderAudioView();
     scheduleSave();
 
-    while (playbackToken === audioPlaybackToken) {
-      const sentence = sec.sentences[audioSentenceIndex];
-      try {
-        if (currentView === "enAudio") {
-          await playAudioFile(getAudioPath(sentence, "en-5x", sectionId));
-          if (playbackToken !== audioPlaybackToken) return;
-        } else {
-          await playAudioFile(getAudioPath(sentence, "jp", sectionId));
-          return;
-        }
-      } catch (error) {
-        console.error(error);
-        return;
+    try {
+      if (currentView === "enAudio") {
+        await playAudioFile(getAudioPath(sentence, "en-5x", sectionId));
+      } else {
+        await playAudioFile(getAudioPath(sentence, "jp", sectionId));
       }
-
-      audioSentenceIndex = (audioSentenceIndex + 1) % sec.sentences.length;
-      audioRevealStage = getDefaultAudioRevealStage();
-      renderAudioView();
-      scheduleSave();
+      if (playbackToken !== audioPlaybackToken) return;
+    } catch (error) {
+      console.error(error);
+      return;
     }
   }
 
