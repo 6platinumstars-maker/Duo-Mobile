@@ -24,7 +24,7 @@
 
   <main class="container">
     <section id="viewSentences" class="view">
-      <div class="card">
+      <div id="sentenceCard" class="card">
         <div class="meta">
           <span id="sid" class="pill">s000</span>
           <span id="progress" class="meta-text">0 / 0</span>
@@ -35,12 +35,12 @@
 
         <div class="actions">
           <button id="prevBtn" class="btn" type="button">← 前</button>
-          <button id="toggleJPBtn" class="btn" type="button">訳 表示/非表示</button>
+          <button id="toggleJPBtn" class="btn" type="button">英語音声</button>
           <button id="nextBtn" class="btn primary" type="button">次 →</button>
         </div>
       </div>
 
-      <div class="card">
+      <div id="sentenceVocabCard" class="card is-hidden">
         <div class="card-title">この例文の単語</div>
         <div id="vocabChips" class="chips"></div>
       </div>
@@ -173,6 +173,6 @@
   <script src="data/section44.js?v=20260617-1"></script>
   <script src="data/section45.js?v=20260617-1"></script>
 
-  <script src="js/app.js?v=20260617-9"></script>
+  <script src="js/app.js?v=20260620-1"></script>
 </body>
 </html>

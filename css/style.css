@@ -88,6 +88,7 @@ body {
 
 .view { display: grid; gap: 12px; }
 .view.is-hidden { display: none; }
+.is-hidden { display: none !important; }
 
 .card {
   background: var(--card);

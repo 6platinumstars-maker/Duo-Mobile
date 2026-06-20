@@ -21,6 +21,8 @@
   const englishEl = $("english");
   const japaneseEl = $("japanese");
   const vocabChipsEl = $("vocabChips");
+  const sentenceCard = $("sentenceCard");
+  const sentenceVocabCard = $("sentenceVocabCard");
   const prevBtn = $("prevBtn");
   const nextBtn = $("nextBtn");
   const toggleJPBtn = $("toggleJPBtn");
@@ -65,7 +67,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
-  const AUDIO_ASSET_VERSION = "20260617-6";
+  const AUDIO_ASSET_VERSION = "20260620-1";
 
   // --- stats state (永続) ---
   // stats["sec01:v0001"] = { seen, correct, wrong, lastAt }
@@ -212,6 +214,7 @@
       lastSection: currentSectionId,
       currentView,
       sentenceIndex,
+      sentenceRevealStage,
       audioSentenceIndex,
       showJP,
       mcqMode,
@@ -273,6 +276,7 @@
     mcqMode = typeof state.mcqMode === "boolean" ? state.mcqMode : mcqMode;
     currentView = typeof state.currentView === "string" ? state.currentView : currentView;
     sentenceIndex = isFiniteNumber(state.sentenceIndex) ? Math.trunc(state.sentenceIndex) : sentenceIndex;
+    sentenceRevealStage = clampInt(state.sentenceRevealStage, 0, 1, sentenceRevealStage);
     audioSentenceIndex = isFiniteNumber(state.audioSentenceIndex)
       ? Math.trunc(state.audioSentenceIndex)
       : audioSentenceIndex;
@@ -313,6 +317,7 @@
   let currentSectionId = "sec01";
   let currentView = "sentences";
   let sentenceIndex = 0;
+  let sentenceRevealStage = 0;
   let audioSentenceIndex = 0;
   let showJP = true;
   let audioRevealStage = 0;
@@ -501,6 +506,9 @@
     const sectionFolder = getAudioSectionFolder(sectionId);
     const sentenceId = getAudioSentenceId(sentence);
     if (kind === "en-5x") return `mp3/5en/${sectionFolder}/${sentenceId}_female_5x.mp3?v=${AUDIO_ASSET_VERSION}`;
+    if (kind === "en-female-slow") {
+      return `mp3/en/${sectionFolder}/${sentenceId}_female_slow.mp3?v=${AUDIO_ASSET_VERSION}`;
+    }
     return `mp3/jp/${sectionFolder}/${sentenceId}_female.mp3?v=${AUDIO_ASSET_VERSION}`;
   }
 
@@ -513,6 +521,7 @@
     sectionSelect.value = sectionId;
     if (resetSentenceIndices) {
       sentenceIndex = 0;
+      sentenceRevealStage = 0;
       audioSentenceIndex = 0;
     }
     renderSectionOptions();
@@ -620,6 +629,7 @@
       progressEl.textContent = "0 / 0";
       englishEl.textContent = "No sentences.";
       japaneseEl.textContent = "";
+      sentenceVocabCard.classList.add("is-hidden");
       vocabChipsEl.innerHTML = "";
       return;
     }
@@ -631,7 +641,8 @@
     progressEl.textContent = `${sentenceIndex + 1} / ${sec.sentences.length}`;
     englishEl.textContent = s.english;
     japaneseEl.textContent = s.japanese;
-    japaneseEl.classList.toggle("is-hidden", !showJP);
+    japaneseEl.classList.toggle("is-hidden", sentenceRevealStage === 0);
+    sentenceVocabCard.classList.toggle("is-hidden", sentenceRevealStage === 0);
 
     const vocabMap = new Map((sec.vocab || []).map((v) => [v.vid, v]));
     const refs = s.vocabRefs || [];
@@ -643,8 +654,69 @@
       })
       .join("");
 
-    prevBtn.disabled = sentenceIndex === 0;
-    nextBtn.disabled = sentenceIndex === sec.sentences.length - 1;
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+  }
+
+  function getNextSectionId(sectionId = currentSectionId) {
+    const ids = getSectionIds();
+    const index = ids.indexOf(sectionId);
+    if (index === -1 || ids.length === 0) return sectionId;
+    return ids[(index + 1) % ids.length];
+  }
+
+  function moveSentence(delta) {
+    const sec = getCurrentSection();
+    if (!sec?.sentences?.length) return;
+
+    if (delta > 0 && sentenceIndex >= sec.sentences.length - 1) {
+      const nextSectionId = getNextSectionId();
+      currentSectionId = nextSectionId;
+      sectionSelect.value = nextSectionId;
+      sentenceIndex = 0;
+      audioSentenceIndex = 0;
+      sentenceRevealStage = 0;
+      renderSectionOptions();
+      renderSentence();
+      renderVocabQuestion();
+      scheduleSave();
+      return;
+    }
+
+    if (delta < 0 && sentenceIndex <= 0) {
+      sentenceIndex = 0;
+      audioSentenceIndex = 0;
+      sentenceRevealStage = 0;
+      renderSentence();
+      scheduleSave();
+      return;
+    }
+
+    sentenceIndex = Math.max(0, sentenceIndex + delta);
+    audioSentenceIndex = sentenceIndex;
+    sentenceRevealStage = 0;
+    renderSentence();
+    scheduleSave();
+  }
+
+  function advanceSentenceReveal() {
+    if (sentenceRevealStage === 0) {
+      sentenceRevealStage = 1;
+      renderSentence();
+      scheduleSave();
+      return;
+    }
+    moveSentence(1);
+  }
+
+  function playSentenceEnglishSlow() {
+    const sec = getCurrentSection();
+    if (!sec?.sentences?.length) return;
+    const sentence = sec.sentences[sentenceIndex];
+    stopAudioPlayback();
+    playAudioFile(getAudioPath(sentence, "en-female-slow")).catch((error) => {
+      console.error(error);
+    });
   }
 
   function getSentenceVocab(sentence, sec) {
@@ -1246,6 +1318,7 @@
     currentSectionId = id;
 
     sentenceIndex = 0;
+    sentenceRevealStage = 0;
     audioSentenceIndex = 0;
     audioRevealStage = getDefaultAudioRevealStage(currentView);
     vocabIndex = 0;
@@ -1275,21 +1348,22 @@
 
   // sentence controls
   prevBtn.addEventListener("click", () => {
-    sentenceIndex -= 1;
-    renderSentence();
-    scheduleSave();
+    moveSentence(-1);
   });
 
   nextBtn.addEventListener("click", () => {
-    sentenceIndex += 1;
-    renderSentence();
-    scheduleSave();
+    moveSentence(1);
   });
 
   toggleJPBtn.addEventListener("click", () => {
-    showJP = !showJP;
-    renderSentence();
-    scheduleSave();
+    playSentenceEnglishSlow();
+  });
+
+  [sentenceCard, sentenceVocabCard].forEach((el) => {
+    el?.addEventListener("click", (event) => {
+      if (event.target.closest("button")) return;
+      advanceSentenceReveal();
+    });
   });
 
   // tabs
