@@ -158,6 +158,27 @@
     return v?.extraInfo || "追加情報は未登録です。";
   }
 
+  function renderChipExtraInfo(info) {
+    const text = String(info ?? "").trim();
+    if (!text) return `<div class="chip-extra-block"><div class="chip-extra-line">追加情報は未登録です。</div></div>`;
+
+    return text
+      .split(/\n{2,}/)
+      .map((block) => {
+        const lines = block
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean)
+          .map((line) => {
+            const className = /^【.+】$/.test(line) ? "chip-extra-line chip-extra-heading" : "chip-extra-line";
+            return `<div class="${className}">${escapeHtml(line)}</div>`;
+          })
+          .join("");
+        return `<div class="chip-extra-block">${lines}</div>`;
+      })
+      .join("");
+  }
+
   function renderSentenceVocabChip(v, isExpanded = false) {
     if (!v) {
       return `<div class="chip"><div class="chip-word">(not found)</div></div>`;
@@ -179,7 +200,7 @@
           ${ipa}
           ${meaning}
         </div>
-        <div class="chip-extra">${escapeHtml(getChipExtraInfo(v))}</div>
+        <div class="chip-extra">${renderChipExtraInfo(getChipExtraInfo(v))}</div>
         <div class="chip-check-cell">
           <label class="chip-check-row">
             <input type="checkbox" class="chip-check" data-vid="${escapeHtml(v.vid)}" ${state.checked ? "checked" : ""} />

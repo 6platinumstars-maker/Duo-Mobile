@@ -184,7 +184,7 @@ body {
   width: 100%;
   min-width: var(--chip-min-width);
   gap: 8px;
-  grid-template-columns: minmax(0, 1.2fr) minmax(160px, 0.9fr) auto;
+  grid-template-columns: fit-content(260px) minmax(0, 1fr) auto;
   align-items: start;
 }
 
@@ -200,6 +200,8 @@ body {
 
 .sentence-chip.is-checked .chip-meaning,
 .sentence-chip.is-checked .chip-extra,
+.sentence-chip.is-checked .chip-extra-heading,
+.sentence-chip.is-checked .chip-extra-line,
 .sentence-chip.is-checked .chip-check-row,
 .sentence-chip.is-checked .chip span {
   color: rgba(18, 24, 38, 0.88);
@@ -215,6 +217,10 @@ body {
   display: grid;
   gap: 6px;
   min-width: 0;
+}
+
+.chip-main {
+  align-content: start;
 }
 
 .chip-ipa,
@@ -238,6 +244,20 @@ body {
   border-left: 1px dashed var(--line);
   min-width: 0;
   padding-left: 10px;
+}
+
+.chip-extra-block + .chip-extra-block {
+  margin-top: 10px;
+}
+
+.chip-extra-line {
+  line-height: 1.55;
+}
+
+.chip-extra-heading {
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 2px;
 }
 
 .chip-check-cell {

@@ -62,22 +62,22 @@ window.SECTIONS["sec01"] = {
   ],
 
   vocab: [
-    { vid:"v0001", word:"respect", ipa:"/rɪspˈɛkt/", meaning:"尊重する／尊敬する", usedIn:["s001"], tags:["verb"] },
-    { vid:"v0002", word:"will", ipa:"/ˈwɪl/", meaning:"意志、遺言", usedIn:["s001"], tags:["noun"] },
-    { vid:"v0003", word:"individual", ipa:"/ˌɪndəvˈɪdʒəwəl/", meaning:"個人", usedIn:["s001"], tags:["noun"] },
+    { vid:"v0001", word:"respect", ipa:"/rɪspˈɛkt/", meaning:"尊重する／尊敬する", extraInfo:"【動】\n①（…に）注意を払う\npay no attention to… …を無視する\n\n②（…を）尊敬する\nlook up to…\nadmire…\nthink highly of…\nhold … in high regard [esteem]\nesteem…\nhonor…\n\n（↔ look down on…）\ndespise…\nscorn…\ndisdain… …を軽蔑する\n\n【語源】\nre（2度）＋spect（見る）→軽視しない\n\n【名】\n①（U）（for…）（…に対する）尊敬（の念）\nadmiration\nesteem\nregard\nhonor\n\n（↔ contempt / scorn 軽蔑）\n\n②（U）…を尊重する気持ち\nesteem\nregard\n\n③（C）（in…）（…の）点\npoint\nway\n\n④（P）（～s）（敬意を示す）挨拶（の言葉）\nregards\n\nrespectful 【形】\n態度などが敬意を示す\n（↔ rude 無礼な）\n\nrespectable 【形】\n①（世間的に）まともな\ndecent\n\n②（量などが）かなりの\ndecent\nconsiderable\n\nrespective 【形】\nそれぞれの…\nめいめいの…", usedIn:["s001"], tags:["verb"] },
+    { vid:"v0002", word:"will", ipa:"/ˈwɪl/", meaning:"意志、遺言", extraInfo:"【名】\n①（U）意志\ndetermination\n\n②（C）遺言\n\nwillpower 【名】\n①（U）意志力", usedIn:["s001"], tags:["noun"] },
+    { vid:"v0003", word:"individual", ipa:"/ˌɪndəvˈɪdʒəwəl/", meaning:"個人", extraInfo:"【名】\n①（C）個人\nperson\nhuman (being)\n\n【それ以上分割（divid）できないもの】\n\n【形】\n①個人の…\npersonal\n\n②個々の…\nseparate\n\n③個性的な、独特な\nunique\ndistinctive\n\nindividuality 【名】\n①（U）個性", usedIn:["s001"], tags:["noun"] },
 
-    { vid:"v0004", word:"Take it easy", ipa:"/ˈteɪk ˈɪt ˈizi/", meaning:"気楽にいこう／落ち着け", usedIn:["s002"],
+    { vid:"v0004", word:"Take it easy", ipa:"/ˈteɪk ˈɪt ˈizi/", meaning:"気楽にいこう／落ち着け", extraInfo:"【定】\n①気楽にやれ\n\n②（よくよくするな）\n\n③（別れの挨拶で）じゃあね", usedIn:["s002"],
       tags:["verb","verb_take","pattern_take_it_easy"] },
-    { vid:"v0005", word:"assure A that ...", ipa:"/əʃˈʊr A ˈðæt .../", meaning:"Aに〜だと保証する", usedIn:["s002"],
+    { vid:"v0005", word:"assure A that ...", ipa:"/əʃˈʊr A ˈðæt .../", meaning:"Aに〜だと保証する", extraInfo:"【動】\nA（人）に…を確約する［保証する］\npromise A (that) ～\nguarantee (that) ～\n\n【普通、目的語の人（A）は「疑念や不安を持っているかもしれない人」】\n\nassure 【動】\n①（…物事）を確実にする\nmake ... sure\n\nassurance 【名】\n①（U）確約\nguarantee\npromise", usedIn:["s002"],
       tags:["verb","pattern_A_that_clause"] },
-    { vid:"v0006", word:"turn out", ipa:"/ˈtɝn ˈaʊt/", meaning:"結果として〜になる", usedIn:["s002"],
+    { vid:"v0006", word:"turn out", ipa:"/ˈtɝn ˈaʊt/", meaning:"結果として〜になる", extraInfo:"【動】\n（結果的に）…という結果になる\n\nturn out 【動】\n（人々が）来場する［集まる］\ngather\n\nturn ... out 【動】\n①（明かりなどを）消す\nturn [switch] ... off\n\n（↔ put ... on / turn [switch] ... on …をつける）\n\n②（工場などが）…（製品）を作り出す\nproduce\nmake", usedIn:["s002"],
       tags:["verb"] },
 
-    { vid:"v0007", word:"let go of / let ... go", ipa:"/ˈlɛt ˈɡoʊ ˈʌv / ˈlɛt ... ˈɡoʊ/", meaning:"手放す／解放する", usedIn:["s003"],
+    { vid:"v0007", word:"let go of / let ... go", ipa:"/ˈlɛt ˈɡoʊ ˈʌv / ˈlɛt ... ˈɡoʊ/", meaning:"手放す／解放する", extraInfo:"【動】\n…を離す、…を捨てる\nrelease\nset ... free\n\n（↔ hold... / grab... / grasp... / catch... / take [get] hold of... …をつかむ）", usedIn:["s003"],
       tags:["verb","verb_let","pattern_let_X_go"] },
-    { vid:"v0008", word:"negative", ipa:"/ˈnɛɡətɪv/", meaning:"否定的な／消極的な", usedIn:["s003"], tags:["adj"] },
-    { vid:"v0009", word:"outlook", ipa:"/ˈaʊtlˌʊk/", meaning:"見方／考え方", usedIn:["s003"], tags:["noun"] },
-    { vid:"v0010", word:"maintain", ipa:"/meɪntˈeɪn/", meaning:"維持する／保つ", usedIn:["s003"], tags:["verb"] },
+    { vid:"v0008", word:"negative", ipa:"/ˈnɛɡətɪv/", meaning:"否定的な／消極的な", extraInfo:"【形】\n①悲観的な、消極的な\npessimistic\n\n（↔ positive 前向きな）\n\n②（文法上の）否定の\n（↔ affirmative 肯定の）\n\n③（医療）陰性の\n（↔ positive）\n\n④（マイナスの）性質の\n\n【名】\n①（C）（写真の）ネガ\n\n②否定\n（↔ affirmative 肯定）", usedIn:["s003"], tags:["adj"] },
+    { vid:"v0009", word:"outlook", ipa:"/ˈaʊtlˌʊk/", meaning:"見方／考え方", extraInfo:"【名】\n①（for…）（…に対する）見方【態度】、観\nattitude\nperspective\n\n②（for…）（…に対する）見通し、展望\nprospect\nexpectation", usedIn:["s003"], tags:["noun"] },
+    { vid:"v0010", word:"maintain", ipa:"/meɪntˈeɪn/", meaning:"維持する／保つ", extraInfo:"【動】\n①（…［関係］を）維持する\nkeep ... up\ncarry on...\npreserve...\nsustain...\n\n②（…［機械など］を）手入れ［整備］する\nlook after...\ntake care of...\n\n③…と強く主張する\ninsist...\n\nmaintenance 【名】\n①（U）維持、保存", usedIn:["s003"], tags:["verb"] },
     { vid:"v0011", word:"positive", ipa:"/ˈpɑzətɪv/", meaning:"前向きな／積極的な", usedIn:["s003"], tags:["adj"] },
     { vid:"v0012", word:"attitude", ipa:"/ˈætətˌud/", meaning:"態度／姿勢", usedIn:["s003"], tags:["noun"] },
 
