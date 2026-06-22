@@ -173,12 +173,16 @@ body {
 }
 
 .sentence-chip {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
   text-align: left;
   cursor: pointer;
 }
 
 .sentence-chip-expanded {
+  width: 100%;
+  min-width: var(--chip-min-width);
   gap: 8px;
 }
 
