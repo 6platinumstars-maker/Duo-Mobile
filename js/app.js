@@ -174,14 +174,18 @@
 
     return `
       <button type="button" class="chip sentence-chip sentence-chip-expanded${checkedClass}" data-vid="${escapeHtml(v.vid)}">
-        <div class="chip-word">${escapeHtml(v.word)}</div>
-        ${ipa}
-        ${meaning}
+        <div class="chip-main">
+          <div class="chip-word">${escapeHtml(v.word)}</div>
+          ${ipa}
+          ${meaning}
+        </div>
         <div class="chip-extra">${escapeHtml(getChipExtraInfo(v))}</div>
-        <label class="chip-check-row">
-          <input type="checkbox" class="chip-check" data-vid="${escapeHtml(v.vid)}" ${state.checked ? "checked" : ""} />
-          <span>チェック</span>
-        </label>
+        <div class="chip-check-cell">
+          <label class="chip-check-row">
+            <input type="checkbox" class="chip-check" data-vid="${escapeHtml(v.vid)}" ${state.checked ? "checked" : ""} />
+            <span>チェック</span>
+          </label>
+        </div>
       </button>
     `;
   }
@@ -729,7 +733,12 @@
 
     const vocabMap = new Map((sec.vocab || []).map((v) => [v.vid, v]));
     const refs = s.vocabRefs || [];
-    vocabChipsEl.innerHTML = refs
+    const orderedRefs = refs.slice().sort((a, b) => {
+      const aExpanded = expandedSentenceChipIds.has(a) ? 1 : 0;
+      const bExpanded = expandedSentenceChipIds.has(b) ? 1 : 0;
+      return bExpanded - aExpanded;
+    });
+    vocabChipsEl.innerHTML = orderedRefs
       .map((vid) => {
         const v = vocabMap.get(vid);
         if (!v) return `<div class="chip"><div class="chip-word">${escapeHtml(vid)}</div><div class="chip-meaning">(not found)</div></div>`;
