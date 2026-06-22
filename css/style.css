@@ -172,6 +172,33 @@ body {
   min-width: var(--chip-min-width);
 }
 
+.sentence-chip {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sentence-chip-expanded {
+  gap: 8px;
+}
+
+.sentence-chip.is-checked {
+  background: var(--text);
+  color: var(--card);
+  border-color: var(--text);
+}
+
+.sentence-chip.is-checked .chip-ipa {
+  color: #1f5e9a;
+}
+
+.sentence-chip.is-checked .chip-meaning,
+.sentence-chip.is-checked .chip-extra,
+.sentence-chip.is-checked .chip-check-row,
+.sentence-chip.is-checked .chip span {
+  color: rgba(18, 24, 38, 0.88);
+}
+
 .chip-word {
   font-weight: 650;
   line-height: 1.35;
@@ -190,6 +217,26 @@ body {
 .chip span {
   color: var(--muted);
   line-height: 1.4;
+}
+
+.chip-extra {
+  color: var(--muted);
+  line-height: 1.5;
+  border-top: 1px dashed var(--line);
+  padding-top: 6px;
+}
+
+.chip-check-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.95em;
+}
+
+.chip-check {
+  width: 18px;
+  height: 18px;
 }
 
 .muted { color: var(--muted); margin: 0; }

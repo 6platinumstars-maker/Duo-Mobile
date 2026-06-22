@@ -67,6 +67,7 @@
   // =========================
   const STORAGE_KEY = "duoMobile.v1";
   const STATS_KEY = "duoMobile.v1.stats";
+  const CHIP_STATE_KEY = "duoMobile.v1.chips";
   const AUDIO_ASSET_VERSION = "20260620-1";
 
   // --- stats state (永続) ---
@@ -74,6 +75,9 @@
   let stats = Object.create(null);
   let statsDirty = false;
   let statsSaveTimer = null;
+  let chipState = Object.create(null);
+  let chipStateDirty = false;
+  let chipStateSaveTimer = null;
 
   // --- state save timer ---
   let saveTimer = null;
@@ -92,6 +96,15 @@
     statsSaveTimer = setTimeout(() => {
       statsSaveTimer = null;
       saveStats();
+    }, 200);
+  }
+
+  function scheduleSaveChipState() {
+    chipStateDirty = true;
+    if (chipStateSaveTimer) clearTimeout(chipStateSaveTimer);
+    chipStateSaveTimer = setTimeout(() => {
+      chipStateSaveTimer = null;
+      saveChipState();
     }, 200);
   }
 
@@ -137,6 +150,42 @@
     return `<div class="chip"><div class="chip-word">${escapeHtml(v.word)}</div>${ipa}${meaning}</div>`;
   }
 
+  function getChipState(vid) {
+    return chipState[vid] || { checked: false };
+  }
+
+  function getChipExtraInfo(v) {
+    return v?.extraInfo || "追加情報は未登録です。";
+  }
+
+  function renderSentenceVocabChip(v, isExpanded = false) {
+    if (!v) {
+      return `<div class="chip"><div class="chip-word">(not found)</div></div>`;
+    }
+
+    const state = getChipState(v.vid);
+    const checkedClass = state.checked ? " is-checked" : "";
+    const ipa = v.ipa ? `<div class="chip-ipa">${escapeHtml(v.ipa)}</div>` : "";
+    const meaning = v.meaning ? `<div class="chip-meaning">${escapeHtml(v.meaning)}</div>` : "";
+
+    if (!isExpanded) {
+      return `<button type="button" class="chip sentence-chip${checkedClass}" data-vid="${escapeHtml(v.vid)}"><div class="chip-word">${escapeHtml(v.word)}</div>${ipa}${meaning}</button>`;
+    }
+
+    return `
+      <button type="button" class="chip sentence-chip sentence-chip-expanded${checkedClass}" data-vid="${escapeHtml(v.vid)}">
+        <div class="chip-word">${escapeHtml(v.word)}</div>
+        ${ipa}
+        ${meaning}
+        <div class="chip-extra">${escapeHtml(getChipExtraInfo(v))}</div>
+        <label class="chip-check-row">
+          <input type="checkbox" class="chip-check" data-vid="${escapeHtml(v.vid)}" ${state.checked ? "checked" : ""} />
+          <span>チェック</span>
+        </label>
+      </button>
+    `;
+  }
+
   function renderVocabAnswerMeta(v) {
     vocabAnswerEl.textContent = v.word || "";
     vocabIpaEl.textContent = v.ipa || "";
@@ -175,6 +224,27 @@
     stats = out;
   }
 
+  function loadChipState() {
+    const raw = localStorage.getItem(CHIP_STATE_KEY);
+    if (!raw) {
+      chipState = Object.create(null);
+      return;
+    }
+
+    const obj = safeParseJSON(raw);
+    if (!obj || typeof obj !== "object") {
+      chipState = Object.create(null);
+      return;
+    }
+
+    const out = Object.create(null);
+    for (const [k, v] of Object.entries(obj)) {
+      if (!v || typeof v !== "object") continue;
+      out[k] = { checked: !!v.checked };
+    }
+    chipState = out;
+  }
+
   function saveStats() {
     if (!statsDirty) return;
     statsDirty = false;
@@ -182,6 +252,16 @@
       localStorage.setItem(STATS_KEY, JSON.stringify(stats));
     } catch (e) {
       console.warn("localStorage stats save failed:", e);
+    }
+  }
+
+  function saveChipState() {
+    if (!chipStateDirty) return;
+    chipStateDirty = false;
+    try {
+      localStorage.setItem(CHIP_STATE_KEY, JSON.stringify(chipState));
+    } catch (e) {
+      console.warn("localStorage chip state save failed:", e);
     }
   }
 
@@ -318,6 +398,7 @@
   let currentView = "sentences";
   let sentenceIndex = 0;
   let sentenceRevealStage = 0;
+  let expandedSentenceChipIds = new Set();
   let audioSentenceIndex = 0;
   let showJP = true;
   let audioRevealStage = 0;
@@ -522,6 +603,7 @@
     if (resetSentenceIndices) {
       sentenceIndex = 0;
       sentenceRevealStage = 0;
+      expandedSentenceChipIds = new Set();
       audioSentenceIndex = 0;
     }
     renderSectionOptions();
@@ -631,6 +713,7 @@
       japaneseEl.textContent = "";
       sentenceVocabCard.classList.add("is-hidden");
       vocabChipsEl.innerHTML = "";
+      expandedSentenceChipIds = new Set();
       return;
     }
 
@@ -650,7 +733,7 @@
       .map((vid) => {
         const v = vocabMap.get(vid);
         if (!v) return `<div class="chip"><div class="chip-word">${escapeHtml(vid)}</div><div class="chip-meaning">(not found)</div></div>`;
-        return renderVocabChip(v);
+        return renderSentenceVocabChip(v, expandedSentenceChipIds.has(v.vid));
       })
       .join("");
 
@@ -676,6 +759,7 @@
       sentenceIndex = 0;
       audioSentenceIndex = 0;
       sentenceRevealStage = 0;
+      expandedSentenceChipIds = new Set();
       renderSectionOptions();
       renderSentence();
       renderVocabQuestion();
@@ -687,6 +771,7 @@
       sentenceIndex = 0;
       audioSentenceIndex = 0;
       sentenceRevealStage = 0;
+      expandedSentenceChipIds = new Set();
       renderSentence();
       scheduleSave();
       return;
@@ -695,6 +780,7 @@
     sentenceIndex = Math.max(0, sentenceIndex + delta);
     audioSentenceIndex = sentenceIndex;
     sentenceRevealStage = 0;
+    expandedSentenceChipIds = new Set();
     renderSentence();
     scheduleSave();
   }
@@ -1319,6 +1405,7 @@
 
     sentenceIndex = 0;
     sentenceRevealStage = 0;
+    expandedSentenceChipIds = new Set();
     audioSentenceIndex = 0;
     audioRevealStage = getDefaultAudioRevealStage(currentView);
     vocabIndex = 0;
@@ -1364,6 +1451,28 @@
       if (event.target.closest("button")) return;
       advanceSentenceReveal();
     });
+  });
+
+  vocabChipsEl.addEventListener("click", (event) => {
+    const checkbox = event.target.closest(".chip-check");
+    if (checkbox) {
+      event.stopPropagation();
+      const vid = checkbox.dataset.vid;
+      if (!vid) return;
+      chipState[vid] = { checked: checkbox.checked };
+      scheduleSaveChipState();
+      renderSentence();
+      return;
+    }
+
+    const chip = event.target.closest(".sentence-chip");
+    if (!chip) return;
+    event.stopPropagation();
+    const vid = chip.dataset.vid;
+    if (!vid) return;
+    if (expandedSentenceChipIds.has(vid)) expandedSentenceChipIds.delete(vid);
+    else expandedSentenceChipIds.add(vid);
+    renderSentence();
   });
 
   // tabs
@@ -1474,6 +1583,7 @@
 
   // 0) stats を読む（先に）
   loadStats();
+  loadChipState();
 
   // 1) state を読む
   loadState();
@@ -1488,4 +1598,5 @@
   // 3) 初回も保存（互換/壊れ対策）
   scheduleSave();
   scheduleSaveStats();
+  scheduleSaveChipState();
 })();
