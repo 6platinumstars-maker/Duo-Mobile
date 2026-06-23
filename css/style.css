@@ -195,7 +195,11 @@ body {
 }
 
 .sentence-chip.is-checked .chip-ipa {
-  color: #1f5e9a;
+  color: #0b5cad;
+}
+
+.sentence-chip.is-checked span.inline-ipa {
+  color: #0b5cad;
 }
 
 .sentence-chip.is-checked .chip-meaning,
@@ -228,7 +232,9 @@ body {
   font-size: var(--japanese-size);
   line-height: 1.4;
   color: #8dc3ff;
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: "Segoe UI", "Arial Unicode MS", system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   word-break: break-word;
 }
 
@@ -254,6 +260,13 @@ body {
   line-height: 1.55;
 }
 
+.chip span.inline-ipa {
+  color: #8dc3ff;
+  font-family: "Segoe UI", "Arial Unicode MS", system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
 .chip-extra-heading {
   color: var(--text);
   font-weight: 700;
@@ -277,6 +290,23 @@ body {
 .chip-check {
   width: 18px;
   height: 18px;
+}
+
+.vocab-review-card {
+  width: 100%;
+  cursor: pointer;
+}
+
+.vocab-empty {
+  padding: 10px 0 2px;
+  color: var(--muted);
+}
+
+.vocab-translation {
+  color: var(--muted);
+  font-size: var(--japanese-size);
+  line-height: 1.6;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 @media (max-width: 640px) {

@@ -51,6 +51,8 @@
   const vocabNextBtn = $("vocabNextBtn");
   const vocabRevealBtn = $("vocabRevealBtn");
   const vocabAnswerBox = $("vocabAnswerBox");
+  const vocabPromptTitleEl = $("vocabPromptTitle");
+  const vocabAnswerTitleEl = $("vocabAnswerTitle");
   const vocabAnswerEl = $("vocabAnswer");
   const vocabIpaEl = $("vocabIpa");
   const vocabExtraEl = $("vocabExtra");
@@ -78,6 +80,8 @@
   let chipState = Object.create(null);
   let chipStateDirty = false;
   let chipStateSaveTimer = null;
+  let checkedVocabReviewIndex = 0;
+  let checkedVocabRevealStage = 0;
 
   // --- state save timer ---
   let saveTimer = null;
@@ -154,13 +158,29 @@
     return chipState[vid] || { checked: false };
   }
 
+  function setChipChecked(vid, checked) {
+    if (!vid) return;
+    chipState[vid] = { checked: !!checked };
+    scheduleSaveChipState();
+  }
+
   function getChipExtraInfo(v) {
     return v?.extraInfo || "追加情報は未登録です。";
+  }
+
+  function getVocabIdNumber(vid) {
+    const match = /^v(\d+)$/.exec(vid || "");
+    return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
   }
 
   function renderChipExtraInfo(info) {
     const text = String(info ?? "").trim();
     if (!text) return `<div class="chip-extra-block"><div class="chip-extra-line">追加情報は未登録です。</div></div>`;
+
+    function formatExtraInfoLine(line) {
+      const escaped = escapeHtml(line);
+      return escaped.replace(/\/[^/\n]+\/+/g, (match) => `<span class="inline-ipa">${match}</span>`);
+    }
 
     return text
       .split(/\n{2,}/)
@@ -171,7 +191,7 @@
           .filter(Boolean)
           .map((line) => {
             const className = /^【.+】$/.test(line) ? "chip-extra-line chip-extra-heading" : "chip-extra-line";
-            return `<div class="${className}">${escapeHtml(line)}</div>`;
+            return `<div class="${className}">${formatExtraInfoLine(line)}</div>`;
           })
           .join("");
         return `<div class="chip-extra-block">${lines}</div>`;
@@ -209,6 +229,72 @@
         </div>
       </button>
     `;
+  }
+
+  function findSentenceBySid(sid, preferredSectionId = null) {
+    const searchOrder = preferredSectionId
+      ? [preferredSectionId, ...getSectionIds().filter((id) => id !== preferredSectionId)]
+      : getSectionIds();
+
+    for (const sectionId of searchOrder) {
+      const sec = window.SECTIONS?.[sectionId];
+      const sentence = (sec?.sentences || []).find((item) => item.sid === sid);
+      if (sentence) {
+        return { sectionId, sentence };
+      }
+    }
+    return null;
+  }
+
+  function getCheckedVocabItems() {
+    const items = [];
+
+    getSectionIds().forEach((sectionId) => {
+      const sec = window.SECTIONS?.[sectionId];
+      if (!sec?.vocab?.length) return;
+
+      sec.vocab.forEach((vocab) => {
+        if (!getChipState(vocab.vid).checked) return;
+
+        const sentenceRef = Array.isArray(vocab.usedIn) ? vocab.usedIn[0] : null;
+        const sentenceMatch = sentenceRef ? findSentenceBySid(sentenceRef, sectionId) : null;
+
+        items.push({
+          sectionId,
+          vocab,
+          sentence: sentenceMatch?.sentence || null,
+        });
+      });
+    });
+
+    items.sort((a, b) => {
+      const byVid = getVocabIdNumber(a.vocab?.vid) - getVocabIdNumber(b.vocab?.vid);
+      if (byVid !== 0) return byVid;
+      return getSectionNumber(a.sectionId) - getSectionNumber(b.sectionId);
+    });
+
+    return items;
+  }
+
+  function getCurrentCheckedVocabItem() {
+    const items = getCheckedVocabItems();
+    if (!items.length) {
+      checkedVocabReviewIndex = 0;
+      checkedVocabRevealStage = 0;
+      return { items, item: null };
+    }
+
+    checkedVocabReviewIndex = clampInt(
+      checkedVocabReviewIndex,
+      0,
+      Math.max(0, items.length - 1),
+      0
+    );
+
+    return {
+      items,
+      item: items[checkedVocabReviewIndex],
+    };
   }
 
   function renderVocabAnswerMeta(v) {
@@ -323,6 +409,8 @@
       audioSentenceIndex,
       showJP,
       mcqMode,
+      checkedVocabReviewIndex,
+      checkedVocabRevealStage,
       vocab: {
         sectionId: currentSectionId,
         queue: Array.isArray(queue) ? queue.slice() : [],
@@ -385,6 +473,8 @@
     audioSentenceIndex = isFiniteNumber(state.audioSentenceIndex)
       ? Math.trunc(state.audioSentenceIndex)
       : audioSentenceIndex;
+    checkedVocabReviewIndex = clampInt(state.checkedVocabReviewIndex, 0, 10000, 0);
+    checkedVocabRevealStage = clampInt(state.checkedVocabRevealStage, 0, 1, 0);
 
     const sec = window.SECTIONS[currentSectionId];
     const list = sec?.vocab || [];
@@ -633,7 +723,7 @@
     }
     renderSectionOptions();
     renderSentence();
-    renderVocabQuestion();
+    renderCheckedVocabReview();
   }
 
   function applyAudioBatchSection(sectionId, sentencePos = 0) {
@@ -792,7 +882,9 @@
       expandedSentenceChipIds = new Set();
       renderSectionOptions();
       renderSentence();
-      renderVocabQuestion();
+      checkedVocabReviewIndex = 0;
+      checkedVocabRevealStage = 0;
+      renderCheckedVocabReview();
       scheduleSave();
       return;
     }
@@ -1064,6 +1156,102 @@
     vocabAnswerBox.style.display = "block";
   }
 
+  function renderCheckedVocabCard(item) {
+    const vocab = item?.vocab;
+    if (!vocab) return "";
+
+    const state = getChipState(vocab.vid);
+    const ipa = vocab.ipa ? `<div class="chip-ipa">${escapeHtml(vocab.ipa)}</div>` : "";
+    const meaning = vocab.meaning ? `<div class="chip-meaning">${escapeHtml(vocab.meaning)}</div>` : "";
+
+    return `
+      <div class="chip sentence-chip sentence-chip-expanded vocab-review-card${state.checked ? " is-checked" : ""}" data-vid="${escapeHtml(vocab.vid)}">
+        <div class="chip-main">
+          <div class="chip-word">${escapeHtml(vocab.word)}</div>
+          ${ipa}
+          ${meaning}
+        </div>
+        <div class="chip-extra">${renderChipExtraInfo(getChipExtraInfo(vocab))}</div>
+        <div class="chip-check-cell">
+          <label class="chip-check-row">
+            <input type="checkbox" class="chip-check vocab-review-check" data-vid="${escapeHtml(vocab.vid)}" ${state.checked ? "checked" : ""} />
+            <span>チェック</span>
+          </label>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderCheckedVocabReview() {
+    const { items, item } = getCurrentCheckedVocabItem();
+
+    if (vocabPromptTitleEl) vocabPromptTitleEl.textContent = "チェック済み単語";
+    if (vocabAnswerTitleEl) {
+      vocabAnswerTitleEl.textContent = checkedVocabRevealStage === 0 ? "例文" : "例文と訳";
+    }
+
+    if (vocabPrevBtn?.parentElement) vocabPrevBtn.parentElement.style.display = "none";
+    if (vocabInputEl?.parentElement) vocabInputEl.parentElement.style.display = "none";
+    if (mcqBox) mcqBox.style.display = "none";
+
+    if (!item) {
+      vocabIdEl.textContent = "—";
+      vocabProgressEl.textContent = "0 / 0";
+      vocabMeaningEl.innerHTML = `<div class="vocab-empty">チェックされた単語はありません</div>`;
+      vocabFeedbackEl.textContent = "";
+      vocabAnswerEl.textContent = "";
+      vocabIpaEl.textContent = "";
+      vocabExtraEl.textContent = "";
+      vocabIpaEl.classList.add("vocab-translation");
+      hideAnswerBox();
+      scheduleSave();
+      return;
+    }
+
+    vocabIdEl.textContent = item.vocab.vid;
+    vocabProgressEl.textContent = `${checkedVocabReviewIndex + 1} / ${items.length}`;
+    vocabMeaningEl.innerHTML = renderCheckedVocabCard(item);
+    vocabFeedbackEl.textContent = checkedVocabRevealStage === 0
+      ? "タップで例文を表示します。"
+      : "もう一度タップするとチェックを外して次の単語へ進みます。";
+
+    if (checkedVocabRevealStage === 0) {
+      vocabAnswerEl.textContent = "";
+      vocabIpaEl.textContent = "";
+      vocabExtraEl.textContent = "";
+      vocabIpaEl.classList.add("vocab-translation");
+      hideAnswerBox();
+      scheduleSave();
+      return;
+    }
+
+    const sentence = item.sentence;
+    showAnswerBox();
+    vocabAnswerEl.textContent = sentence?.english || "この単語の例文は未登録です。";
+    vocabIpaEl.classList.add("vocab-translation");
+    vocabIpaEl.textContent = sentence?.japanese || "";
+    vocabExtraEl.textContent = sentence ? `${item.sectionId} / ${sentence.sid}` : item.sectionId;
+    scheduleSave();
+  }
+
+  function advanceCheckedVocabReview() {
+    const { item } = getCurrentCheckedVocabItem();
+    if (!item) {
+      renderCheckedVocabReview();
+      return;
+    }
+
+    if (checkedVocabRevealStage === 0) {
+      checkedVocabRevealStage = 1;
+      renderCheckedVocabReview();
+      return;
+    }
+
+    setChipChecked(item.vocab.vid, false);
+    checkedVocabRevealStage = 0;
+    renderCheckedVocabReview();
+  }
+
   // ---- Vocab loop controls ----
   function initVocabCycle(list) {
     queue = list.map((_, i) => i);
@@ -1255,6 +1443,7 @@
     clearAutoTimer();
 
     if (!list.length) {
+      vocabIpaEl.classList.remove("vocab-translation");
       vocabIdEl.textContent = "—";
       vocabProgressEl.textContent = "0 / 0";
       vocabMeaningEl.textContent = "No vocab.";
@@ -1287,6 +1476,7 @@
     const v = list[vocabIndex];
 
     revealed = false;
+    vocabIpaEl.classList.remove("vocab-translation");
     hideAnswerBox();
 
     vocabIdEl.textContent = v.vid;
@@ -1410,8 +1600,7 @@
     viewAudio.classList.toggle("is-hidden", !isAudio);
 
     if (isVocab) {
-      const sec = getCurrentSection();
-      if (sec?.vocab?.length && !mcqMode) focusVocabInput();
+      renderCheckedVocabReview();
     }
 
     if (isAudio) {
@@ -1443,6 +1632,8 @@
     queuePos = 0;
     wrongSet = new Set();
     roundNo = 1;
+    checkedVocabReviewIndex = 0;
+    checkedVocabRevealStage = 0;
 
     unlockVocabInput();
     clearAutoTimer();
@@ -1450,7 +1641,7 @@
     isAudioBatchMenuOpen = false;
 
     renderSentence();
-    renderVocabQuestion();
+    renderCheckedVocabReview();
     if (currentView === "enAudio" || currentView === "jpAudio") {
       shouldAutoStartAudio = true;
       renderAudioView();
@@ -1489,9 +1680,9 @@
       event.stopPropagation();
       const vid = checkbox.dataset.vid;
       if (!vid) return;
-      chipState[vid] = { checked: checkbox.checked };
-      scheduleSaveChipState();
+      setChipChecked(vid, checkbox.checked);
       renderSentence();
+      if (currentView === "vocab") renderCheckedVocabReview();
       return;
     }
 
@@ -1510,6 +1701,30 @@
   tabVocab.addEventListener("click", () => setView("vocab"));
   tabEnAudio.addEventListener("click", () => setView("enAudio"));
   tabJpAudio.addEventListener("click", () => setView("jpAudio"));
+
+  viewVocab.addEventListener("click", (event) => {
+    if (currentView !== "vocab") return;
+    if (event.target.closest(".chip-check-row")) return;
+    if (event.target.closest(".chip-check")) return;
+    if (!event.target.closest(".chip") && !event.target.closest("#vocabAnswerBox")) return;
+    advanceCheckedVocabReview();
+  });
+
+  viewVocab.addEventListener("change", (event) => {
+    const checkbox = event.target.closest(".vocab-review-check");
+    if (!checkbox) return;
+
+    const vid = checkbox.dataset.vid;
+    if (!vid) return;
+
+    const currentVid = getCurrentCheckedVocabItem().item?.vocab?.vid || null;
+    setChipChecked(vid, checkbox.checked);
+
+    if (currentVid === vid && !checkbox.checked) {
+      checkedVocabRevealStage = 0;
+    }
+    renderCheckedVocabReview();
+  });
 
   audioRevealAreaEl.addEventListener("click", () => {
     if (currentView === "enAudio") {
@@ -1551,18 +1766,30 @@
 
   // vocab controls (queuePosで移動)
   vocabPrevBtn.addEventListener("click", () => {
+    if (currentView === "vocab") {
+      advanceCheckedVocabReview();
+      return;
+    }
     queuePos -= 1;
     renderVocabQuestion();
     scheduleSave();
   });
 
   vocabNextBtn.addEventListener("click", () => {
+    if (currentView === "vocab") {
+      advanceCheckedVocabReview();
+      return;
+    }
     queuePos += 1;
     renderVocabQuestion();
     scheduleSave();
   });
 
   vocabRevealBtn.addEventListener("click", () => {
+    if (currentView === "vocab") {
+      advanceCheckedVocabReview();
+      return;
+    }
     revealVocabAnswer();
   });
 
@@ -1621,7 +1848,7 @@
   // 2) UI描画
   renderSectionOptions();
   renderSentence();
-  renderVocabQuestion();
+  renderCheckedVocabReview();
   renderAudioView();
   setView(currentView);
 
