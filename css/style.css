@@ -297,6 +297,14 @@ body {
   cursor: pointer;
 }
 
+.vocab-bulk-actions {
+  margin-top: 12px;
+}
+
+.vocab-bulk-actions .btn {
+  flex: 1 1 220px;
+}
+
 .vocab-empty {
   padding: 10px 0 2px;
   color: var(--muted);

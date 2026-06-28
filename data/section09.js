@@ -91,20 +91,20 @@ window.SECTIONS["sec09"] = {
   ],
 
   vocab: [
-    { vid: "v0482", word:"be amazed to see", ipa:"/ˈbi əmˈeɪzd ˈtu ˈsi/", meaning: "～を見て驚く", usedIn: ["s101"], tags: ["verb"] },
-    { vid: "v0483", word:"utility", ipa:"/jutˈɪləti/", meaning: "公共料金", usedIn: ["s101"], tags: ["noun"] },
-    { vid: "v0484", word:"bill", ipa:"/ˈbɪl/", meaning: "請求書", usedIn: ["s101"], tags: ["noun"] },
-    { vid: "v0485", word:"come to", ipa:"/ˈkʌm ˈtu/", meaning: "（金額が）～に達する", usedIn: ["s101"], tags: ["verb"] },
+    { vid: "v0482", word:"be amazed to see", ipa:"/ˈbi əmˈeɪzd ˈtu ˈsi/", meaning: "～を見て驚く", extraInfo:"【動】\n①…を【とても】驚かす\nsurprise ... very much\nastound...\nastonish...\nstartle...\ntake ... by surprise\ncome as a surprise to...\n【amuse... /əmjˈuz/（…を楽しませる）】\n\nbe amazed to hear [see, etc.] ... 【動】\n①…を聞いて【見て】（とても）驚く\nbe surprised [astonished/astounded/staggered] to hear [see, etc.] ...\n\nbe amazed at... 【動】\n①…に【とても】驚く\nbe surprised [astonished/astounded/staggered] at...\nbe taken aback by...\n【節を続けるなら be amazed that 〜】\n\namazing /əmˈeɪzɪŋ/ 【形】\n①（とても）驚くべき、（とても）すばらしい\nastonishing\nastounding\nincredible\nunbelievable\nstaggering\nstartling\n\namazement /əmˈeɪzmənt/ 【名】\n①【U】大きな驚き、仰天\ngreat surprise\nastonishment\n【amusement（娯楽、楽しい気分）】", usedIn: ["s101"], tags: ["verb"] },
+    { vid: "v0483", word:"utility", ipa:"/jutˈɪləti/", meaning: "公共料金", extraInfo:"【名】\n①【C】〈公共サービスの〉電気\nelectricity\nガス\ngas\n上下水道\nsewage\n②【C】公益企業としての】電力・ガス・（上下）水道】会社\npublic utility\n③【U】実用性、有用性\nusefulness\n【生活を便利に豊かにするもの】", usedIn: ["s101"], tags: ["noun"] },
+    { vid: "v0484", word:"bill", ipa:"/ˈbɪl/", meaning: "請求書", extraInfo:"【名】\n①【C】請求書\n【米国では飲食店の伝票には check を用いる】\n②法案\n③【米】紙幣\n【英】note\n【英】banknote\n④【鳥】くちばし、ポスター\nposter\n【重要な内容を示す【伝える】紙】\n\n【動】\n①…（人）に【支払を】請求する", usedIn: ["s101"], tags: ["noun"] },
+    { vid: "v0485", word:"come to", ipa:"/ˈkʌm ˈtu/", meaning: "（金額が）～に達する", extraInfo:"【動】\n①（考えなどが）…（人）に浮かぶ\noccur to...\n②（合計が）…になる\namount to...\nreach...\nadd up to...\n③…に着く\narrive at...\nget to...\nreach...\n【come to → No.581】", usedIn: ["s101"], tags: ["verb"] },
 
-    { vid: "v0486", word:"turn … off", ipa:"/ˈtɝn ... ˈɔf/", meaning: "～を止める・消す", usedIn: ["s102"], tags: ["verb"] },
-    { vid: "v0487", word:"faucet", ipa:"/ˈfɔsət/", meaning: "蛇口", usedIn: ["s102"], tags: ["noun"] },
-    { vid: "v0488", word:"yell", ipa:"/ˈjɛl/", meaning: "叫ぶ", usedIn: ["s102"], tags: ["verb"] },
-    { vid: "v0489", word:"in a rage", ipa:"/ɪn ə ˈreɪdʒ/", meaning: "怒って、激怒して", usedIn: ["s102"], tags: ["adv"] },
+    { vid: "v0486", word:"turn … off", ipa:"/ˈtɝn ... ˈɔf/", meaning: "～を止める・消す", extraInfo:"【動】\n①…（電気など）を消す\nput ... out\nswitch ... off\n（↔ turn ... on / put ... on / switch ... on ...をつける）、…（水栓）を止める\n②…（人）をうんざりさせる", usedIn: ["s102"], tags: ["verb"] },
+    { vid: "v0487", word:"faucet", ipa:"/ˈfɔsət/", meaning: "蛇口", extraInfo:"【名】\n①【米】水道の栓、蛇口\n【英】tap", usedIn: ["s102"], tags: ["noun"] },
+    { vid: "v0488", word:"yell", ipa:"/ˈjɛl/", meaning: "叫ぶ", extraInfo:"【動】\n①【興奮して】…と叫ぶ\nshout (...)\nexclaim (...)\ncry out (...)\ncall out (...)\nscream (...)\n\n【名】\n①【C】叫び【声】\nshout\nscream", usedIn: ["s102"], tags: ["verb"] },
+    { vid: "v0489", word:"in a rage", ipa:"/ɪn ə ˈreɪdʒ/", meaning: "怒って、激怒して", extraInfo:"【名】\n①【C,U】激怒\nfury\nanger\nwrath\n\nin a rage 【副】\n①激怒して\nin anger\n\nrage /ˈreɪdʒ/ 【動】\n①【戦い・嵐などが】激しく続く", usedIn: ["s102"], tags: ["adv"] },
 
-    { vid: "v0490", word:"tighten", ipa:"/ˈtaɪtən/", meaning: "～を締める", usedIn: ["s103"], tags: ["verb"] },
-    { vid: "v0491", word:"lid", ipa:"/ˈlɪd/", meaning: "蓋", usedIn: ["s103"], tags: ["noun"] },
-    { vid: "v0492", word:"so (that) ...", ipa:"/ˈsoʊ (ˈðæt) .../", meaning: "～するように（目的）", usedIn: ["s103"], tags: ["conj"] },
-    { vid: "v0493", word:"go bad", ipa:"/ˈɡoʊ ˈbæd/", meaning: "腐る", usedIn: ["s103"], tags: ["verb"] },
+    { vid: "v0490", word:"tighten", ipa:"/ˈtaɪtən/", meaning: "～を締める", extraInfo:"【動】\n①…をきつく締める\nfasten...\n（↔ loosen...\nslacken... ...を緩める）\n\ntight /ˈtaɪt/ 【形】\n①（服などが）きつい\n（↔ loose / slack 緩い）\n②（状況などが）きつい、厳しい\n\n【副】\n①しっかりと、堅く\nfast\nfirmly\n\ntightly /ˈtaɪtli/ 【副】\n①しっかりと、きつく", usedIn: ["s103"], tags: ["verb"] },
+    { vid: "v0491", word:"lid", ipa:"/ˈlɪd/", meaning: "蓋", extraInfo:"【名】\n①【C】ふた・おおいもの\ntop\ncover\n【厚上に上げてはずれる大きめの蓋。回して開け閉めをする小さなキャップや栓は cap が top】", usedIn: ["s103"], tags: ["noun"] },
+    { vid: "v0492", word:"so (that) ...", ipa:"/ˈsoʊ (ˈðæt) .../", meaning: "～するように（目的）", extraInfo:"【副】\n① A が…するように\n【that 以下の文が否定文の場合、\"will not\" でなく \"do not\" でも可】\n\nso (that) A can do... 【副】\n① A が…できるように\nin order that A can do...\n【can の代わりに may を使うのは古語】", usedIn: ["s103"], tags: ["conj"] },
+    { vid: "v0493", word:"go bad", ipa:"/ˈɡoʊ ˈbæd/", meaning: "腐る", extraInfo:"【動】\n①（食べ物などが）腐る、いたむ\nspoil\nrot\nbe rotten\ndecay\ngo off\ngo sour\n\n【go + 形容詞 = …になる（become...）】\ngo bad（腐る）\ngo broke（破産する）\ngo bankrupt（倒産する）\ngo crazy [mad]（発狂する）\ngo well（うまくいく）など", usedIn: ["s103"], tags: ["verb"] },
 
     { vid: "v0494", word:"borrow", ipa:"/ˈbɑrˌoʊ/", meaning: "借りる（他人から）", usedIn: ["s104"], tags: ["verb"] },
     { vid: "v0495", word:"scissors", ipa:"/ˈsɪzɚz/", meaning: "はさみ", usedIn: ["s104"], tags: ["noun"] },

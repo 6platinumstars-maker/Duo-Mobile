@@ -47,6 +47,8 @@
   const vocabMeaningEl = $("vocabMeaning");
   const vocabInputEl = $("vocabInput");
   const vocabFeedbackEl = $("vocabFeedback");
+  const vocabCheckAllBtn = $("vocabCheckAllBtn");
+  const vocabUncheckAllBtn = $("vocabUncheckAllBtn");
   const vocabPrevBtn = $("vocabPrevBtn");
   const vocabNextBtn = $("vocabNextBtn");
   const vocabRevealBtn = $("vocabRevealBtn");
@@ -274,6 +276,38 @@
     });
 
     return items;
+  }
+
+  function getAllVocabItems() {
+    const items = [];
+
+    getSectionIds().forEach((sectionId) => {
+      const sec = window.SECTIONS?.[sectionId];
+      if (!sec?.vocab?.length) return;
+
+      sec.vocab.forEach((vocab) => {
+        items.push({ sectionId, vocab });
+      });
+    });
+
+    items.sort((a, b) => {
+      const byVid = getVocabIdNumber(a.vocab?.vid) - getVocabIdNumber(b.vocab?.vid);
+      if (byVid !== 0) return byVid;
+      return getSectionNumber(a.sectionId) - getSectionNumber(b.sectionId);
+    });
+
+    return items;
+  }
+
+  function setAllChipChecked(checked) {
+    getAllVocabItems().forEach(({ vocab }) => {
+      if (!vocab?.vid) return;
+      chipState[vocab.vid] = { checked: !!checked };
+    });
+
+    checkedVocabReviewIndex = 0;
+    checkedVocabRevealStage = 0;
+    scheduleSaveChipState();
   }
 
   function getCurrentCheckedVocabItem() {
@@ -1185,6 +1219,9 @@
   function renderCheckedVocabReview() {
     const { items, item } = getCurrentCheckedVocabItem();
 
+    if (vocabCheckAllBtn) vocabCheckAllBtn.disabled = false;
+    if (vocabUncheckAllBtn) vocabUncheckAllBtn.disabled = items.length === 0;
+
     if (vocabPromptTitleEl) vocabPromptTitleEl.textContent = "チェック済み単語";
     if (vocabAnswerTitleEl) {
       vocabAnswerTitleEl.textContent = checkedVocabRevealStage === 0 ? "例文" : "例文と訳";
@@ -1701,6 +1738,18 @@
   tabVocab.addEventListener("click", () => setView("vocab"));
   tabEnAudio.addEventListener("click", () => setView("enAudio"));
   tabJpAudio.addEventListener("click", () => setView("jpAudio"));
+
+  vocabCheckAllBtn?.addEventListener("click", () => {
+    setAllChipChecked(true);
+    renderSentence();
+    renderCheckedVocabReview();
+  });
+
+  vocabUncheckAllBtn?.addEventListener("click", () => {
+    setAllChipChecked(false);
+    renderSentence();
+    renderCheckedVocabReview();
+  });
 
   viewVocab.addEventListener("click", (event) => {
     if (currentView !== "vocab") return;
