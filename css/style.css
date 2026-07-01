@@ -120,7 +120,7 @@ body {
 .meta-text { font-size: 12px; color: var(--muted); }
 
 .english {
-  font-size: calc(var(--japanese-size) + 4px);
+  font-size: calc(var(--japanese-size) + 6px);
   line-height: 1.5;
   font-weight: 650;
   margin: 8px 0 10px;
